@@ -1,0 +1,409 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Blue Colors */
+  --blue-05: #f0f7ff;
+  --blue-10: #dbeeff;
+  --blue-20: #bddbff;
+  --blue-30: #93beff;
+  --blue-40: #6da5fa;
+  --blue-50: #497cff;
+  --blue-60: #3a5cf3;
+  --blue-70: #274ae1;
+  --blue-80: #1530a6;
+  --blue-90: #0b2184;
+
+  /* Gray Colors */
+  --gray-white: #ffffff;
+  --gray-05: #f2f2f2;
+  --gray-10: #e4e4e4;
+  --gray-20: #d4d3d3;
+  --gray-30: #c7c7c7;
+  --gray-40: #ababab;
+  --gray-50: #919191;
+  --gray-60: #777777;
+  --gray-70: #5f5f5f;
+  --gray-80: #333333;
+  --gray-90: #1c1c1c;
+  --gray-black: #000000;
+
+  /* Red Colors */
+  --red-05: #fdd7dc;
+  --red-10: #f797a4;
+  --red-20: #f4677a;
+  --red-30: #f03851;
+  --red-40: #e4112e;
+  --red-50: #b40e24;
+  --red-60: #850a1b;
+
+  /* Green Colors */
+  --green-05: #d3f3e0;
+  --green-10: #92e6b9;
+  --green-20: #15d66f;
+  --green-30: #12b75f;
+  --green-40: #109c51;
+  --green-50: #0e723c;
+  --green-60: #084424;
+
+  /* Yellow Colors */
+  --yellow-05: #ffe499;
+  --yellow-10: #ffd666;
+  --yellow-20: #ffc933;
+  --yellow-30: #ffb300;
+  --yellow-40: #eba500;
+  --yellow-50: #d69600;
+  --yellow-60: #b27d00;
+
+  /* Cool Gray Colors */
+  --cool-gray-01: #f8f8fa;
+  --cool-gray-05: #f6f6f9;
+  --cool-gray-10: #edeef2;
+  --cool-gray-20: #dddfe5;
+  --cool-gray-30: #d2d4dd;
+  --cool-gray-40: #c7c9d5;
+  --cool-gray-50: #bbbecd;
+  --cool-gray-60: #b0b3c4;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #6da5fa 0%, #92eaf5 100%);
+  --gradient-skeleton: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 48.5%,
+    transparent 100%
+  );
+
+  /* Semantic Colors - Light Mode */
+  --bg-primary: var(--gray-white);
+  --bg-secondary: var(--gray-05);
+  --bg-tertiary: var(--gray-10);
+
+  --text-primary: var(--gray-black);
+  --text-secondary: var(--gray-70);
+  --text-tertiary: var(--gray-50);
+  --text-disabled: var(--gray-40);
+
+  --border-primary: var(--gray-30);
+  --border-secondary: var(--gray-20);
+
+  --brand-primary: var(--blue-60);
+  --brand-secondary: var(--blue-40);
+  --brand-hover: var(--blue-70);
+
+  --status-success: var(--green-30);
+  --status-error: var(--red-30);
+  --status-warning: var(--yellow-30);
+  --status-info: var(--blue-50);
+
+  /* Legacy support */
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Semantic Colors - Dark Mode */
+    --bg-primary: var(--gray-black);
+    --bg-secondary: var(--gray-90);
+    --bg-tertiary: var(--gray-80);
+
+    --text-primary: var(--gray-white);
+    --text-secondary: var(--gray-40);
+    --text-tertiary: var(--gray-50);
+    --text-disabled: var(--gray-60);
+
+    --border-primary: var(--gray-70);
+    --border-secondary: var(--gray-80);
+
+    --brand-primary: var(--blue-50);
+    --brand-secondary: var(--blue-40);
+    --brand-hover: var(--blue-60);
+
+    --status-success: var(--green-20);
+    --status-error: var(--red-30);
+    --status-warning: var(--yellow-30);
+    --status-info: var(--blue-40);
+
+    --gradient-skeleton: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 48.5%,
+      transparent 100%
+    );
+
+    /* Legacy support */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+  }
+}
+
+/* Typography Variables */
+:root {
+  /* Font Families */
+  --font-korean: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    sans-serif;
+  --font-english: 'SUIT Variable', -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, sans-serif;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Mobile/Default Headline - 기본값 (모바일) */
+  --headline-01-font-family: var(--font-korean);
+  --headline-01-font-size: 24px;
+  --headline-01-font-weight: var(--font-weight-bold);
+  --headline-01-line-height: 32px;
+
+  --headline-02-font-family: var(--font-korean);
+  --headline-02-font-size: 22px;
+  --headline-02-font-weight: var(--font-weight-extrabold);
+  --headline-02-line-height: 30px;
+
+  --headline-03-font-family: var(--font-korean);
+  --headline-03-font-size: 20px;
+  --headline-03-font-weight: var(--font-weight-bold);
+  --headline-03-line-height: 28px;
+
+  /* Title */
+  --title-01-font-family: var(--font-korean);
+  --title-01-font-size: 18px;
+  --title-01-font-weight: var(--font-weight-bold);
+  --title-01-line-height: 24px;
+
+  --title-02-font-family: var(--font-korean);
+  --title-02-font-size: 16px;
+  --title-02-font-weight: var(--font-weight-bold);
+  --title-02-line-height: 22px;
+
+  --title-03-font-family: var(--font-korean);
+  --title-03-font-size: 14px;
+  --title-03-font-weight: var(--font-weight-bold);
+  --title-03-line-height: 20px;
+
+  --subtitle-01-font-family: var(--font-korean);
+  --subtitle-01-font-size: 14px;
+  --subtitle-01-font-weight: var(--font-weight-semibold);
+  --subtitle-01-line-height: 22px;
+
+  --subtitle-02-font-family: var(--font-korean);
+  --subtitle-02-font-size: 12px;
+  --subtitle-02-font-weight: var(--font-weight-semibold);
+  --subtitle-02-line-height: 18px;
+
+  /* Body */
+  --body-01-medium-font-family: var(--font-korean);
+  --body-01-medium-font-size: 16px;
+  --body-01-medium-font-weight: var(--font-weight-medium);
+  --body-01-medium-line-height: 24px;
+
+  --body-02-medium-font-family: var(--font-korean);
+  --body-02-medium-font-size: 14px;
+  --body-02-medium-font-weight: var(--font-weight-medium);
+  --body-02-medium-line-height: 22px;
+
+  --body-03-medium-font-family: var(--font-korean);
+  --body-03-medium-font-size: 12px;
+  --body-03-medium-font-weight: var(--font-weight-medium);
+  --body-03-medium-line-height: 18px;
+
+  --body-01-regular-font-family: var(--font-korean);
+  --body-01-regular-font-size: 16px;
+  --body-01-regular-font-weight: var(--font-weight-regular);
+  --body-01-regular-line-height: 22px;
+
+  --body-02-regular-font-family: var(--font-korean);
+  --body-02-regular-font-size: 14px;
+  --body-02-regular-font-weight: var(--font-weight-regular);
+  --body-02-regular-line-height: 20px;
+
+  --body-03-regular-font-family: var(--font-korean);
+  --body-03-regular-font-size: 12px;
+  --body-03-regular-font-weight: var(--font-weight-regular);
+  --body-03-regular-line-height: 16px;
+
+  /* Caption */
+  --caption-01-font-family: var(--font-korean);
+  --caption-01-font-size: 12px;
+  --caption-01-font-weight: var(--font-weight-semibold);
+  --caption-01-line-height: 14px;
+
+  --caption-02-medium-font-family: var(--font-korean);
+  --caption-02-medium-font-size: 10px;
+  --caption-02-medium-font-weight: var(--font-weight-semibold);
+  --caption-02-medium-line-height: 12px;
+
+  --caption-02-regular-font-family: var(--font-korean);
+  --caption-02-regular-font-size: 10px;
+  --caption-02-regular-font-weight: var(--font-weight-medium);
+  --caption-02-regular-line-height: 12px;
+
+  --caption-03-font-family: var(--font-korean);
+  --caption-03-font-size: 8px;
+  --caption-03-font-weight: var(--font-weight-semibold);
+  --caption-03-line-height: 10px;
+}
+
+/* Web/Desktop Headline - 768px 이상 */
+@media (min-width: 768px) {
+  :root {
+    --headline-01-font-size: 48px;
+    --headline-01-font-weight: var(--font-weight-semibold);
+    --headline-01-line-height: 60px;
+
+    --headline-02-font-size: 36px;
+    --headline-02-font-weight: var(--font-weight-semibold);
+    --headline-02-line-height: 48px;
+
+    --headline-03-font-size: 28px;
+    --headline-03-font-weight: var(--font-weight-semibold);
+    --headline-03-line-height: 36px;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-korean);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Headline Typography Utilities */
+  .text-headline-01 {
+    font-family: var(--headline-01-font-family);
+    font-size: var(--headline-01-font-size);
+    font-weight: var(--headline-01-font-weight);
+    line-height: var(--headline-01-line-height);
+  }
+
+  .text-headline-02 {
+    font-family: var(--headline-02-font-family);
+    font-size: var(--headline-02-font-size);
+    font-weight: var(--headline-02-font-weight);
+    line-height: var(--headline-02-line-height);
+  }
+
+  .text-headline-03 {
+    font-family: var(--headline-03-font-family);
+    font-size: var(--headline-03-font-size);
+    font-weight: var(--headline-03-font-weight);
+    line-height: var(--headline-03-line-height);
+  }
+
+  /* Title Typography Utilities */
+  .text-title-01 {
+    font-family: var(--title-01-font-family);
+    font-size: var(--title-01-font-size);
+    font-weight: var(--title-01-font-weight);
+    line-height: var(--title-01-line-height);
+  }
+
+  .text-title-02 {
+    font-family: var(--title-02-font-family);
+    font-size: var(--title-02-font-size);
+    font-weight: var(--title-02-font-weight);
+    line-height: var(--title-02-line-height);
+  }
+
+  .text-title-03 {
+    font-family: var(--title-03-font-family);
+    font-size: var(--title-03-font-size);
+    font-weight: var(--title-03-font-weight);
+    line-height: var(--title-03-line-height);
+  }
+
+  .text-subtitle-01 {
+    font-family: var(--subtitle-01-font-family);
+    font-size: var(--subtitle-01-font-size);
+    font-weight: var(--subtitle-01-font-weight);
+    line-height: var(--subtitle-01-line-height);
+  }
+
+  .text-subtitle-02 {
+    font-family: var(--subtitle-02-font-family);
+    font-size: var(--subtitle-02-font-size);
+    font-weight: var(--subtitle-02-font-weight);
+    line-height: var(--subtitle-02-line-height);
+  }
+
+  /* Body Typography Utilities */
+  .text-body-01-medium {
+    font-family: var(--body-01-medium-font-family);
+    font-size: var(--body-01-medium-font-size);
+    font-weight: var(--body-01-medium-font-weight);
+    line-height: var(--body-01-medium-line-height);
+  }
+
+  .text-body-02-medium {
+    font-family: var(--body-02-medium-font-family);
+    font-size: var(--body-02-medium-font-size);
+    font-weight: var(--body-02-medium-font-weight);
+    line-height: var(--body-02-medium-line-height);
+  }
+
+  .text-body-03-medium {
+    font-family: var(--body-03-medium-font-family);
+    font-size: var(--body-03-medium-font-size);
+    font-weight: var(--body-03-medium-font-weight);
+    line-height: var(--body-03-medium-line-height);
+  }
+
+  .text-body-01-regular {
+    font-family: var(--body-01-regular-font-family);
+    font-size: var(--body-01-regular-font-size);
+    font-weight: var(--body-01-regular-font-weight);
+    line-height: var(--body-01-regular-line-height);
+  }
+
+  .text-body-02-regular {
+    font-family: var(--body-02-regular-font-family);
+    font-size: var(--body-02-regular-font-size);
+    font-weight: var(--body-02-regular-font-weight);
+    line-height: var(--body-02-regular-line-height);
+  }
+
+  .text-body-03-regular {
+    font-family: var(--body-03-regular-font-family);
+    font-size: var(--body-03-regular-font-size);
+    font-weight: var(--body-03-regular-font-weight);
+    line-height: var(--body-03-regular-line-height);
+  }
+
+  /* Caption Typography Utilities */
+  .text-caption-01 {
+    font-family: var(--caption-01-font-family);
+    font-size: var(--caption-01-font-size);
+    font-weight: var(--caption-01-font-weight);
+    line-height: var(--caption-01-line-height);
+  }
+
+  .text-caption-02-medium {
+    font-family: var(--caption-02-medium-font-family);
+    font-size: var(--caption-02-medium-font-size);
+    font-weight: var(--caption-02-medium-font-weight);
+    line-height: var(--caption-02-medium-line-height);
+  }
+
+  .text-caption-02-regular {
+    font-family: var(--caption-02-regular-font-family);
+    font-size: var(--caption-02-regular-font-size);
+    font-weight: var(--caption-02-regular-font-weight);
+    line-height: var(--caption-02-regular-line-height);
+  }
+
+  .text-caption-03 {
+    font-family: var(--caption-03-font-family);
+    font-size: var(--caption-03-font-size);
+    font-weight: var(--caption-03-font-weight);
+    line-height: var(--caption-03-line-height);
+  }
+}
