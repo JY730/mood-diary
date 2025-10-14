@@ -46,13 +46,17 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 /**
  * Button 컴포넌트
  * 
- * 다양한 variant, size, theme을 지원하는 버튼 컴포넌트입니다.
- * Figma 디자인 시스템을 기반으로 구현되었습니다.
+ * Figma 디자인 시스템을 기반으로 구현된 버튼 컴포넌트입니다.
+ * 
+ * 지원하는 variant:
+ * - primary: 검은색 배경, 흰색 텍스트 (Node 3:1461)
+ * - secondary: 흰색/회색 배경, 어두운 텍스트 (Node 3:482, 3:484)
+ * - tertiary: 투명 배경, 텍스트만 표시
  * 
  * @example
  * ```tsx
- * <Button variant="primary" size="medium" theme="light">
- *   클릭하세요
+ * <Button variant="primary" size="medium" theme="light" icon={<PlusIcon />}>
+ *   일기쓰기
  * </Button>
  * ```
  */

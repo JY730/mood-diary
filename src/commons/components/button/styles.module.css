@@ -1,18 +1,21 @@
-/* Button Base Styles */
+/* Button Base Styles - Figma Design System */
+/* Color constants imported from src/commons/constants/color.ts */
+
+/* Color constants from src/commons/constants/color.ts - Applied directly without CSS variables */
+
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px; /* Figma: 8px corner radius */
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-weight: 600;
+  font-weight: 600; /* Figma: SemiBold 600 */
   font-style: normal;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.18px; /* Figma: -0.18 letter spacing */
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  position: relative;
   overflow: hidden;
   white-space: nowrap;
   text-decoration: none;
@@ -24,12 +27,10 @@
 
 .button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(109, 165, 250, 0.3);
+  box-shadow: 0 0 0 2px rgba(109, 165, 250, 0.3); /* BLUE.BLUE_40 with opacity */
 }
 
-.button:active {
-  transform: translateY(1px);
-}
+/* Active state transform removed per @02-wireframe.mdc rule */
 
 /* Content and Icon Styles */
 .content {
@@ -55,18 +56,18 @@
   /* Animation removed per @02-wireframe.mdc rule */
 }
 
-/* Size Variants */
+/* Size Variants - Based on Figma Design */
 .button--small {
-  height: 32px;
-  padding: 0 12px;
-  font-size: 14px;
-  line-height: 20px;
-  min-width: 64px;
+  height: 48px; /* Figma: consistent 48px height */
+  padding: 0 16px;
+  font-size: 18px; /* Figma: 18px font size */
+  line-height: 24px; /* Figma: 24px line height */
+  min-width: 104px; /* Figma: 104px width for small buttons */
 }
 
 .button--small .icon {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
 }
 
 .button--medium {
@@ -78,16 +79,16 @@
 }
 
 .button--medium .icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .button--large {
-  height: 48px;
-  padding: 0 20px;
-  font-size: 18px;
-  line-height: 24px;
-  min-width: 96px;
+  height: 48px; /* Figma: consistent 48px height */
+  padding: 0 24px;
+  font-size: 18px; /* Figma: 18px font size */
+  line-height: 24px; /* Figma: 24px line height */
+  min-width: 120px;
 }
 
 .button--large .icon {
@@ -95,124 +96,139 @@
   height: 24px;
 }
 
-/* Primary Variant - Light Theme (Figma Design) */
+/* Primary Variant - Light Theme (Figma Design: Node 3:1461) */
 .button--primary.button--light {
-  background-color: #000000; /* Figma: Black background */
-  color: #FFFFFF; /* Figma: White text */
+  background-color: #000000; /* GRAY.BLACK */
+  color: #FFFFFF; /* GRAY.WHITE */
   border: 1px solid #000000;
 }
 
 .button--primary.button--light:hover:not(:disabled) {
-  background-color: #1C1C1C; /* GRAY_90 */
+  background-color: #1C1C1C; /* GRAY.GRAY_90 */
   border-color: #1C1C1C;
 }
 
 .button--primary.button--light:active:not(:disabled) {
-  background-color: #333333; /* GRAY_80 */
+  background-color: #333333; /* GRAY.GRAY_80 */
   border-color: #333333;
 }
 
-/* Primary Variant - Dark Theme (Figma Design) */
+/* Primary Variant - Dark Theme (Figma Design: Node 3:1461) */
 .button--primary.button--dark {
-  background-color: #000000; /* Figma: Black background */
-  color: #FFFFFF; /* Figma: White text */
+  background-color: #000000; /* GRAY.BLACK */
+  color: #FFFFFF; /* GRAY.WHITE */
   border: 1px solid #000000;
 }
 
 .button--primary.button--dark:hover:not(:disabled) {
-  background-color: #1C1C1C; /* GRAY_90 */
+  background-color: #1C1C1C; /* GRAY.GRAY_90 */
   border-color: #1C1C1C;
 }
 
 .button--primary.button--dark:active:not(:disabled) {
-  background-color: #333333; /* GRAY_80 */
+  background-color: #333333; /* GRAY.GRAY_80 */
   border-color: #333333;
 }
 
-/* Secondary Variant - Light Theme */
+/* Secondary Variant - Light Theme (Figma Design: Node 3:482) */
 .button--secondary.button--light {
-  background-color: #FFFFFF;
-  color: #3A5CF3; /* BLUE_60 */
-  border: 1px solid #3A5CF3;
+  background-color: #FFFFFF; /* GRAY.WHITE */
+  color: #1C1C1C; /* GRAY.GRAY_90 */
+  border: 1px solid #000000; /* GRAY.BLACK */
 }
 
 .button--secondary.button--light:hover:not(:disabled) {
-  background-color: #F0F7FF; /* BLUE_05 */
-  color: #274AE1; /* BLUE_70 */
-  border-color: #274AE1;
+  background-color: #F2F2F2; /* GRAY.GRAY_05 */
+  color: #000000;
+  border-color: #000000;
 }
 
 .button--secondary.button--light:active:not(:disabled) {
-  background-color: #DBEEFF; /* BLUE_10 */
-  color: #1530A6; /* BLUE_80 */
-  border-color: #1530A6;
+  background-color: #E4E4E4; /* GRAY.GRAY_10 */
+  color: #000000;
+  border-color: #000000;
 }
 
-/* Secondary Variant - Dark Theme */
+/* Secondary Variant - Dark Theme (Figma Design: Node 3:484) */
 .button--secondary.button--dark {
-  background-color: #000000;
-  color: #497CFF; /* BLUE_50 */
-  border: 1px solid #497CFF;
+  background-color: #C7C7C7; /* GRAY.GRAY_30 */
+  color: #F2F2F2; /* GRAY.GRAY_05 */
+  border: 1px solid #C7C7C7;
 }
 
 .button--secondary.button--dark:hover:not(:disabled) {
-  background-color: #1C1C1C; /* GRAY_90 */
-  color: #6DA5FA; /* BLUE_40 */
-  border-color: #6DA5FA;
+  background-color: #ABABAB; /* GRAY.GRAY_40 */
+  color: #FFFFFF;
+  border-color: #ABABAB;
 }
 
 .button--secondary.button--dark:active:not(:disabled) {
-  background-color: #333333; /* GRAY_80 */
-  color: #93BEFF; /* BLUE_30 */
-  border-color: #93BEFF;
+  background-color: #919191; /* GRAY.GRAY_50 */
+  color: #FFFFFF;
+  border-color: #919191;
 }
 
-/* Tertiary Variant - Light Theme */
+/* Tertiary Variant - Light Theme (Text-only style) */
 .button--tertiary.button--light {
   background-color: transparent;
-  color: #3A5CF3; /* BLUE_60 */
+  color: #1C1C1C; /* GRAY.GRAY_90 */
   border: 1px solid transparent;
 }
 
 .button--tertiary.button--light:hover:not(:disabled) {
-  background-color: #F0F7FF; /* BLUE_05 */
-  color: #274AE1; /* BLUE_70 */
+  background-color: #F2F2F2; /* GRAY.GRAY_05 */
+  color: #000000;
 }
 
 .button--tertiary.button--light:active:not(:disabled) {
-  background-color: #DBEEFF; /* BLUE_10 */
-  color: #1530A6; /* BLUE_80 */
+  background-color: #E4E4E4; /* GRAY.GRAY_10 */
+  color: #000000;
 }
 
-/* Tertiary Variant - Dark Theme */
+/* Tertiary Variant - Dark Theme (Text-only style) */
 .button--tertiary.button--dark {
   background-color: transparent;
-  color: #497CFF; /* BLUE_50 */
+  color: #F2F2F2; /* GRAY.GRAY_05 */
   border: 1px solid transparent;
 }
 
 .button--tertiary.button--dark:hover:not(:disabled) {
-  background-color: #1C1C1C; /* GRAY_90 */
-  color: #6DA5FA; /* BLUE_40 */
+  background-color: #1C1C1C; /* GRAY.GRAY_90 */
+  color: #FFFFFF;
 }
 
 .button--tertiary.button--dark:active:not(:disabled) {
-  background-color: #333333; /* GRAY_80 */
-  color: #93BEFF; /* BLUE_30 */
+  background-color: #333333; /* GRAY.GRAY_80 */
+  color: #FFFFFF;
 }
 
-/* Disabled State */
-.button--disabled {
+/* Disabled State - Figma Design: Gray 300 background */
+.button--disabled,
+.button--primary.button--disabled,
+.button--secondary.button--disabled,
+.button--tertiary.button--disabled {
   cursor: not-allowed;
-  opacity: 0.5;
+  background-color: #C7C7C7; /* GRAY.GRAY_30 - Figma Node 3:484 */
+  color: #F2F2F2; /* GRAY.GRAY_05 */
+  border-color: #C7C7C7;
 }
 
-.button--disabled:hover {
-  transform: none;
+.button--disabled:hover,
+.button--primary.button--disabled:hover,
+.button--secondary.button--disabled:hover,
+.button--tertiary.button--disabled:hover {
+  background-color: #C7C7C7;
+  color: #F2F2F2;
+  border-color: #C7C7C7;
 }
 
-.button--disabled:active {
-  transform: none;
+.button--disabled:active,
+.button--primary.button--disabled:active,
+.button--secondary.button--disabled:active,
+.button--tertiary.button--disabled:active {
+  background-color: #C7C7C7;
+  color: #F2F2F2;
+  border-color: #C7C7C7;
 }
 
 /* Loading State */
@@ -226,12 +242,12 @@
 
 /* Focus States for Accessibility */
 .button:focus-visible {
-  outline: 2px solid #3A5CF3;
+  outline: 2px solid #3A5CF3; /* BLUE.BLUE_60 */
   outline-offset: 2px;
 }
 
 .button--dark:focus-visible {
-  outline-color: #497CFF;
+  outline-color: #6DA5FA; /* BLUE.BLUE_40 */
 }
 
 /* High Contrast Mode Support */
@@ -241,11 +257,11 @@
   }
   
   .button--tertiary.button--light {
-    border: 2px solid #3A5CF3;
+    border: 2px solid #3A5CF3; /* BLUE.BLUE_60 */
   }
   
   .button--tertiary.button--dark {
-    border: 2px solid #497CFF;
+    border: 2px solid #6DA5FA; /* BLUE.BLUE_40 */
   }
 }
 
