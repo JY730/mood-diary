@@ -92,6 +92,11 @@
   display: block;
 }
 
+/* 다크모드에서 화살표 아이콘 색상 필터 - #C7C7C7 (GRAY_30) */
+.selectboxWrapper--dark .arrowIcon {
+  filter: brightness(0) saturate(100%) invert(78%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(78%) contrast(78%);
+}
+
 .selectbox--open .arrow {
   transform: rotate(180deg);
 }
