@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef, SelectHTMLAttributes, useState } from 'react';
+import React, { forwardRef, SelectHTMLAttributes, useState, useRef, useEffect } from 'react';
 import styles from './styles.module.css';
 
 // Selectbox variant types
@@ -89,12 +89,30 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
   ) => {
     const [internalValue, setInternalValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const selectValue = value !== undefined ? value : internalValue;
     const hasValue = selectValue !== '';
 
     // 선택된 옵션 찾기
     const selectedOption = options.find(opt => opt.value === selectValue);
     const displayText = selectedOption?.label || placeholder;
+
+    // 외부 클릭 감지
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+
+      if (isOpen) {
+        document.addEventListener('mousedown', handleClickOutside);
+      }
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [isOpen]);
 
     // Generate CSS classes
     const containerClasses = [
@@ -138,24 +156,60 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
       .filter(Boolean)
       .join(' ');
 
-    // Handle change
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const newValue = e.target.value;
+    // Handle option select
+    const handleOptionSelect = (optionValue: string) => {
       if (value === undefined) {
-        setInternalValue(newValue);
+        setInternalValue(optionValue);
       }
-      onChange?.(e);
-      onValueChange?.(newValue);
-    };
-
-    // Handle focus
-    const handleFocus = () => {
-      setIsOpen(true);
-    };
-
-    // Handle blur
-    const handleBlur = () => {
+      
+      // Create synthetic event for compatibility
+      const syntheticEvent = {
+        target: { value: optionValue },
+        currentTarget: { value: optionValue },
+      } as React.ChangeEvent<HTMLSelectElement>;
+      
+      onChange?.(syntheticEvent);
+      onValueChange?.(optionValue);
       setIsOpen(false);
+    };
+
+    // Handle trigger click
+    const handleTriggerClick = () => {
+      if (!disabled) {
+        setIsOpen(!isOpen);
+      }
+    };
+
+    // Handle keyboard navigation
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (disabled) return;
+
+      switch (e.key) {
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          setIsOpen(!isOpen);
+          break;
+        case 'Escape':
+          setIsOpen(false);
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          if (!isOpen) {
+            setIsOpen(true);
+          } else {
+            // Focus next option logic can be added here
+          }
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          if (!isOpen) {
+            setIsOpen(true);
+          } else {
+            // Focus previous option logic can be added here
+          }
+          break;
+      }
     };
 
     return (
@@ -167,15 +221,15 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
           </label>
         )}
 
-        <div className={selectClasses}>
+        <div className={styles.selectboxContainer} ref={dropdownRef}>
+          {/* Hidden native select for form compatibility */}
           <select
             ref={ref}
-            className={styles.select}
+            className={styles.hiddenSelect}
             disabled={disabled}
             value={selectValue}
-            onChange={handleChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            onChange={() => {}} // Handled by custom dropdown
+            tabIndex={-1}
             {...props}
           >
             {placeholder && (
@@ -194,7 +248,18 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
             ))}
           </select>
 
-          <div className={styles.display}>
+          {/* Custom trigger */}
+          <div 
+            className={selectClasses}
+            onClick={handleTriggerClick}
+            onKeyDown={handleKeyDown}
+            tabIndex={disabled ? -1 : 0}
+            role="combobox"
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-disabled={disabled}
+            aria-controls={isOpen ? 'selectbox-dropdown' : undefined}
+          >
             <span className={styles.displayText}>{displayText}</span>
             <span className={styles.arrow}>
               <img 
@@ -206,6 +271,36 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
               />
             </span>
           </div>
+
+          {/* Custom dropdown menu */}
+          {isOpen && (
+            <div className={styles.dropdown} role="listbox" id="selectbox-dropdown">
+              {options.map((option) => (
+                <div
+                  key={option.value}
+                  className={`${styles.option} ${
+                    option.value === selectValue ? styles.optionSelected : ''
+                  } ${option.disabled ? styles.optionDisabled : ''}`}
+                  onClick={() => !option.disabled && handleOptionSelect(option.value)}
+                  role="option"
+                  aria-selected={option.value === selectValue}
+                  aria-disabled={option.disabled}
+                >
+                  <span className={styles.optionText}>{option.label}</span>
+                  {option.value === selectValue && (
+                    <span className={styles.checkIcon}>
+                      <img 
+                        src="/icons/check_outline_light_xs.svg" 
+                        alt="" 
+                        width="16" 
+                        height="16"
+                      />
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {(helperText || errorMessage) && (

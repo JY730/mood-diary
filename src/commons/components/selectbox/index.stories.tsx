@@ -113,6 +113,16 @@ const basicOptions = [
   { value: 'option3', label: '옵션 3' },
 ];
 
+// 피그마 디자인 기반 감정 옵션 (노드 3:1469)
+const emotionOptions = [
+  { value: 'all', label: '전체' },
+  { value: 'happy', label: '행복해요' },
+  { value: 'sad', label: '슬퍼요' },
+  { value: 'surprised', label: '놀랐어요' },
+  { value: 'angry', label: '화나요' },
+  { value: 'etc', label: '기타' },
+];
+
 const categoryOptions = [
   { value: '', label: '카테고리 선택' },
   { value: 'electronics', label: '전자제품' },
@@ -646,6 +656,55 @@ export const Interactive: Story = {
     placeholder: '카테고리를 선택하세요',
     helperText: '선택하면 콘솔에 출력됩니다',
     onValueChange: (value) => console.log('선택된 값:', value),
+  },
+};
+
+/**
+ * 피그마 디자인 기반 감정 선택 예시입니다.
+ * 노드 3:1469의 디자인을 정확히 구현한 스토리입니다.
+ */
+export const FigmaEmotionExample: Story = {
+  args: {
+    variant: 'primary',
+    size: 'medium',
+    theme: 'light',
+    options: emotionOptions,
+    placeholder: '전체',
+    value: 'all', // 기본 선택값
+  },
+  render: function FigmaEmotionRender() {
+    const [selectedEmotion, setSelectedEmotion] = useState('all');
+    
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '20px', width: '300px' }}>
+        <div>
+          <h3 style={{ marginBottom: '16px' }}>감정 필터 (피그마 디자인)</h3>
+          <Selectbox
+            variant="primary"
+            size="medium"
+            theme="light"
+            options={emotionOptions}
+            placeholder="전체"
+            value={selectedEmotion}
+            onValueChange={setSelectedEmotion}
+          />
+        </div>
+        
+        <div style={{ 
+          padding: '16px',
+          border: '1px solid #e0e0e0',
+          borderRadius: '8px',
+          backgroundColor: '#f9f9f9',
+        }}>
+          <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+            선택된 감정: <strong>{emotionOptions.find(opt => opt.value === selectedEmotion)?.label}</strong>
+          </p>
+          <p style={{ margin: '8px 0 0 0', fontSize: '12px', color: '#999' }}>
+            이 스토리는 피그마 노드 3:1469의 디자인을 정확히 구현합니다.
+          </p>
+        </div>
+      </div>
+    );
   },
 };
 

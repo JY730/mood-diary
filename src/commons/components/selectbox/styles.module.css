@@ -48,42 +48,27 @@
 }
 
 /* Selectbox Container */
+.selectboxContainer {
+  position: relative;
+  width: 100%;
+}
+
+/* Hidden Native Select for form compatibility */
+.hiddenSelect {
+  display: none;
+}
+
+/* Custom Trigger */
 .selectbox {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  width: 100%;
-  border-radius: 8px; /* Figma: 8px corner radius */
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-/* Hidden Native Select */
-.select {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.select:disabled {
-  cursor: not-allowed;
-}
-
-/* Display Layer */
-.display {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  border-radius: 8px; /* Figma: 8px corner radius */
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
   gap: 8px;
-  pointer-events: none;
-  position: relative;
-  z-index: 1;
 }
 
 .displayText {
@@ -134,8 +119,8 @@
 }
 
 .selectbox--medium {
-  height: 48px; /* Figma: 48px height */
-  padding: 0 10px; /* Figma: 10px horizontal padding */
+  height: 48px; /* Figma: 48px height - 정확히 피그마와 일치 */
+  padding: 0 12px; /* Figma: 12px horizontal padding (좌우 여백) */
 }
 
 .selectbox--medium .displayText {
@@ -351,11 +336,11 @@
 
 /* Error State */
 .selectbox--error {
-  border-color: #F03851 !important; /* RED_30 */
+  border-color: #F03851; /* RED_30 */
 }
 
 .selectbox--error:focus-within {
-  box-shadow: 0 0 0 2px rgba(240, 56, 81, 0.1) !important;
+  box-shadow: 0 0 0 2px rgba(240, 56, 81, 0.1);
 }
 
 /* Disabled State */
@@ -418,10 +403,115 @@
   }
 }
 
+/* Dropdown Menu Styles - Figma Design 3:1469 */
+/* Note: position: absolute is required for dropdown to overlay other content */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #FFFFFF; /* Figma: White background */
+  border: 1px solid #C7C7C7; /* Figma: GRAY_30 border */
+  border-radius: 8px; /* Figma: 8px corner radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-top: 4px;
+  overflow: hidden; /* 스크롤 없이 모든 옵션 표시 */
+  max-height: none; /* 높이 제한 제거 */
+}
+
+/* Option Item Styles */
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px; /* Figma: 48px height per option */
+  padding: 0 12px; /* Figma: 12px horizontal padding */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  background-color: transparent;
+}
+
+.option:hover:not(.optionDisabled) {
+  background-color: #F2F2F2; /* GRAY_05 hover */
+}
+
+/* Selected Option Styles - Figma: Frame 87 */
+.optionSelected {
+  background-color: rgba(58, 181, 15, 0.05); /* Figma: #3ab50f with 5% opacity */
+}
+
+.optionSelected .optionText {
+  color: #299c00; /* Figma: Green text color */
+  font-weight: 700; /* Figma: Bold font weight */
+}
+
+/* Option Text */
+.optionText {
+  flex: 1;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-size: 16px; /* Figma: 16px font size */
+  line-height: 24px; /* Figma: 24px line height */
+  letter-spacing: -0.01em; /* Figma: -0.16px (-1%) */
+  font-weight: 400; /* Figma: Regular weight for unselected */
+  color: #5F5F5F; /* Figma: GRAY_70 for unselected options */
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Check Icon */
+.checkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.checkIcon img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) saturate(100%) invert(45%) sepia(84%) saturate(2270%) hue-rotate(92deg) brightness(98%) contrast(101%); /* Green color filter */
+}
+
+/* Disabled Option */
+.optionDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.optionDisabled:hover {
+  background-color: transparent;
+}
+
+/* Dark Theme Dropdown */
+.selectboxWrapper--dark .dropdown {
+  background-color: #1C1C1C; /* GRAY_90 */
+  border-color: #5F5F5F; /* GRAY_70 */
+}
+
+.selectboxWrapper--dark .option:hover:not(.optionDisabled) {
+  background-color: #333333; /* GRAY_80 hover */
+}
+
+.selectboxWrapper--dark .optionText {
+  color: #ABABAB; /* GRAY_40 for dark theme */
+}
+
+.selectboxWrapper--dark .optionSelected .optionText {
+  color: #4CAF50; /* Lighter green for dark theme */
+}
+
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   .selectbox,
-  .arrow {
+  .arrow,
+  .option {
     transition: none;
   }
 }
