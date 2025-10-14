@@ -1,0 +1,448 @@
+/**
+ * Pagination Component Styles
+ * Figma 디자인 시스템을 기반으로 구현된 페이지네이션 컴포넌트 스타일
+ */
+
+/* Base Pagination Styles */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Page Numbers Container */
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Base Page Button Styles */
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 400;
+  text-decoration: none;
+  outline: none;
+  background: transparent;
+}
+
+.pageButton:focus-visible {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 2px;
+}
+
+/* Page Number Button */
+.pageNumber {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+}
+
+/* Navigation Button (Previous/Next) */
+.navButton {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+
+/* Navigation Icon */
+.navIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Ellipsis */
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #777777;
+  user-select: none;
+}
+
+/* Active Page Button */
+.pageButton--active {
+  font-weight: 500;
+}
+
+/* Disabled Page Button */
+.pageButton--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Disabled state - no hover effects */
+
+/* ================================
+   VARIANT STYLES
+   ================================ */
+
+/* Primary Variant - Light Theme */
+.pagination--primary.pagination--light .pageNumber {
+  background-color: #ffffff;
+  color: #777777;
+}
+
+.pagination--primary.pagination--light .pageNumber:hover:not(.pageButton--disabled):not(.pageButton--active) {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.pagination--primary.pagination--light .pageButton--active {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.pagination--primary.pagination--light .navButton {
+  color: #777777;
+}
+
+.pagination--primary.pagination--light .navButton:hover:not(.pageButton--disabled) {
+  color: #000000;
+}
+
+/* Primary Variant - Dark Theme */
+.pagination--primary.pagination--dark .pageNumber {
+  background-color: #333333;
+  color: #ABABAB;
+}
+
+.pagination--primary.pagination--dark .pageNumber:hover:not(.pageButton--disabled):not(.pageButton--active) {
+  background-color: #5F5F5F;
+  color: #ffffff;
+}
+
+.pagination--primary.pagination--dark .pageButton--active {
+  background-color: #5F5F5F;
+  color: #ffffff;
+}
+
+.pagination--primary.pagination--dark .navButton {
+  color: #ABABAB;
+}
+
+.pagination--primary.pagination--dark .navButton:hover:not(.pageButton--disabled) {
+  color: #ffffff;
+}
+
+.pagination--primary.pagination--dark .ellipsis {
+  color: #ABABAB;
+}
+
+/* Secondary Variant - Light Theme */
+.pagination--secondary.pagination--light .pageNumber {
+  background-color: transparent;
+  color: #777777;
+  border: 1px solid #D4D3D3;
+}
+
+.pagination--secondary.pagination--light .pageNumber:hover:not(.pageButton--disabled):not(.pageButton--active) {
+  background-color: #f2f2f2;
+  color: #000000;
+  border-color: #C7C7C7;
+}
+
+.pagination--secondary.pagination--light .pageButton--active {
+  background-color: #6DA5FA;
+  color: #ffffff;
+  border-color: #6DA5FA;
+}
+
+.pagination--secondary.pagination--light .navButton {
+  color: #777777;
+  border: 1px solid #D4D3D3;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.pagination--secondary.pagination--light .navButton:hover:not(.pageButton--disabled) {
+  color: #000000;
+  border-color: #C7C7C7;
+  background-color: #f2f2f2;
+}
+
+/* Secondary Variant - Dark Theme */
+.pagination--secondary.pagination--dark .pageNumber {
+  background-color: transparent;
+  color: #ABABAB;
+  border: 1px solid #5F5F5F;
+}
+
+.pagination--secondary.pagination--dark .pageNumber:hover:not(.pageButton--disabled):not(.pageButton--active) {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #777777;
+}
+
+.pagination--secondary.pagination--dark .pageButton--active {
+  background-color: #497CFF;
+  color: #ffffff;
+  border-color: #497CFF;
+}
+
+.pagination--secondary.pagination--dark .navButton {
+  color: #ABABAB;
+  border: 1px solid #5F5F5F;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.pagination--secondary.pagination--dark .navButton:hover:not(.pageButton--disabled) {
+  color: #ffffff;
+  border-color: #777777;
+  background-color: #333333;
+}
+
+/* Tertiary Variant - Light Theme */
+.pagination--tertiary.pagination--light .pageNumber {
+  background-color: transparent;
+  color: #6DA5FA;
+}
+
+.pagination--tertiary.pagination--light .pageNumber:hover:not(.pageButton--disabled):not(.pageButton--active) {
+  background-color: #F0F7FF;
+  color: #3A5CF3;
+}
+
+.pagination--tertiary.pagination--light .pageButton--active {
+  background-color: #6DA5FA;
+  color: #ffffff;
+}
+
+.pagination--tertiary.pagination--light .navButton {
+  color: #6DA5FA;
+}
+
+.pagination--tertiary.pagination--light .navButton:hover:not(.pageButton--disabled) {
+  color: #3A5CF3;
+  background-color: #F0F7FF;
+  border-radius: 8px;
+}
+
+/* Tertiary Variant - Dark Theme */
+.pagination--tertiary.pagination--dark .pageNumber {
+  background-color: transparent;
+  color: #497CFF;
+}
+
+.pagination--tertiary.pagination--dark .pageNumber:hover:not(.pageButton--disabled):not(.pageButton--active) {
+  background-color: #1530A6;
+  color: #BDDBFF;
+}
+
+.pagination--tertiary.pagination--dark .pageButton--active {
+  background-color: #497CFF;
+  color: #ffffff;
+}
+
+.pagination--tertiary.pagination--dark .navButton {
+  color: #497CFF;
+}
+
+.pagination--tertiary.pagination--dark .navButton:hover:not(.pageButton--disabled) {
+  color: #BDDBFF;
+  background-color: #1530A6;
+  border-radius: 8px;
+}
+
+/* ================================
+   SIZE STYLES
+   ================================ */
+
+/* Small Size */
+.pagination--small .pageNumber {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+}
+
+.pagination--small .navButton {
+  width: 20px;
+  height: 20px;
+}
+
+.pagination--small .navIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.pagination--small .ellipsis {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.pagination--small {
+  gap: 4px;
+}
+
+.pagination--small .pageNumbers {
+  gap: 4px;
+}
+
+/* Medium Size (Default) */
+.pagination--medium .pageNumber {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+}
+
+.pagination--medium .navButton {
+  width: 24px;
+  height: 24px;
+}
+
+.pagination--medium .navIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.pagination--medium .ellipsis {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.pagination--medium {
+  gap: 8px;
+}
+
+.pagination--medium .pageNumbers {
+  gap: 8px;
+}
+
+/* Large Size */
+.pagination--large .pageNumber {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.18px;
+}
+
+.pagination--large .navButton {
+  width: 32px;
+  height: 32px;
+}
+
+.pagination--large .navIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.pagination--large .ellipsis {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.pagination--large {
+  gap: 12px;
+}
+
+.pagination--large .pageNumbers {
+  gap: 12px;
+}
+
+/* ================================
+   DISABLED STATE
+   ================================ */
+
+.pagination--disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 4px;
+  }
+  
+  .pageNumbers {
+    gap: 4px;
+  }
+  
+  .pagination--medium .pageNumber,
+  .pagination--large .pageNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .pagination--medium .navButton,
+  .pagination--large .navButton {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .pagination--medium .navIcon,
+  .pagination--large .navIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+
+/* Reduced motion support - no animations used */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .pageButton {
+    border: 1px solid;
+  }
+  
+  .pageButton--active {
+    border-width: 2px;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.pageButton:focus-visible {
+  outline: 2px solid #6DA5FA;
+  outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
