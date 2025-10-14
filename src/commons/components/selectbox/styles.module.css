@@ -1,0 +1,428 @@
+/* Selectbox Base Styles */
+.selectboxWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Label Styles */
+.label {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label--small {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.label--medium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.label--large {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.label--light {
+  color: #1C1C1C; /* GRAY_90 */
+}
+
+.label--dark {
+  color: #FFFFFF; /* WHITE */
+}
+
+.label--error {
+  color: #F03851; /* RED_30 */
+}
+
+.required {
+  color: #F03851; /* RED_30 */
+  margin-left: 2px;
+}
+
+/* Selectbox Container */
+.selectbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 8px; /* Figma: 8px corner radius */
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hidden Native Select */
+.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.select:disabled {
+  cursor: not-allowed;
+}
+
+/* Display Layer */
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.displayText {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-weight: 500; /* Figma: Medium (500) */
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrowIcon {
+  display: block;
+}
+
+.selectbox--open .arrow {
+  transform: rotate(180deg);
+}
+
+/* Size Variants */
+.selectbox--small {
+  height: 32px;
+  padding: 0 8px;
+}
+
+.selectbox--small .displayText {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+}
+
+.selectbox--small .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.selectbox--small .arrowIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.selectbox--medium {
+  height: 48px; /* Figma: 48px height */
+  padding: 0 10px; /* Figma: 10px horizontal padding */
+}
+
+.selectbox--medium .displayText {
+  font-size: 16px; /* Figma: 16px font size */
+  line-height: 24px; /* Figma: 24px line height */
+  letter-spacing: -0.01em; /* Figma: -0.16px (-1%) */
+}
+
+.selectbox--medium .arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.selectbox--medium .arrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.selectbox--large {
+  height: 56px;
+  padding: 0 16px;
+}
+
+.selectbox--large .displayText {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.selectbox--large .arrow {
+  width: 28px;
+  height: 28px;
+}
+
+.selectbox--large .arrowIcon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Primary Variant - Light Theme (Figma Design) */
+.selectbox--primary.selectbox--light {
+  background-color: #FFFFFF; /* Figma: White background */
+  border: 1px solid #C7C7C7; /* Figma: GRAY_30 border */
+}
+
+.selectbox--primary.selectbox--light .displayText {
+  color: #1C1C1C; /* Figma: GRAY_90 text */
+}
+
+.selectbox--primary.selectbox--light .arrow {
+  color: #1C1C1C;
+}
+
+.selectbox--primary.selectbox--light:hover:not(.selectbox--disabled) {
+  border-color: #ABABAB; /* GRAY_40 */
+  background-color: #F2F2F2; /* GRAY_05 */
+}
+
+.selectbox--primary.selectbox--light:focus-within:not(.selectbox--disabled) {
+  border-color: #3A5CF3; /* BLUE_60 */
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+}
+
+.selectbox--primary.selectbox--light.selectbox--open:not(.selectbox--disabled) {
+  border-color: #3A5CF3; /* BLUE_60 */
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+}
+
+/* Primary Variant - Dark Theme */
+.selectbox--primary.selectbox--dark {
+  background-color: #1C1C1C; /* GRAY_90 */
+  border: 1px solid #5F5F5F; /* GRAY_70 */
+}
+
+.selectbox--primary.selectbox--dark .displayText {
+  color: #FFFFFF; /* WHITE */
+}
+
+.selectbox--primary.selectbox--dark .arrow {
+  color: #FFFFFF;
+}
+
+.selectbox--primary.selectbox--dark:hover:not(.selectbox--disabled) {
+  border-color: #777777; /* GRAY_60 */
+  background-color: #333333; /* GRAY_80 */
+}
+
+.selectbox--primary.selectbox--dark:focus-within:not(.selectbox--disabled) {
+  border-color: #497CFF; /* BLUE_50 */
+  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+}
+
+.selectbox--primary.selectbox--dark.selectbox--open:not(.selectbox--disabled) {
+  border-color: #497CFF; /* BLUE_50 */
+  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+}
+
+/* Secondary Variant - Light Theme */
+.selectbox--secondary.selectbox--light {
+  background-color: #F2F2F2; /* GRAY_05 */
+  border: 1px solid #D4D3D3; /* GRAY_20 */
+}
+
+.selectbox--secondary.selectbox--light .displayText {
+  color: #1C1C1C; /* GRAY_90 */
+}
+
+.selectbox--secondary.selectbox--light .arrow {
+  color: #1C1C1C;
+}
+
+.selectbox--secondary.selectbox--light:hover:not(.selectbox--disabled) {
+  border-color: #C7C7C7; /* GRAY_30 */
+  background-color: #E4E4E4; /* GRAY_10 */
+}
+
+.selectbox--secondary.selectbox--light:focus-within:not(.selectbox--disabled) {
+  border-color: #3A5CF3; /* BLUE_60 */
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+}
+
+.selectbox--secondary.selectbox--light.selectbox--open:not(.selectbox--disabled) {
+  border-color: #3A5CF3; /* BLUE_60 */
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+}
+
+/* Secondary Variant - Dark Theme */
+.selectbox--secondary.selectbox--dark {
+  background-color: #333333; /* GRAY_80 */
+  border: 1px solid #5F5F5F; /* GRAY_70 */
+}
+
+.selectbox--secondary.selectbox--dark .displayText {
+  color: #FFFFFF; /* WHITE */
+}
+
+.selectbox--secondary.selectbox--dark .arrow {
+  color: #FFFFFF;
+}
+
+.selectbox--secondary.selectbox--dark:hover:not(.selectbox--disabled) {
+  border-color: #777777; /* GRAY_60 */
+  background-color: #5F5F5F; /* GRAY_70 */
+}
+
+.selectbox--secondary.selectbox--dark:focus-within:not(.selectbox--disabled) {
+  border-color: #497CFF; /* BLUE_50 */
+  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+}
+
+.selectbox--secondary.selectbox--dark.selectbox--open:not(.selectbox--disabled) {
+  border-color: #497CFF; /* BLUE_50 */
+  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+}
+
+/* Tertiary Variant - Light Theme */
+.selectbox--tertiary.selectbox--light {
+  background-color: transparent;
+  border: 1px solid #C7C7C7; /* GRAY_30 */
+}
+
+.selectbox--tertiary.selectbox--light .displayText {
+  color: #1C1C1C; /* GRAY_90 */
+}
+
+.selectbox--tertiary.selectbox--light .arrow {
+  color: #1C1C1C;
+}
+
+.selectbox--tertiary.selectbox--light:hover:not(.selectbox--disabled) {
+  border-color: #ABABAB; /* GRAY_40 */
+  background-color: rgba(242, 242, 242, 0.5); /* GRAY_05 with opacity */
+}
+
+.selectbox--tertiary.selectbox--light:focus-within:not(.selectbox--disabled) {
+  border-color: #3A5CF3; /* BLUE_60 */
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+}
+
+.selectbox--tertiary.selectbox--light.selectbox--open:not(.selectbox--disabled) {
+  border-color: #3A5CF3; /* BLUE_60 */
+  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+}
+
+/* Tertiary Variant - Dark Theme */
+.selectbox--tertiary.selectbox--dark {
+  background-color: transparent;
+  border: 1px solid #5F5F5F; /* GRAY_70 */
+}
+
+.selectbox--tertiary.selectbox--dark .displayText {
+  color: #FFFFFF; /* WHITE */
+}
+
+.selectbox--tertiary.selectbox--dark .arrow {
+  color: #FFFFFF;
+}
+
+.selectbox--tertiary.selectbox--dark:hover:not(.selectbox--disabled) {
+  border-color: #777777; /* GRAY_60 */
+  background-color: rgba(51, 51, 51, 0.5); /* GRAY_80 with opacity */
+}
+
+.selectbox--tertiary.selectbox--dark:focus-within:not(.selectbox--disabled) {
+  border-color: #497CFF; /* BLUE_50 */
+  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+}
+
+.selectbox--tertiary.selectbox--dark.selectbox--open:not(.selectbox--disabled) {
+  border-color: #497CFF; /* BLUE_50 */
+  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+}
+
+/* Error State */
+.selectbox--error {
+  border-color: #F03851 !important; /* RED_30 */
+}
+
+.selectbox--error:focus-within {
+  box-shadow: 0 0 0 2px rgba(240, 56, 81, 0.1) !important;
+}
+
+/* Disabled State */
+.selectbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.selectbox--disabled .display {
+  cursor: not-allowed;
+}
+
+/* Placeholder State */
+.selectbox:not(.selectbox--has-value) .displayText {
+  opacity: 0.6;
+}
+
+/* Helper Text */
+.helperText {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-weight: 400;
+}
+
+.helperText--small {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.helperText--medium {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.helperText--large {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.helperText--light {
+  color: #777777; /* GRAY_60 */
+}
+
+.helperText--dark {
+  color: #ABABAB; /* GRAY_40 */
+}
+
+.helperText--error {
+  color: #F03851; /* RED_30 */
+}
+
+/* Focus States for Accessibility */
+.select:focus-visible {
+  outline: none;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .selectbox {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .selectbox,
+  .arrow {
+    transition: none;
+  }
+}
+
