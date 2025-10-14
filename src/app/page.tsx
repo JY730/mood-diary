@@ -3,11 +3,17 @@
 import { useState } from 'react';
 import Button from '@/commons/components/button';
 import Pagination from '@/commons/components/pagination';
+import Toggle from '@/commons/components/toggle';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // Toggle states
+  const [toggleChecked1, setToggleChecked1] = useState(false);
+  const [toggleChecked2, setToggleChecked2] = useState(true);
+  const [toggleChecked3, setToggleChecked3] = useState(false);
 
   const handleLoadingTest = () => {
     setLoading(true);
@@ -319,8 +325,239 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Toggle Component Tests */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6">토글 컴포넌트 (Toggle Component)</h2>
+          
+          {/* Size Variants */}
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">크기 변형 (Size Variants)</h3>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Small:</span>
+                <Toggle
+                  variant="primary"
+                  size="small"
+                  theme={theme}
+                  checked={toggleChecked1}
+                  onValueChange={setToggleChecked1}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Medium:</span>
+                <Toggle
+                  variant="primary"
+                  size="medium"
+                  theme={theme}
+                  checked={toggleChecked1}
+                  onValueChange={setToggleChecked1}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Large:</span>
+                <Toggle
+                  variant="primary"
+                  size="large"
+                  theme={theme}
+                  checked={toggleChecked1}
+                  onValueChange={setToggleChecked1}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Variant Types */}
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">스타일 변형 (Style Variants)</h3>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Primary:</span>
+                <Toggle
+                  variant="primary"
+                  size="medium"
+                  theme={theme}
+                  checked={toggleChecked1}
+                  onValueChange={setToggleChecked1}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Secondary:</span>
+                <Toggle
+                  variant="secondary"
+                  size="medium"
+                  theme={theme}
+                  checked={toggleChecked2}
+                  onValueChange={setToggleChecked2}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Tertiary:</span>
+                <Toggle
+                  variant="tertiary"
+                  size="medium"
+                  theme={theme}
+                  checked={toggleChecked3}
+                  onValueChange={setToggleChecked3}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* With Labels */}
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">레이블 포함 (With Labels)</h3>
+            <div className="space-y-4">
+              <Toggle
+                variant="primary"
+                size="medium"
+                theme={theme}
+                label="알림 받기"
+                labelPosition="right"
+                checked={toggleChecked1}
+                onValueChange={setToggleChecked1}
+              />
+              <Toggle
+                variant="secondary"
+                size="medium"
+                theme={theme}
+                label="다크 모드"
+                labelPosition="left"
+                checked={toggleChecked2}
+                onValueChange={setToggleChecked2}
+              />
+              <Toggle
+                variant="tertiary"
+                size="medium"
+                theme={theme}
+                label="자동 저장 활성화"
+                labelPosition="right"
+                checked={toggleChecked3}
+                onValueChange={setToggleChecked3}
+              />
+            </div>
+          </div>
+
+          {/* States */}
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">상태 (States)</h3>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Normal:</span>
+                <Toggle
+                  variant="primary"
+                  size="medium"
+                  theme={theme}
+                  checked={toggleChecked1}
+                  onValueChange={setToggleChecked1}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Checked:</span>
+                <Toggle
+                  variant="primary"
+                  size="medium"
+                  theme={theme}
+                  checked={true}
+                  onChange={() => {}}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Disabled:</span>
+                <Toggle
+                  variant="primary"
+                  size="medium"
+                  theme={theme}
+                  checked={false}
+                  disabled={true}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="w-24 text-sm">Disabled (checked):</span>
+                <Toggle
+                  variant="primary"
+                  size="medium"
+                  theme={theme}
+                  checked={true}
+                  disabled={true}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* All Combinations */}
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">모든 조합 (All Combinations)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
+                <div key={variant} className="space-y-4">
+                  <h4 className="text-base font-medium capitalize">{variant}</h4>
+                  <div className="space-y-3">
+                    {(['small', 'medium', 'large'] as const).map((size) => (
+                      <div key={size} className="flex items-center justify-between">
+                        <span className="text-sm capitalize">{size}</span>
+                        <Toggle
+                          variant={variant}
+                          size={size}
+                          theme={theme}
+                          checked={variant === 'secondary'}
+                          onChange={() => {}}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Interactive Example */}
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">인터랙티브 예제 (Interactive Examples)</h3>
+            <div className="space-y-4 p-6 border rounded-lg" style={{
+              borderColor: theme === 'dark' ? '#5F5F5F' : '#D4D3D3',
+            }}>
+              <Toggle
+                variant="primary"
+                size="medium"
+                theme={theme}
+                label={`알림: ${toggleChecked1 ? 'ON' : 'OFF'}`}
+                labelPosition="right"
+                checked={toggleChecked1}
+                onValueChange={(checked) => {
+                  setToggleChecked1(checked);
+                  console.log('알림 상태:', checked ? 'ON' : 'OFF');
+                }}
+              />
+              <Toggle
+                variant="secondary"
+                size="medium"
+                theme={theme}
+                label={`다크모드: ${toggleChecked2 ? 'ON' : 'OFF'}`}
+                labelPosition="right"
+                checked={toggleChecked2}
+                onValueChange={(checked) => {
+                  setToggleChecked2(checked);
+                  console.log('다크모드:', checked ? 'ON' : 'OFF');
+                }}
+              />
+              <Toggle
+                variant="tertiary"
+                size="medium"
+                theme={theme}
+                label={`자동저장: ${toggleChecked3 ? 'ON' : 'OFF'}`}
+                labelPosition="right"
+                checked={toggleChecked3}
+                onValueChange={(checked) => {
+                  setToggleChecked3(checked);
+                  console.log('자동저장:', checked ? 'ON' : 'OFF');
+                }}
+              />
+            </div>
+          </div>
+        </section>
+
         <footer className="text-center text-sm opacity-70 mt-16">
-          Button & Pagination 컴포넌트 구현 완료 ✅
+          Button, Pagination & Toggle 컴포넌트 구현 완료 ✅
         </footer>
       </div>
     </div>

@@ -1,0 +1,361 @@
+/* Toggle Container */
+.toggleContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.toggleContainer--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Toggle Wrapper (Track) */
+.toggleWrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: background-color 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.toggleWrapper--disabled {
+  cursor: not-allowed;
+}
+
+/* Hide default checkbox */
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider (Circle) */
+.slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Size Variants - Small */
+.toggleWrapper--small {
+  width: 36px;
+  height: 20px;
+}
+
+.slider--small {
+  width: 16px;
+  height: 16px;
+}
+
+.toggleWrapper--small .slider--checked {
+  transform: translateX(16px);
+}
+
+.label--small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Size Variants - Medium */
+.toggleWrapper--medium {
+  width: 48px;
+  height: 28px;
+}
+
+.slider--medium {
+  width: 24px;
+  height: 24px;
+}
+
+.toggleWrapper--medium .slider--checked {
+  transform: translateX(20px);
+}
+
+.label--medium {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Size Variants - Large */
+.toggleWrapper--large {
+  width: 60px;
+  height: 36px;
+}
+
+.slider--large {
+  width: 32px;
+  height: 32px;
+}
+
+.toggleWrapper--large .slider--checked {
+  transform: translateX(24px);
+}
+
+.label--large {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* ============================================
+   PRIMARY VARIANT - LIGHT THEME
+   ============================================ */
+
+/* Unchecked (OFF) */
+.toggleWrapper--primary.toggleWrapper--light {
+  background-color: #D4D3D3; /* GRAY_20 */
+  border: 1px solid #D4D3D3;
+}
+
+.toggleWrapper--primary.toggleWrapper--light:hover:not(.toggleWrapper--disabled) {
+  background-color: #C7C7C7; /* GRAY_30 */
+  border-color: #C7C7C7;
+}
+
+/* Checked (ON) */
+.toggleWrapper--primary.toggleWrapper--light.toggleWrapper--checked {
+  background-color: #000000; /* BLACK */
+  border: 1px solid #000000;
+}
+
+.toggleWrapper--primary.toggleWrapper--light.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
+  background-color: #1C1C1C; /* GRAY_90 */
+  border-color: #1C1C1C;
+}
+
+/* ============================================
+   PRIMARY VARIANT - DARK THEME
+   ============================================ */
+
+/* Unchecked (OFF) */
+.toggleWrapper--primary.toggleWrapper--dark {
+  background-color: #5F5F5F; /* GRAY_70 */
+  border: 1px solid #5F5F5F;
+}
+
+.toggleWrapper--primary.toggleWrapper--dark:hover:not(.toggleWrapper--disabled) {
+  background-color: #777777; /* GRAY_60 */
+  border-color: #777777;
+}
+
+/* Checked (ON) */
+.toggleWrapper--primary.toggleWrapper--dark.toggleWrapper--checked {
+  background-color: #FFFFFF; /* WHITE */
+  border: 1px solid #FFFFFF;
+}
+
+.toggleWrapper--primary.toggleWrapper--dark.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
+  background-color: #F2F2F2; /* GRAY_05 */
+  border-color: #F2F2F2;
+}
+
+.toggleWrapper--primary.toggleWrapper--dark.toggleWrapper--checked .slider {
+  background-color: #000000; /* BLACK slider on white track for dark mode */
+}
+
+/* ============================================
+   SECONDARY VARIANT - LIGHT THEME
+   ============================================ */
+
+/* Unchecked (OFF) */
+.toggleWrapper--secondary.toggleWrapper--light {
+  background-color: #D4D3D3; /* GRAY_20 */
+  border: 1px solid #D4D3D3;
+}
+
+.toggleWrapper--secondary.toggleWrapper--light:hover:not(.toggleWrapper--disabled) {
+  background-color: #C7C7C7; /* GRAY_30 */
+  border-color: #C7C7C7;
+}
+
+/* Checked (ON) */
+.toggleWrapper--secondary.toggleWrapper--light.toggleWrapper--checked {
+  background-color: #3A5CF3; /* BLUE_60 */
+  border: 1px solid #3A5CF3;
+}
+
+.toggleWrapper--secondary.toggleWrapper--light.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
+  background-color: #274AE1; /* BLUE_70 */
+  border-color: #274AE1;
+}
+
+/* ============================================
+   SECONDARY VARIANT - DARK THEME
+   ============================================ */
+
+/* Unchecked (OFF) */
+.toggleWrapper--secondary.toggleWrapper--dark {
+  background-color: #5F5F5F; /* GRAY_70 */
+  border: 1px solid #5F5F5F;
+}
+
+.toggleWrapper--secondary.toggleWrapper--dark:hover:not(.toggleWrapper--disabled) {
+  background-color: #777777; /* GRAY_60 */
+  border-color: #777777;
+}
+
+/* Checked (ON) */
+.toggleWrapper--secondary.toggleWrapper--dark.toggleWrapper--checked {
+  background-color: #497CFF; /* BLUE_50 */
+  border: 1px solid #497CFF;
+}
+
+.toggleWrapper--secondary.toggleWrapper--dark.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
+  background-color: #6DA5FA; /* BLUE_40 */
+  border-color: #6DA5FA;
+}
+
+/* ============================================
+   TERTIARY VARIANT - LIGHT THEME
+   ============================================ */
+
+/* Unchecked (OFF) */
+.toggleWrapper--tertiary.toggleWrapper--light {
+  background-color: #E4E4E4; /* GRAY_10 */
+  border: 1px solid #D4D3D3; /* GRAY_20 */
+}
+
+.toggleWrapper--tertiary.toggleWrapper--light:hover:not(.toggleWrapper--disabled) {
+  background-color: #D4D3D3; /* GRAY_20 */
+  border-color: #C7C7C7; /* GRAY_30 */
+}
+
+/* Checked (ON) */
+.toggleWrapper--tertiary.toggleWrapper--light.toggleWrapper--checked {
+  background-color: #12B75F; /* GREEN_30 */
+  border: 1px solid #12B75F;
+}
+
+.toggleWrapper--tertiary.toggleWrapper--light.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
+  background-color: #109C51; /* GREEN_40 */
+  border-color: #109C51;
+}
+
+/* ============================================
+   TERTIARY VARIANT - DARK THEME
+   ============================================ */
+
+/* Unchecked (OFF) */
+.toggleWrapper--tertiary.toggleWrapper--dark {
+  background-color: #333333; /* GRAY_80 */
+  border: 1px solid #5F5F5F; /* GRAY_70 */
+}
+
+.toggleWrapper--tertiary.toggleWrapper--dark:hover:not(.toggleWrapper--disabled) {
+  background-color: #5F5F5F; /* GRAY_70 */
+  border-color: #777777; /* GRAY_60 */
+}
+
+/* Checked (ON) */
+.toggleWrapper--tertiary.toggleWrapper--dark.toggleWrapper--checked {
+  background-color: #15D66F; /* GREEN_20 */
+  border: 1px solid #15D66F;
+}
+
+.toggleWrapper--tertiary.toggleWrapper--dark.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
+  background-color: #12B75F; /* GREEN_30 */
+  border-color: #12B75F;
+}
+
+/* ============================================
+   LABEL STYLES
+   ============================================ */
+
+.label {
+  cursor: pointer;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease-in-out;
+}
+
+.label--light {
+  color: #000000; /* BLACK */
+}
+
+.label--dark {
+  color: #FFFFFF; /* WHITE */
+}
+
+.label--disabled {
+  cursor: not-allowed;
+}
+
+/* ============================================
+   FOCUS STATES (접근성)
+   ============================================ */
+
+.input:focus-visible + .slider {
+  outline: 2px solid #3A5CF3;
+  outline-offset: 2px;
+}
+
+.toggleWrapper--dark .input:focus-visible + .slider {
+  outline-color: #497CFF;
+}
+
+/* ============================================
+   DISABLED STATE
+   ============================================ */
+
+.toggleWrapper--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggleWrapper--disabled:hover {
+  /* Override hover styles */
+}
+
+/* ============================================
+   ACCESSIBILITY & MOTION
+   ============================================ */
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .toggleWrapper {
+    border-width: 2px;
+  }
+  
+  .slider {
+    box-shadow: 0 0 0 2px currentColor;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .toggleWrapper,
+  .slider,
+  .label {
+    transition: none;
+  }
+}
+
+/* Active State */
+.toggleWrapper:active:not(.toggleWrapper--disabled) .slider {
+  transform: scale(0.95);
+}
+
+.toggleWrapper--small:active:not(.toggleWrapper--disabled) .slider--checked {
+  transform: translateX(16px) scale(0.95);
+}
+
+.toggleWrapper--medium:active:not(.toggleWrapper--disabled) .slider--checked {
+  transform: translateX(20px) scale(0.95);
+}
+
+.toggleWrapper--large:active:not(.toggleWrapper--disabled) .slider--checked {
+  transform: translateX(24px) scale(0.95);
+}
+
