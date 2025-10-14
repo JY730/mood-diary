@@ -130,13 +130,13 @@
 }
 
 .selectbox--medium .arrow {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .selectbox--medium .arrowIcon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .selectbox--large {
@@ -180,13 +180,13 @@
 }
 
 .selectbox--primary.selectbox--light:focus-within:not(.selectbox--disabled) {
-  border-color: #3A5CF3; /* BLUE_60 */
-  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+  border-color: #299c00; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 .selectbox--primary.selectbox--light.selectbox--open:not(.selectbox--disabled) {
-  border-color: #3A5CF3; /* BLUE_60 */
-  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+  border-color: #299c00; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 /* Primary Variant - Dark Theme */
@@ -209,13 +209,13 @@
 }
 
 .selectbox--primary.selectbox--dark:focus-within:not(.selectbox--disabled) {
-  border-color: #497CFF; /* BLUE_50 */
-  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+  border-color: #3ab50f; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.1);
 }
 
 .selectbox--primary.selectbox--dark.selectbox--open:not(.selectbox--disabled) {
-  border-color: #497CFF; /* BLUE_50 */
-  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+  border-color: #3ab50f; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.1);
 }
 
 /* Secondary Variant - Light Theme */
@@ -238,13 +238,13 @@
 }
 
 .selectbox--secondary.selectbox--light:focus-within:not(.selectbox--disabled) {
-  border-color: #3A5CF3; /* BLUE_60 */
-  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+  border-color: #299c00; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 .selectbox--secondary.selectbox--light.selectbox--open:not(.selectbox--disabled) {
-  border-color: #3A5CF3; /* BLUE_60 */
-  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+  border-color: #299c00; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 /* Secondary Variant - Dark Theme */
@@ -267,13 +267,13 @@
 }
 
 .selectbox--secondary.selectbox--dark:focus-within:not(.selectbox--disabled) {
-  border-color: #497CFF; /* BLUE_50 */
-  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+  border-color: #3ab50f; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.1);
 }
 
 .selectbox--secondary.selectbox--dark.selectbox--open:not(.selectbox--disabled) {
-  border-color: #497CFF; /* BLUE_50 */
-  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+  border-color: #3ab50f; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.1);
 }
 
 /* Tertiary Variant - Light Theme */
@@ -296,13 +296,13 @@
 }
 
 .selectbox--tertiary.selectbox--light:focus-within:not(.selectbox--disabled) {
-  border-color: #3A5CF3; /* BLUE_60 */
-  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+  border-color: #299c00; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 .selectbox--tertiary.selectbox--light.selectbox--open:not(.selectbox--disabled) {
-  border-color: #3A5CF3; /* BLUE_60 */
-  box-shadow: 0 0 0 2px rgba(58, 92, 243, 0.1);
+  border-color: #299c00; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 /* Tertiary Variant - Dark Theme */
@@ -325,13 +325,13 @@
 }
 
 .selectbox--tertiary.selectbox--dark:focus-within:not(.selectbox--disabled) {
-  border-color: #497CFF; /* BLUE_50 */
-  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+  border-color: #3ab50f; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.1);
 }
 
 .selectbox--tertiary.selectbox--dark.selectbox--open:not(.selectbox--disabled) {
-  border-color: #497CFF; /* BLUE_50 */
-  box-shadow: 0 0 0 2px rgba(73, 124, 255, 0.1);
+  border-color: #3ab50f; /* GREEN - 피그마 디자인 일치 */
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.1);
 }
 
 /* Error State */

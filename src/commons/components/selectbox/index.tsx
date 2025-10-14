@@ -265,8 +265,8 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
               <img 
                 src="/icons/arrow_drop_down.svg" 
                 alt="" 
-                width="24" 
-                height="24"
+                width="20" 
+                height="20"
                 className={styles.arrowIcon}
               />
             </span>
