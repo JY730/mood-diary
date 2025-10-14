@@ -417,7 +417,9 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   margin-top: 4px;
   overflow: hidden; /* 스크롤 없이 모든 옵션 표시 */
-  max-height: none; /* 높이 제한 제거 */
+  max-height: none; /* 높이 제한 제거 - 옵션 개수에 따라 동적 조정 */
+  /* 동적 높이: 각 옵션 48px × 옵션 개수 */
+  min-height: 48px; /* 최소 1개 옵션 높이 */
 }
 
 /* Option Item Styles */
