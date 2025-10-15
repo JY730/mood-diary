@@ -147,7 +147,7 @@ const DiariesDetail: React.FC = () => {
             size="small"
             theme="light"
             onClick={handleEdit}
-            style={{ width: '51px' }}
+            className={styles.actionButton}
           >
             수정
           </Button>
@@ -156,7 +156,7 @@ const DiariesDetail: React.FC = () => {
             size="small"
             theme="light"
             onClick={handleDelete}
-            style={{ width: '51px' }}
+            className={styles.actionButton}
           >
             삭제
           </Button>
