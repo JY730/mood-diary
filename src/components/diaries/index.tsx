@@ -20,20 +20,20 @@ export default function Diaries() {
   const [filterValue, setFilterValue] = useState('all');
   const [searchValue, setSearchValue] = useState('');
 
-  // Mock 데이터 생성
+  // Mock 데이터 생성 - enum 타입에 지정된 이미지 경로 사용
   const mockDiaryCards: DiaryCard[] = [
-    { id: 1, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: '/images/dog-1.jpg' },
-    { id: 2, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-2.jpg' },
-    { id: 3, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-3.jpg' },
-    { id: 4, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-4.jpg' },
-    { id: 5, emotion: EmotionType.ETC, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: '/images/dog-5.jpg' },
-    { id: 6, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-6.jpg' },
-    { id: 7, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-7.jpg' },
-    { id: 8, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-8.jpg' },
-    { id: 9, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: '/images/dog-9.jpg' },
-    { id: 10, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-10.jpg' },
-    { id: 11, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-1.jpg' },
-    { id: 12, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-2.jpg' },
+    { id: 1, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: getEmotionData(EmotionType.SAD).images.medium },
+    { id: 2, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.SURPRISE).images.medium },
+    { id: 3, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.ANGRY).images.medium },
+    { id: 4, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.HAPPY).images.medium },
+    { id: 5, emotion: EmotionType.ETC, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: getEmotionData(EmotionType.ETC).images.medium },
+    { id: 6, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.SURPRISE).images.medium },
+    { id: 7, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.ANGRY).images.medium },
+    { id: 8, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.HAPPY).images.medium },
+    { id: 9, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: getEmotionData(EmotionType.SAD).images.medium },
+    { id: 10, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.SURPRISE).images.medium },
+    { id: 11, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.ANGRY).images.medium },
+    { id: 12, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.HAPPY).images.medium },
   ];
 
   // 필터 옵션
