@@ -23,7 +23,7 @@ export default function Diaries() {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Mock 데이터 생성 - enum 타입에 지정된 이미지 경로 사용
-  const mockDiaryCards: DiaryCard[] = [
+  const baseCards: DiaryCard[] = [
     { id: 1, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: getEmotionData(EmotionType.SAD).images.medium },
     { id: 2, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.SURPRISE).images.medium },
     { id: 3, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.ANGRY).images.medium },
@@ -37,6 +37,11 @@ export default function Diaries() {
     { id: 11, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.ANGRY).images.medium },
     { id: 12, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.HAPPY).images.medium },
   ];
+
+  const mockDiaryCards: DiaryCard[] = Array.from({ length: 60 }, (_, i) => {
+    const base = baseCards[i % baseCards.length];
+    return { ...base, id: i + 1 };
+  });
   
   // 페이지네이션 설정
   const itemsPerPage = 12; // 한 페이지당 12개 아이템 (3행 x 4개)

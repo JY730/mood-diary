@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  margin: 0 auto;
+}
+
+.gap64 {
+  height: 64px;
+}
+
+.gap24 {
+  height: 24px;
+}
+
+.gap16 {
+  height: 16px;
+}
+
+.detailTitle {
+  display: flex;
+  width: 100%;
+  height: 84px;
+  background-color: var(--gray-10);
+  border: 1px solid var(--border-primary);
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-korean);
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.detailContent {
+  display: flex;
+  width: 100%;
+  height: 169px;
+  background-color: var(--gray-10);
+  border: 1px solid var(--border-primary);
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-korean);
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.detailFooter {
+  display: flex;
+  width: 100%;
+  height: 56px;
+  background-color: var(--gray-10);
+  border: 1px solid var(--border-primary);
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-korean);
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.retrospectInput {
+  display: flex;
+  width: 100%;
+  height: 85px;
+  background-color: var(--gray-10);
+  border: 1px solid var(--border-primary);
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-korean);
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.retrospectList {
+  display: flex;
+  width: 100%;
+  height: 72px;
+  background-color: var(--gray-10);
+  border: 1px solid var(--border-primary);
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-korean);
+  font-size: 16px;
+  color: var(--text-secondary);
+}

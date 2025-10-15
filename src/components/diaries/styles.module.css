@@ -197,7 +197,12 @@
 }
 
 .paginationComponent {
-  /* width는 자동으로 조정되도록 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* 페이지 번호 간격 */
+  flex-wrap: nowrap; /* 줄바꿈 방지 */
+  width: auto;
 }
 
 /* Gap 4 - 40px */
