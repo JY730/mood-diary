@@ -39,8 +39,9 @@
 /* Slider (Circle) */
 .slider {
   position: absolute;
-  top: 4px;
+  top: 50%;
   left: 4px;
+  transform: translateY(-50%);
   border-radius: 50%;
   background-color: #FFFFFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -59,7 +60,7 @@
 }
 
 .toggleWrapper--small .slider--checked {
-  transform: translateX(20px); /* 44px - 16px - 8px = 20px (오른쪽 4px 여백) */
+  transform: translate(20px, -50%); /* 44px - 16px - 8px = 20px (오른쪽 4px 여백) */
 }
 
 .label--small {
@@ -79,7 +80,7 @@
 }
 
 .toggleWrapper--medium .slider--checked {
-  transform: translateX(26px); /* 58px - 24px - 8px = 26px (오른쪽 4px 여백) */
+  transform: translate(26px, -50%); /* 58px - 24px - 8px = 26px (오른쪽 4px 여백) */
 }
 
 .label--medium {
@@ -99,7 +100,7 @@
 }
 
 .toggleWrapper--large .slider--checked {
-  transform: translateX(32px); /* 72px - 32px - 8px = 32px (오른쪽 4px 여백) */
+  transform: translate(32px, -50%); /* 72px - 32px - 8px = 32px (오른쪽 4px 여백) */
 }
 
 .label--large {
@@ -150,8 +151,8 @@
 
 /* Checked (ON) */
 .toggleWrapper--primary.toggleWrapper--dark.toggleWrapper--checked {
-  background-color: #FFFFFF; /* WHITE */
-  border: 1px solid #FFFFFF;
+  background-color: #3ad84a; /* WHITE */
+  border: 1px solid #3ad84a;
 }
 
 .toggleWrapper--primary.toggleWrapper--dark.toggleWrapper--checked:hover:not(.toggleWrapper--disabled) {
@@ -160,7 +161,7 @@
 }
 
 .toggleWrapper--primary.toggleWrapper--dark.toggleWrapper--checked .slider {
-  background-color: #000000; /* BLACK slider on white track for dark mode */
+  background-color: #FFFFFF; /* BLACK slider on white track for dark mode */
 }
 
 /* ============================================
@@ -314,9 +315,6 @@
   cursor: not-allowed;
 }
 
-.toggleWrapper--disabled:hover {
-  /* Override hover styles */
-}
 
 /* ============================================
    ACCESSIBILITY & MOTION
@@ -344,18 +342,18 @@
 
 /* Active State */
 .toggleWrapper:active:not(.toggleWrapper--disabled) .slider {
-  transform: scale(0.95);
+  transform: translate(0, -50%) scale(0.95);
 }
 
 .toggleWrapper--small:active:not(.toggleWrapper--disabled) .slider--checked {
-  transform: translateX(20px) scale(0.95);
+  transform: translate(20px, -50%) scale(0.95);
 }
 
 .toggleWrapper--medium:active:not(.toggleWrapper--disabled) .slider--checked {
-  transform: translateX(26px) scale(0.95);
+  transform: translate(26px, -50%) scale(0.95);
 }
 
 .toggleWrapper--large:active:not(.toggleWrapper--disabled) .slider--checked {
-  transform: translateX(32px) scale(0.95);
+  transform: translate(32px, -50%) scale(0.95);
 }
 

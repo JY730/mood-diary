@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  align-items: center;
+}
+
+/* Gap 1 - 32px */
+.gap1 {
+  display: flex;
+  width: 1168px;
+  height: 32px;
+}
+
+/* Search Section - 48px */
+.search {
+  display: flex;
+  width: 1168px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-05);
+  border-radius: 8px;
+}
+
+.searchPlaceholder {
+  font-family: var(--font-korean);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-60);
+}
+
+/* Gap 2 - 42px */
+.gap2 {
+  display: flex;
+  width: 1168px;
+  height: 42px;
+}
+
+/* Main Content - 936px */
+.main {
+  display: flex;
+  width: 1168px;
+  height: 936px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-05);
+  border-radius: 8px;
+}
+
+.mainPlaceholder {
+  font-family: var(--font-korean);
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-60);
+}
+
+/* Gap 3 - 40px */
+.gap3 {
+  display: flex;
+  width: 1168px;
+  height: 40px;
+}
+
+/* Pagination - 32px */
+.pagination {
+  display: flex;
+  width: 1168px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray-05);
+  border-radius: 8px;
+}
+
+.paginationPlaceholder {
+  font-family: var(--font-korean);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-60);
+}
+
+/* Gap 4 - 40px */
+.gap4 {
+  display: flex;
+  width: 1168px;
+  height: 40px;
+}

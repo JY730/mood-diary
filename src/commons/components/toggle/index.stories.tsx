@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Toggle } from './index';
+import React from 'react';
 
 /**
  * Toggle 컴포넌트는 다양한 variant, size, theme을 지원하는 토글 스위치 컴포넌트입니다.
@@ -92,6 +93,15 @@ export const Primary: Story = {
     size: 'medium',
     theme: 'light',
     checked: false,
+  },render: (args) => {
+    const [checked, setChecked] = React.useState(args.checked);
+    return (
+      <Toggle
+        {...args}
+        checked={checked}
+        onValueChange={setChecked}
+      />
+    );
   },
 };
 
@@ -104,6 +114,15 @@ export const Secondary: Story = {
     size: 'medium',
     theme: 'light',
     checked: false,
+  },render: (args) => {
+    const [checked, setChecked] = React.useState(args.checked);
+    return (
+      <Toggle
+        {...args}
+        checked={checked}
+        onValueChange={setChecked}
+      />
+    );
   },
 };
 
@@ -116,6 +135,15 @@ export const Tertiary: Story = {
     size: 'medium',
     theme: 'light',
     checked: false,
+  },render: (args) => {
+    const [checked, setChecked] = React.useState(args.checked);
+    return (
+      <Toggle
+        {...args}
+        checked={checked}
+        onValueChange={setChecked}
+      />
+    );
   },
 };
 

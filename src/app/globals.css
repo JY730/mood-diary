@@ -250,7 +250,7 @@
 }
 
 /* Web/Desktop Headline - 768px 이상 */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   :root {
     --headline-01-font-size: 48px;
     --headline-01-font-weight: var(--font-weight-semibold);
@@ -264,7 +264,7 @@
     --headline-03-font-weight: var(--font-weight-semibold);
     --headline-03-line-height: 36px;
   }
-}
+} */
 
 body {
   color: var(--foreground);
