@@ -56,7 +56,12 @@ const DiariesDetail: React.FC = () => {
               height={32}
               className={styles.emotionIcon}
             />
-            <span className={styles.emotionText}>{emotionData.label}</span>
+            <span 
+              className={styles.emotionText}
+              style={{ color: emotionData.color }}
+            >
+              {emotionData.label}
+            </span>
           </div>
           <div className={styles.dateInfo}>
             <span className={styles.dateText}>{mockDiaryData.createdAt}</span>
@@ -96,7 +101,7 @@ const DiariesDetail: React.FC = () => {
             size="medium"
             theme="light"
             onClick={handleEdit}
-            className={styles.actionButton}
+            style={{ width: '51px' }}
           >
             수정
           </Button>
@@ -105,7 +110,7 @@ const DiariesDetail: React.FC = () => {
             size="medium"
             theme="light"
             onClick={handleDelete}
-            className={styles.actionButton}
+            style={{ width: '51px' }}
           >
             삭제
           </Button>

@@ -68,7 +68,6 @@
   font-size: 20px;
   font-weight: var(--font-weight-semibold);
   line-height: 24px;
-  color: var(--red-40);
   letter-spacing: -0.2px;
 }
 
@@ -171,19 +170,7 @@
   gap: 16px;
 }
 
-.actionButton {
-  width: 51px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--gray-20);
-  background-color: var(--gray-white);
-  font-family: var(--font-korean);
-  font-size: 18px;
-  font-weight: var(--font-weight-medium);
-  line-height: 24px;
-  color: var(--gray-90);
-  letter-spacing: -0.18px;
-}
+/* actionButton 클래스 제거 - 공통컴포넌트 스타일 오버라이드 금지 */
 
 .retrospectInput {
   display: flex;
