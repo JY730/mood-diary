@@ -59,7 +59,7 @@
 }
 
 .toggleWrapper--small .slider--checked {
-  transform: translateX(24px);
+  transform: translateX(20px); /* 44px - 16px - 8px = 20px (오른쪽 4px 여백) */
 }
 
 .label--small {
@@ -79,7 +79,7 @@
 }
 
 .toggleWrapper--medium .slider--checked {
-  transform: translateX(30px);
+  transform: translateX(26px); /* 58px - 24px - 8px = 26px (오른쪽 4px 여백) */
 }
 
 .label--medium {
@@ -99,7 +99,7 @@
 }
 
 .toggleWrapper--large .slider--checked {
-  transform: translateX(36px);
+  transform: translateX(32px); /* 72px - 32px - 8px = 32px (오른쪽 4px 여백) */
 }
 
 .label--large {
@@ -348,14 +348,14 @@
 }
 
 .toggleWrapper--small:active:not(.toggleWrapper--disabled) .slider--checked {
-  transform: translateX(24px) scale(0.95);
+  transform: translateX(20px) scale(0.95);
 }
 
 .toggleWrapper--medium:active:not(.toggleWrapper--disabled) .slider--checked {
-  transform: translateX(30px) scale(0.95);
+  transform: translateX(26px) scale(0.95);
 }
 
 .toggleWrapper--large:active:not(.toggleWrapper--disabled) .slider--checked {
-  transform: translateX(36px) scale(0.95);
+  transform: translateX(32px) scale(0.95);
 }
 
