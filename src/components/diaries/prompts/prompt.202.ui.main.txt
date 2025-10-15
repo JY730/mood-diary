@@ -30,13 +30,13 @@
 
 ==============================================
 
-핵심요구사항) styes_cardImage의 border-radius를 16px 16px 16px 16px 로 통일할 것.
+기존히스토리-참고만) styes_cardImage의 border-radius를 16px 16px 16px 16px 로 통일할 것.
 
-핵심요구사항) styles_cardContent의 height를 제거할 것.
+기존히스토리-참고만) styles_cardContent의 height를 제거할 것.
 
-핵심요구사항) styles_diaryCard의 box-shadow 제거할 것.
+기존히스토리-참고만)styles_diaryCard의 box-shadow 제거할 것.
 
-핵심요구사항) 일기카드는 아래의 조건으로 Mock 데이터를 만들어 적용할 것.
+기존히스토리-참고만) 일기카드는 아래의 조건으로 Mock 데이터를 만들어 적용할 것.
             1. 일기카드는 감정과 관련된 내용으로 enum 타입을 활용할 것.
                 - 경로: commons/constants/enum.ts
                 - 조건: enum.ts의 원본은 수정하지 말 것.
@@ -46,8 +46,11 @@
                 - 내용: 피그마와 동일하게 구현할 것.
                 - 사진: emotion enum 타입에 지정된 이미지경로(/images) 사용할 것.
                 - 감정텍스트: emotion enum 타입에 지정된 감정텍스트. "행복해요", "슬퍼요" 등 사용할 것.
+        
 
+기존히스토리-참고만) styles_cardImageMain는 enum 타입에 지정된 이미지경로(/images)를 사용할 것.
 
-핵심요구사항) /icons/close_outline_light_s.svg는 width 24px, height 24px으로 적용
+==============================================
 
-핵심요구사항) styles_cardImageMain는 enum 타입에 지정된 이미지경로(/images)를 사용할 것.
+핵심요구사항) /icons/close_outline_light_m.svg는 closeButton과 동일하게 width 24px, height 24px으로 보여야 함. 
+            현재는 closeButton 보다 img가 작게 보이고 있음

@@ -119,7 +119,7 @@ export default function Diaries() {
                     <div className={styles.cardImageTop}>
                       <button className={styles.closeButton}>
                         <img 
-                          src="/icons/close_outline_light_s.svg" 
+                          src="/icons/close_outline_light_m.svg" 
                           alt="닫기" 
                           width="24" 
                           height="24" 
@@ -163,7 +163,7 @@ export default function Diaries() {
                     <div className={styles.cardImageTop}>
                       <button className={styles.closeButton}>
                         <img 
-                          src="/icons/close_outline_light_s.svg" 
+                          src="/icons/close_outline_light_m.svg" 
                           alt="닫기" 
                           width="24" 
                           height="24" 
@@ -207,7 +207,7 @@ export default function Diaries() {
                     <div className={styles.cardImageTop}>
                       <button className={styles.closeButton}>
                         <img 
-                          src="/icons/close_outline_light_s.svg" 
+                          src="/icons/close_outline_light_m.svg" 
                           alt="닫기" 
                           width="24" 
                           height="24" 
