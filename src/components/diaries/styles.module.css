@@ -194,15 +194,10 @@
   height: 32px;
   align-items: center;
   justify-content: center;
-  background-color: var(--gray-05);
-  border-radius: 8px;
 }
 
-.paginationPlaceholder {
-  font-family: var(--font-korean);
-  font-size: 12px;
-  font-weight: var(--font-weight-regular);
-  color: var(--gray-60);
+.paginationComponent {
+  /* width는 자동으로 조정되도록 설정 */
 }
 
 /* Gap 4 - 40px */

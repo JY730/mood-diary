@@ -96,10 +96,10 @@ export const Button: React.FC<ButtonProps> = ({
 
     if (icon) {
       return iconPosition === 'left' ? (
-        <>
+        <div className={styles.iconButtonContentainer}>
           <span className={styles.icon}>{icon}</span>
           <span className={styles.content}>{children}</span>
-        </>
+        </div>
       ) : (
         <>
           <span className={styles.content}>{children}</span>

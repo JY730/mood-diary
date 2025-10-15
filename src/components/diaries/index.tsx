@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import { Selectbox } from '@/commons/components/selectbox';
 import { Searchbar } from '@/commons/components/searchbar';
 import { Button } from '@/commons/components/button';
+import { Pagination } from '@/commons/components/pagination';
 import { EmotionType, getEmotionData } from '@/commons/constants/enum';
 
 // Mock 데이터 타입 정의
@@ -19,6 +20,7 @@ interface DiaryCard {
 export default function Diaries() {
   const [filterValue, setFilterValue] = useState('all');
   const [searchValue, setSearchValue] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Mock 데이터 생성 - enum 타입에 지정된 이미지 경로 사용
   const mockDiaryCards: DiaryCard[] = [
@@ -35,6 +37,25 @@ export default function Diaries() {
     { id: 11, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.ANGRY).images.medium },
     { id: 12, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: getEmotionData(EmotionType.HAPPY).images.medium },
   ];
+  
+  // 페이지네이션 설정
+  const itemsPerPage = 12; // 한 페이지당 12개 아이템 (3행 x 4개)
+  const totalPages = Math.ceil(mockDiaryCards.length / itemsPerPage);
+
+  // 현재 페이지에 표시할 데이터 계산
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return mockDiaryCards.slice(startIndex, endIndex);
+  };
+
+  // 현재 페이지 데이터를 3행으로 나누기
+  const getRowData = (rowIndex: number) => {
+    const currentData = getCurrentPageData();
+    const startIndex = rowIndex * 4;
+    const endIndex = startIndex + 4;
+    return currentData.slice(startIndex, endIndex);
+  };
 
   // 필터 옵션
   const filterOptions = [
@@ -60,6 +81,11 @@ export default function Diaries() {
 
   const handleWriteDiary = () => {
     console.log('일기쓰기 클릭');
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    console.log('페이지 변경:', page);
   };
 
   return (
@@ -111,7 +137,7 @@ export default function Diaries() {
         <div className={styles.diaryGrid}>
           {/* 첫 번째 행 */}
           <div className={styles.diaryRow}>
-            {mockDiaryCards.slice(0, 4).map((card) => {
+            {getRowData(0).map((card) => {
               const emotionData = getEmotionData(card.emotion);
               return (
                 <div key={card.id} className={styles.diaryCard}>
@@ -155,7 +181,7 @@ export default function Diaries() {
           
           {/* 두 번째 행 */}
           <div className={styles.diaryRow}>
-            {mockDiaryCards.slice(4, 8).map((card) => {
+            {getRowData(1).map((card) => {
               const emotionData = getEmotionData(card.emotion);
               return (
                 <div key={card.id} className={styles.diaryCard}>
@@ -199,7 +225,7 @@ export default function Diaries() {
           
           {/* 세 번째 행 */}
           <div className={styles.diaryRow}>
-            {mockDiaryCards.slice(8, 12).map((card) => {
+            {getRowData(2).map((card) => {
               const emotionData = getEmotionData(card.emotion);
               return (
                 <div key={card.id} className={styles.diaryCard}>
@@ -248,7 +274,16 @@ export default function Diaries() {
       
       {/* Pagination - 32px */}
       <div className={styles.pagination}>
-        <div className={styles.paginationPlaceholder}>Pagination Area</div>
+        <Pagination
+          variant="primary"
+          size="medium"
+          theme="light"
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          visiblePages={5}
+          className={styles.paginationComponent}
+        />
       </div>
       
       {/* Gap 4 - 40px */}

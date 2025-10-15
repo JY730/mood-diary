@@ -7,6 +7,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: auto;
+  min-width: fit-content;
   gap: 8px;
   border: 1px solid transparent;
   border-radius: 8px; /* Figma: 8px corner radius */
@@ -33,6 +35,16 @@
 /* Active state transform removed per @02-wireframe.mdc rule */
 
 /* Content and Icon Styles */
+
+.iconButtonContentainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+
 .content {
   display: flex;
   align-items: center;
@@ -59,7 +71,7 @@
 /* Size Variants - Based on Figma Design */
 .button--small {
   height: 48px; /* Figma: consistent 48px height */
-  padding: 0 16px;
+  padding: 0 8px;
   font-size: 18px; /* Figma: 18px font size */
   line-height: 24px; /* Figma: 24px line height */
   min-width: 104px; /* Figma: 104px width for small buttons */
@@ -72,7 +84,7 @@
 
 .button--medium {
   height: 48px; /* Figma: 48px height */
-  padding: 0 20px;
+  padding: 0 10px;
   font-size: 18px; /* Figma: 18px font size */
   line-height: 24px; /* Figma: 24px line height */
   min-width: 110px; /* Figma: 110px width */
@@ -85,7 +97,7 @@
 
 .button--large {
   height: 48px; /* Figma: consistent 48px height */
-  padding: 0 24px;
+  padding: 0 16px;
   font-size: 18px; /* Figma: 18px font size */
   line-height: 24px; /* Figma: 24px line height */
   min-width: 120px;
