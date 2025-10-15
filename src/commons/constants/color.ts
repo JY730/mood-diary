@@ -56,6 +56,7 @@ export const GREEN = {
   GREEN_60: "#084424",
 } as const;
 
+
 // Yellow Colors
 export const YELLOW = {
   YELLOW_05: "#FFE499",
@@ -78,6 +79,17 @@ export const COOL_GRAY = {
   COOL_GRAY_50: "#BBBECD",
   COOL_GRAY_60: "#B0B3C4",
 } as const;
+
+
+// Purple Colors
+export const PURPLE = {
+  PURPLE_05: "#F0E6FF",
+  PURPLE_10: "#D9B8FF",
+  PURPLE_20: "#C28AFF",
+  PURPLE_30: "#AB5CFF",
+  PURPLE_40: "#942EFF",
+} as const;
+
 
 // Gradient Colors
 export const GRADIENT = {

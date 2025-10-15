@@ -121,6 +121,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   z-index: 2;
 }
@@ -156,6 +157,7 @@
   font-size: var(--subtitle-01-font-size);
   font-weight: var(--subtitle-01-font-weight);
   line-height: var(--subtitle-01-line-height);
+  color: var(--emotion-color);
 }
 
 .dateText {

@@ -3,7 +3,7 @@
  * 감정 관련 enum 데이터 정의
  */
 
-import { RED, BLUE, GRAY, YELLOW, GREEN } from './color';
+import { RED, BLUE, GRAY, YELLOW, GREEN, PURPLE } from './color';
 
 // 감정 타입 정의
 export enum EmotionType {
@@ -36,7 +36,7 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
   [EmotionType.HAPPY]: {
     type: EmotionType.HAPPY,
     label: '행복해요',
-    color: RED.RED_60,
+    color: RED.RED_40,
     images: {
       medium: '/images/emotion-happy-m.png',
       small: '/images/emotion-happy-s.png',
@@ -45,7 +45,7 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
   [EmotionType.SAD]: {
     type: EmotionType.SAD,
     label: '슬퍼요',
-    color: BLUE.BLUE_60,
+    color: BLUE.BLUE_40,
     images: {
       medium: '/images/emotion-sad-m.png',
       small: '/images/emotion-sad-s.png',
@@ -72,7 +72,7 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
   [EmotionType.ETC]: {
     type: EmotionType.ETC,
     label: '기타',
-    color: GREEN.GREEN_60,
+    color: PURPLE.PURPLE_40,
     images: {
       medium: '/images/emotion-etc-m.png',
       small: '/images/emotion-etc-s.png',
