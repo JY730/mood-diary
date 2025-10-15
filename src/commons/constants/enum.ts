@@ -38,8 +38,8 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
     label: '행복해요',
     color: RED.RED_60,
     images: {
-      medium: '/icons/emotion-happy-m.svg',
-      small: '/icons/emotion-happy-s.svg',
+      medium: '/icons/emotion-happy-m.png',
+      small: '/icons/emotion-happy-s.png',
     },
   },
   [EmotionType.SAD]: {
@@ -47,8 +47,8 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
     label: '슬퍼요',
     color: BLUE.BLUE_60,
     images: {
-      medium: '/icons/emotion-sad-m.svg',
-      small: '/icons/emotion-sad-s.svg',
+      medium: '/icons/emotion-sad-m.png',
+      small: '/icons/emotion-sad-s.png',
     },
   },
   [EmotionType.ANGRY]: {
@@ -56,8 +56,8 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
     label: '화나요',
     color: GRAY.GRAY_60,
     images: {
-      medium: '/icons/emotion-angry-m.svg',
-      small: '/icons/emotion-angry-s.svg',
+      medium: '/icons/emotion-angry-m.png',
+      small: '/icons/emotion-angry-s.png',
     },
   },
   [EmotionType.SURPRISE]: {
@@ -65,8 +65,8 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
     label: '놀랐어요',
     color: YELLOW.YELLOW_60,
     images: {
-      medium: '/icons/emotion-surprise-m.svg',
-      small: '/icons/emotion-surprise-s.svg',
+      medium: '/icons/emotion-surprise-m.png',
+      small: '/icons/emotion-surprise-s.png',
     },
   },
   [EmotionType.ETC]: {
@@ -74,8 +74,8 @@ export const EMOTION_DATA: Record<EmotionType, EmotionData> = {
     label: '기타',
     color: GREEN.GREEN_60,
     images: {
-      medium: '/icons/emotion-etc-m.svg',
-      small: '/icons/emotion-etc-s.svg',
+      medium: '/icons/emotion-etc-m.png',
+      small: '/icons/emotion-etc-s.png',
     },
   },
 } as const;

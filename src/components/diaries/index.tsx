@@ -121,8 +121,8 @@ export default function Diaries() {
                         <img 
                           src="/icons/close_outline_light_s.svg" 
                           alt="닫기" 
-                          width="16" 
-                          height="16" 
+                          width="24" 
+                          height="24" 
                         />
                       </button>
                     </div>
@@ -165,8 +165,8 @@ export default function Diaries() {
                         <img 
                           src="/icons/close_outline_light_s.svg" 
                           alt="닫기" 
-                          width="16" 
-                          height="16" 
+                          width="24" 
+                          height="24" 
                         />
                       </button>
                     </div>
@@ -209,8 +209,8 @@ export default function Diaries() {
                         <img 
                           src="/icons/close_outline_light_s.svg" 
                           alt="닫기" 
-                          width="16" 
-                          height="16" 
+                          width="24" 
+                          height="24" 
                         />
                       </button>
                     </div>
