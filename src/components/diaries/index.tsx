@@ -5,10 +5,36 @@ import styles from './styles.module.css';
 import { Selectbox } from '@/commons/components/selectbox';
 import { Searchbar } from '@/commons/components/searchbar';
 import { Button } from '@/commons/components/button';
+import { EmotionType, getEmotionData } from '@/commons/constants/enum';
+
+// Mock 데이터 타입 정의
+interface DiaryCard {
+  id: number;
+  emotion: EmotionType;
+  date: string;
+  title: string;
+  image: string;
+}
 
 export default function Diaries() {
   const [filterValue, setFilterValue] = useState('all');
   const [searchValue, setSearchValue] = useState('');
+
+  // Mock 데이터 생성
+  const mockDiaryCards: DiaryCard[] = [
+    { id: 1, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: '/images/dog-1.jpg' },
+    { id: 2, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-2.jpg' },
+    { id: 3, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-3.jpg' },
+    { id: 4, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-4.jpg' },
+    { id: 5, emotion: EmotionType.ETC, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: '/images/dog-5.jpg' },
+    { id: 6, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-6.jpg' },
+    { id: 7, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-7.jpg' },
+    { id: 8, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-8.jpg' },
+    { id: 9, emotion: EmotionType.SAD, date: '2024. 03. 12', title: '타이틀 영역 입니다. 한줄까지만 노출 됩니다.', image: '/images/dog-9.jpg' },
+    { id: 10, emotion: EmotionType.SURPRISE, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-10.jpg' },
+    { id: 11, emotion: EmotionType.ANGRY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-1.jpg' },
+    { id: 12, emotion: EmotionType.HAPPY, date: '2024. 03. 12', title: '타이틀 영역 입니다.', image: '/images/dog-2.jpg' },
+  ];
 
   // 필터 옵션
   const filterOptions = [
@@ -82,7 +108,44 @@ export default function Diaries() {
       
       {/* Main Content - 936px */}
       <div className={styles.main}>
-        <div className={styles.mainPlaceholder}>Main Content Area</div>
+        <div className={styles.diaryGrid}>
+          {mockDiaryCards.map((card) => {
+            const emotionData = getEmotionData(card.emotion);
+            return (
+              <div key={card.id} className={styles.diaryCard}>
+                <div className={styles.cardImageContainer}>
+                  <img 
+                    src={card.image} 
+                    alt={card.title}
+                    className={styles.cardImage}
+                  />
+                  <button className={styles.closeButton}>
+                    <img 
+                      src="/icons/close_outline_light_s.svg" 
+                      alt="닫기" 
+                      width="16" 
+                      height="16" 
+                    />
+                  </button>
+                </div>
+                <div className={styles.cardContent}>
+                  <div className={styles.cardHeader}>
+                    <span 
+                      className={styles.emotionText}
+                      style={{ color: emotionData.color }}
+                    >
+                      {emotionData.label}
+                    </span>
+                    <span className={styles.dateText}>{card.date}</span>
+                  </div>
+                  <div className={styles.cardTitle}>
+                    {card.title}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       
       {/* Gap 3 - 40px */}

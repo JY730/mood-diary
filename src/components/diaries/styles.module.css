@@ -55,17 +55,106 @@
   display: flex;
   width: 1168px;
   height: 936px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  background-color: var(--gray-05);
-  border-radius: 8px;
+  padding: 24px;
 }
 
-.mainPlaceholder {
-  font-family: var(--font-korean);
-  font-size: 16px;
-  font-weight: var(--font-weight-regular);
-  color: var(--gray-60);
+/* Diary Grid */
+.diaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 274px);
+  grid-template-rows: repeat(3, 296px);
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Diary Card */
+.diaryCard {
+  display: flex;
+  flex-direction: column;
+  width: 274px;
+  background-color: var(--gray-white);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Card Image Container */
+.cardImageContainer {
+  position: relative;
+  width: 274px;
+  height: 208px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px 16px 16px 16px;
+}
+
+/* Close Button */
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--gray-white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: var(--gray-10);
+}
+
+/* Card Content */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.emotionText {
+  font-family: var(--subtitle-01-font-family);
+  font-size: var(--subtitle-01-font-size);
+  font-weight: var(--subtitle-01-font-weight);
+  line-height: var(--subtitle-01-line-height);
+}
+
+.dateText {
+  font-family: var(--body-02-regular-font-family);
+  font-size: var(--body-02-regular-font-size);
+  font-weight: var(--body-02-regular-font-weight);
+  line-height: var(--body-02-regular-line-height);
+  color: var(--gray-50);
+}
+
+/* Card Title */
+.cardTitle {
+  font-family: var(--title-01-font-family);
+  font-size: var(--title-01-font-size);
+  font-weight: var(--title-01-font-weight);
+  line-height: var(--title-01-line-height);
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Gap 3 - 40px */
