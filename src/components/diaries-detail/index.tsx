@@ -165,44 +165,46 @@ const DiariesDetail: React.FC = () => {
       
       <div className={styles.gap24}></div>
       
-      {/* retrospect-input 영역 */}
-      <div className={styles.retrospectInput}>
-        <h2 className={styles.retrospectLabel}>회고</h2>
-        <div className={styles.retrospectInputContainer}>
-          <Input
-            variant="primary"
-            size="medium"
-            theme="light"
-            placeholder="회고를 남겨보세요."
-            value={retrospectInput}
-            onChange={handleRetrospectInputChange}
-            className={styles.retrospectInputField}
-          />
-          <Button
-            variant="primary"
-            size="medium"
-            theme="light"
-            onClick={handleRetrospectSubmit}
-            className={styles.retrospectSubmitButton}
-          >
-            입력
-          </Button>
-        </div>
-      </div>
-      
-      <div className={styles.gap16}></div>
-      
-      {/* retrospect-list 영역 */}
-      <div className={styles.retrospectList}>
-        {retrospectList.map((retrospect, index) => (
-          <div key={retrospect.id}>
-            <div className={styles.retrospectItem}>
-              <span className={styles.retrospectText}>{retrospect.content}</span>
-              <span className={styles.retrospectDate}>[{retrospect.createdAt}]</span>
-            </div>
-            {index < retrospectList.length - 1 && <div className={styles.retrospectDivider}></div>}
+      <div className={styles.retrospectContainer}>
+        {/* retrospect-input 영역 */}
+        <div className={styles.retrospectInput}>
+          <h2 className={styles.retrospectLabel}>회고</h2>
+          <div className={styles.retrospectInputContainer}>
+            <Input
+              variant="primary"
+              size="medium"
+              theme="light"
+              placeholder="회고를 남겨보세요."
+              value={retrospectInput}
+              onChange={handleRetrospectInputChange}
+              className={styles.retrospectInputField}
+            />
+            <Button
+              variant="primary"
+              size="medium"
+              theme="light"
+              onClick={handleRetrospectSubmit}
+              className={styles.retrospectSubmitButton}
+            >
+              입력
+            </Button>
           </div>
-        ))}
+        </div>
+        
+        <div className={styles.gap16}></div>
+        
+        {/* retrospect-list 영역 */}
+        <div className={styles.retrospectList}>
+          {retrospectList.map((retrospect, index) => (
+            <div key={retrospect.id}>
+              <div className={styles.retrospectItem}>
+                <span className={styles.retrospectText}>{retrospect.content}</span>
+                <span className={styles.retrospectDate}>[{retrospect.createdAt}]</span>
+              </div>
+              {index < retrospectList.length - 1 && <div className={styles.retrospectDivider}></div>}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
