@@ -18,16 +18,29 @@
   width: 1168px;
   height: 48px;
   align-items: center;
-  justify-content: center;
-  background-color: var(--gray-05);
-  border-radius: 8px;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.searchPlaceholder {
-  font-family: var(--font-korean);
-  font-size: 14px;
-  font-weight: var(--font-weight-regular);
-  color: var(--gray-60);
+.searchLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* SelectBox 스타일 */
+.selectBox {
+  width: 120px;
+}
+
+/* Searchbar 스타일 */
+.searchbar {
+  min-width: 320px;
+}
+
+/* Write Button 스타일 */
+.writeButton {
+  width: 110px;
 }
 
 /* Gap 2 - 42px */
