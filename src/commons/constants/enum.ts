@@ -3,7 +3,7 @@
  * 감정 관련 enum 데이터 정의
  */
 
-import { RED, BLUE, GRAY, YELLOW, GREEN, PURPLE } from './color';
+import { RED, BLUE, GRAY, YELLOW, PURPLE } from './color';
 
 // 감정 타입 정의
 export enum EmotionType {
