@@ -62,12 +62,16 @@
 
 /* Diary Grid */
 .diaryGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 274px);
-  grid-template-rows: repeat(3, 296px);
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  gap: 24px;
+}
+
+.diaryRow {
+  display: flex;
   justify-content: center;
+  gap: 24px;
 }
 
 /* Diary Card */
@@ -82,9 +86,23 @@
 
 /* Card Image Container */
 .cardImageContainer {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 274px;
   height: 208px;
+}
+
+.cardImageTop {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
+  height: 48px;
+}
+
+.cardImageMain {
+  flex: 1;
+  margin-top: -48px;
+  z-index: 1;
 }
 
 .cardImage {
@@ -96,9 +114,6 @@
 
 /* Close Button */
 .closeButton {
-  position: absolute;
-  top: 12px;
-  right: 12px;
   width: 24px;
   height: 24px;
   background-color: var(--gray-white);
@@ -108,6 +123,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 2;
 }
 
 .closeButton:hover {

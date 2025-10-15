@@ -109,42 +109,137 @@ export default function Diaries() {
       {/* Main Content - 936px */}
       <div className={styles.main}>
         <div className={styles.diaryGrid}>
-          {mockDiaryCards.map((card) => {
-            const emotionData = getEmotionData(card.emotion);
-            return (
-              <div key={card.id} className={styles.diaryCard}>
-                <div className={styles.cardImageContainer}>
-                  <img 
-                    src={card.image} 
-                    alt={card.title}
-                    className={styles.cardImage}
-                  />
-                  <button className={styles.closeButton}>
-                    <img 
-                      src="/icons/close_outline_light_s.svg" 
-                      alt="닫기" 
-                      width="16" 
-                      height="16" 
-                    />
-                  </button>
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardHeader}>
-                    <span 
-                      className={styles.emotionText}
-                      style={{ color: emotionData.color }}
-                    >
-                      {emotionData.label}
-                    </span>
-                    <span className={styles.dateText}>{card.date}</span>
+          {/* 첫 번째 행 */}
+          <div className={styles.diaryRow}>
+            {mockDiaryCards.slice(0, 4).map((card) => {
+              const emotionData = getEmotionData(card.emotion);
+              return (
+                <div key={card.id} className={styles.diaryCard}>
+                  <div className={styles.cardImageContainer}>
+                    <div className={styles.cardImageTop}>
+                      <button className={styles.closeButton}>
+                        <img 
+                          src="/icons/close_outline_light_s.svg" 
+                          alt="닫기" 
+                          width="16" 
+                          height="16" 
+                        />
+                      </button>
+                    </div>
+                    <div className={styles.cardImageMain}>
+                      <img 
+                        src={card.image} 
+                        alt={card.title}
+                        className={styles.cardImage}
+                      />
+                    </div>
                   </div>
-                  <div className={styles.cardTitle}>
-                    {card.title}
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardHeader}>
+                      <span 
+                        className={styles.emotionText}
+                        style={{ color: emotionData.color }}
+                      >
+                        {emotionData.label}
+                      </span>
+                      <span className={styles.dateText}>{card.date}</span>
+                    </div>
+                    <div className={styles.cardTitle}>
+                      {card.title}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          
+          {/* 두 번째 행 */}
+          <div className={styles.diaryRow}>
+            {mockDiaryCards.slice(4, 8).map((card) => {
+              const emotionData = getEmotionData(card.emotion);
+              return (
+                <div key={card.id} className={styles.diaryCard}>
+                  <div className={styles.cardImageContainer}>
+                    <div className={styles.cardImageTop}>
+                      <button className={styles.closeButton}>
+                        <img 
+                          src="/icons/close_outline_light_s.svg" 
+                          alt="닫기" 
+                          width="16" 
+                          height="16" 
+                        />
+                      </button>
+                    </div>
+                    <div className={styles.cardImageMain}>
+                      <img 
+                        src={card.image} 
+                        alt={card.title}
+                        className={styles.cardImage}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardHeader}>
+                      <span 
+                        className={styles.emotionText}
+                        style={{ color: emotionData.color }}
+                      >
+                        {emotionData.label}
+                      </span>
+                      <span className={styles.dateText}>{card.date}</span>
+                    </div>
+                    <div className={styles.cardTitle}>
+                      {card.title}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* 세 번째 행 */}
+          <div className={styles.diaryRow}>
+            {mockDiaryCards.slice(8, 12).map((card) => {
+              const emotionData = getEmotionData(card.emotion);
+              return (
+                <div key={card.id} className={styles.diaryCard}>
+                  <div className={styles.cardImageContainer}>
+                    <div className={styles.cardImageTop}>
+                      <button className={styles.closeButton}>
+                        <img 
+                          src="/icons/close_outline_light_s.svg" 
+                          alt="닫기" 
+                          width="16" 
+                          height="16" 
+                        />
+                      </button>
+                    </div>
+                    <div className={styles.cardImageMain}>
+                      <img 
+                        src={card.image} 
+                        alt={card.title}
+                        className={styles.cardImage}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardHeader}>
+                      <span 
+                        className={styles.emotionText}
+                        style={{ color: emotionData.color }}
+                      >
+                        {emotionData.label}
+                      </span>
+                      <span className={styles.dateText}>{card.date}</span>
+                    </div>
+                    <div className={styles.cardTitle}>
+                      {card.title}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       
