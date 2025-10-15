@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/commons/components/button';
@@ -97,8 +99,8 @@ const DiariesDetail: React.FC = () => {
       <div className={styles.detailFooter}>
         <div className={styles.buttonGroup}>
           <Button
-            variant="secondary"
-            size="medium"
+            variant="tertiary"
+            size="small"
             theme="light"
             onClick={handleEdit}
             style={{ width: '51px' }}
@@ -106,8 +108,8 @@ const DiariesDetail: React.FC = () => {
             수정
           </Button>
           <Button
-            variant="secondary"
-            size="medium"
+            variant="tertiary"
+            size="small"
             theme="light"
             onClick={handleDelete}
             style={{ width: '51px' }}

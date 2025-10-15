@@ -70,11 +70,10 @@
 
 /* Size Variants - Based on Figma Design */
 .button--small {
-  height: 48px; /* Figma: consistent 48px height */
-  padding: 0 8px;
+  height: 40px; /* Figma: consistent 48px height */
+  padding: 8px 10px;
   font-size: 18px; /* Figma: 18px font size */
   line-height: 24px; /* Figma: 24px line height */
-  min-width: 104px; /* Figma: 104px width for small buttons */
 }
 
 .button--small .icon {
@@ -184,7 +183,7 @@
 .button--tertiary.button--light {
   background-color: transparent;
   color: #1C1C1C; /* GRAY.GRAY_90 */
-  border: 1px solid transparent;
+  border: 1px solid #D4D3D3;
 }
 
 .button--tertiary.button--light:hover:not(:disabled) {
