@@ -179,34 +179,36 @@
 
 /* Tertiary Variant - Light Theme (Text-only style) */
 .button--tertiary.button--light {
-  background-color: #F2F2F2;
+  background-color: transparent;
   color: #1C1C1C; /* GRAY.GRAY_90 */
+  border: 1px solid #D4D3D3;
 }
 
 .button--tertiary.button--light:hover:not(:disabled) {
-  background-color: #E4E4E4; /* GRAY.GRAY_05 */
+  background-color: #F2F2F2; /* GRAY.GRAY_05 */
   color: #000000;
 }
 
 .button--tertiary.button--light:active:not(:disabled) {
   background-color: #E4E4E4; /* GRAY.GRAY_10 */
-  color: #000000;
+  color: #777777;
 }
 
 /* Tertiary Variant - Dark Theme (Text-only style) */
 .button--tertiary.button--dark {
-  background-color: #333333;
-  color: #F2F2F2; /* GRAY.GRAY_05 */
+  background-color: transparent;
+  color: #E4E4E4; /* GRAY.GRAY_05 */
+  border: 1px solid #333333;
 }
 
 .button--tertiary.button--dark:hover:not(:disabled) {
   background-color: #1C1C1C; /* GRAY.GRAY_90 */
-  color: #FFFFFF;
+  color: #E4E4E4;
 }
 
 .button--tertiary.button--dark:active:not(:disabled) {
   background-color: #333333; /* GRAY.GRAY_80 */
-  color: #FFFFFF;
+  color: #777777;
 }
 
 /* Disabled State - Figma Design: Gray 300 background */
