@@ -8,7 +8,7 @@ import { EmotionType, getAllEmotionData } from '@/commons/constants/enum';
 import { useModal } from '@/commons/providers/modal/modal.provider';
 
 const DiariesNew: React.FC = () => {
-  const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(null);
+  const [selectedEmotion, setSelectedEmotion] = useState<EmotionType>(EmotionType.HAPPY);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { closeModal } = useModal();

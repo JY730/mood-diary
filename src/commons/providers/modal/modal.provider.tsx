@@ -45,7 +45,7 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ children, isOpen, onClose }) 
       />
       
       {/* 모달 컨텐츠 - max-w-md, w-full 제거됨 */}
-      <div className="relative bg-white rounded-lg shadow-lg p-6 m-4">
+      <div className="relative bg-white rounded-[24px] shadow-lg m-4">
         {children}
       </div>
     </div>,
