@@ -131,6 +131,7 @@ export default function Diaries() {
           onClick={handleWriteDiary}
           icon={<img src="/icons/plus_outline_light_m.svg" alt="" width="24" height="24" />}
           className={styles.writeButton}
+          data-testid="diaries-write-button"
         >
           일기쓰기
         </Button>
