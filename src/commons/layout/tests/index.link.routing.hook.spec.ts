@@ -46,18 +46,21 @@ test.describe('Layout Link Routing', () => {
     await expect(picturesTab).toHaveClass(/tabInactive/);
   });
 
-  test('일기 상세 페이지에서도 일기보관함 탭이 활성화 상태', async ({ page }) => {
+  test('일기 상세 페이지에서는 navigation이 숨겨짐 (area hook 적용)', async ({ page }) => {
     // 일기 상세 페이지로 이동 (예시 ID: 1)
     await page.goto('/diaries/1');
     await page.waitForSelector('[data-testid="logo"]', { timeout: 400 });
     
-    // 일기보관함 탭이 활성화 상태인지 확인
-    const diariesTab = page.locator('[data-testid="diaries-tab"]');
-    await expect(diariesTab).toHaveClass(/tabActive/);
+    // navigation 영역이 숨겨져 있는지 확인 (area hook에 의해)
+    const navigation = page.locator('[data-testid="navigation"]');
+    await expect(navigation).toBeHidden();
     
-    // 사진보관함 탭이 비활성화 상태인지 확인
+    // 따라서 navigation 내부의 탭들도 존재하지 않음
+    const diariesTab = page.locator('[data-testid="diaries-tab"]');
+    await expect(diariesTab).not.toBeVisible();
+    
     const picturesTab = page.locator('[data-testid="pictures-tab"]');
-    await expect(picturesTab).toHaveClass(/tabInactive/);
+    await expect(picturesTab).not.toBeVisible();
   });
 
   // /pictures 경로는 테스트 skip 대상이므로 테스트하지 않음
