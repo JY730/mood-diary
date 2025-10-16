@@ -29,7 +29,7 @@ test.describe('Diaries Link Modal Hook', () => {
     await expect(page.locator('text=오늘 기분은 어땠나요?')).toBeVisible();
   });
 
-  test('모달의 닫기 버튼 클릭 시 모달이 닫힌다', async ({ page }) => {
+  test('모달의 닫기 버튼 클릭 시 등록취소 확인 후 모달이 닫힌다', async ({ page }) => {
     // 일기쓰기 버튼 클릭하여 모달 열기
     const writeButton = page.locator('button:has-text("일기쓰기")');
     await writeButton.click();
@@ -39,11 +39,20 @@ test.describe('Diaries Link Modal Hook', () => {
     await expect(modal).toBeVisible();
 
     // 닫기 버튼 클릭
-    const closeButton = page.locator('button:has-text("닫기")');
+    const closeButton = page.locator('[data-testid="diaries-new-close-button"]');
     await closeButton.click();
+
+    // 등록취소 확인 모달이 표시되는지 확인
+    const confirmModal = page.locator('[data-testid="modal"]');
+    await expect(confirmModal).toBeVisible();
+
+    // 등록취소 버튼 클릭하여 모달 닫기
+    const confirmButton = page.locator('[data-testid="modal-confirm-button"]');
+    await confirmButton.click();
 
     // 모달이 닫혔는지 확인
     await expect(modal).not.toBeVisible({ timeout: 500 });
+    await expect(confirmModal).not.toBeVisible();
   });
 
   test('모달 배경 클릭 시 모달이 닫힌다', async ({ page }) => {

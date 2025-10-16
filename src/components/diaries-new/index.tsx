@@ -6,12 +6,14 @@ import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import { EmotionType, getAllEmotionData } from '@/commons/constants/enum';
 import { useModal } from '@/commons/providers/modal/modal.provider';
+import { useLinkModalClose } from './hooks/index.link.modal.close.hook';
 
 const DiariesNew: React.FC = () => {
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType>(EmotionType.HAPPY);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { closeModal } = useModal();
+  const { handleClose } = useLinkModalClose();
   
   const emotionData = getAllEmotionData();
 
@@ -22,10 +24,6 @@ const DiariesNew: React.FC = () => {
   const handleSubmit = () => {
     // 등록하기 로직
     console.log('일기 등록:', { selectedEmotion, title, content });
-    closeModal();
-  };
-
-  const handleClose = () => {
     closeModal();
   };
 
@@ -101,6 +99,7 @@ const DiariesNew: React.FC = () => {
           theme="light"
           onClick={handleClose}
           style={{ width: '104px' }}
+          data-testid="diaries-new-close-button"
         >
           닫기
         </Button>
