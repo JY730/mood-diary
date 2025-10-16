@@ -1,20 +1,12 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
-import { EmotionType, getEmotionData, getEmotionImage, EmotionImageSize } from '@/commons/constants/enum';
+import { getEmotionData, getEmotionImage, EmotionImageSize } from '@/commons/constants/enum';
+import { useDiaryBinding } from './hooks/index.binding.hook';
 import styles from './styles.module.css';
-
-// Mock 데이터 인터페이스
-interface DiaryDetailData {
-  id: string;
-  title: string;
-  content: string;
-  emotion: EmotionType;
-  createdAt: string;
-}
 
 interface RetrospectData {
   id: string;
@@ -22,16 +14,7 @@ interface RetrospectData {
   createdAt: string;
 }
 
-// Mock 데이터
-const mockDiaryData: DiaryDetailData = {
-  id: '1',
-  title: '이것은 타이틀 입니다.',
-  content: '내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다',
-  emotion: EmotionType.HAPPY,
-  createdAt: '2024. 07. 12'
-};
-
-// Mock 회고 데이터
+// Mock 회고 데이터 (회고 기능은 추후 구현)
 const mockRetrospectData: RetrospectData[] = [
   {
     id: '1',
@@ -46,14 +29,31 @@ const mockRetrospectData: RetrospectData[] = [
 ];
 
 const DiariesDetail: React.FC = () => {
+  // 일기 데이터 바인딩 훅 사용
+  const { diaryData } = useDiaryBinding();
+  
   const [retrospectInput, setRetrospectInput] = useState('');
   const [retrospectList, setRetrospectList] = useState<RetrospectData[]>(mockRetrospectData);
   
-  const emotionData = getEmotionData(mockDiaryData.emotion);
-  const emotionImageSrc = getEmotionImage(mockDiaryData.emotion, EmotionImageSize.SMALL);
+  // 일기 데이터가 없는 경우 처리
+  if (!diaryData) {
+    return <div data-testid="diary-detail-not-found">일기를 찾을 수 없습니다.</div>;
+  }
+
+  const emotionData = getEmotionData(diaryData.emotion);
+  const emotionImageSrc = getEmotionImage(diaryData.emotion, EmotionImageSize.SMALL);
+  
+  // 날짜 포맷팅 함수
+  const formatDate = (isoString: string): string => {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}. ${month}. ${day}`;
+  };
 
   const handleCopyContent = () => {
-    navigator.clipboard.writeText(mockDiaryData.content);
+    navigator.clipboard.writeText(diaryData.content);
   };
 
   const handleEdit = () => {
@@ -85,13 +85,15 @@ const DiariesDetail: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diary-detail-container">
       <div className={styles.gap64}></div>
       
       {/* detail-title 영역 */}
       <div className={styles.detailTitle}>
         <div className={styles.titleSection}>
-          <h1 className={styles.title}>{mockDiaryData.title}</h1>
+          <h1 className={styles.title} data-testid="diary-detail-title">
+            {diaryData.title}
+          </h1>
         </div>
         <div className={styles.emotionAndDate}>
           <div className={styles.emotionInfo}>
@@ -101,16 +103,20 @@ const DiariesDetail: React.FC = () => {
               width={32}
               height={32}
               className={styles.emotionIcon}
+              data-testid="diary-detail-emotion-image"
             />
             <span 
               className={styles.emotionText}
               style={{ color: emotionData.color }}
+              data-testid="diary-detail-emotion-text"
             >
               {emotionData.label}
             </span>
           </div>
           <div className={styles.dateInfo}>
-            <span className={styles.dateText}>{mockDiaryData.createdAt}</span>
+            <span className={styles.dateText} data-testid="diary-detail-created-at">
+              {formatDate(diaryData.createdAt)}
+            </span>
             <span className={styles.createdText}>작성</span>
           </div>
         </div>
@@ -122,7 +128,9 @@ const DiariesDetail: React.FC = () => {
       <div className={styles.detailContent}>
         <div className={styles.contentArea}>
           <h2 className={styles.contentLabel}>내용</h2>
-          <p className={styles.contentText}>{mockDiaryData.content}</p>
+          <p className={styles.contentText} data-testid="diary-detail-content">
+            {diaryData.content}
+          </p>
         </div>
         <div className={styles.copyButtonArea}>
           <button className={styles.copyButton} onClick={handleCopyContent}>
