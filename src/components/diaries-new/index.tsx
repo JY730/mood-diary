@@ -5,11 +5,13 @@ import styles from './styles.module.css';
 import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import { EmotionType, getAllEmotionData } from '@/commons/constants/enum';
+import { useModal } from '@/commons/providers/modal/modal.provider';
 
 const DiariesNew: React.FC = () => {
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const { closeModal } = useModal();
   
   const emotionData = getAllEmotionData();
 
@@ -20,11 +22,11 @@ const DiariesNew: React.FC = () => {
   const handleSubmit = () => {
     // 등록하기 로직
     console.log('일기 등록:', { selectedEmotion, title, content });
+    closeModal();
   };
 
   const handleClose = () => {
-    // 닫기 로직
-    console.log('모달 닫기');
+    closeModal();
   };
 
   return (

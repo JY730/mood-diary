@@ -7,6 +7,7 @@ import { Searchbar } from '@/commons/components/searchbar';
 import { Button } from '@/commons/components/button';
 import { Pagination } from '@/commons/components/pagination';
 import { EmotionType, getEmotionData } from '@/commons/constants/enum';
+import { useLinkModal } from './hooks/index.link.modal.hook';
 
 // Mock 데이터 타입 정의
 interface DiaryCard {
@@ -21,6 +22,7 @@ export default function Diaries() {
   const [filterValue, setFilterValue] = useState('all');
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const { openDiaryModal } = useLinkModal();
 
   // Mock 데이터 생성 - enum 타입에 지정된 이미지 경로 사용
   const baseCards: DiaryCard[] = [
@@ -85,7 +87,7 @@ export default function Diaries() {
   };
 
   const handleWriteDiary = () => {
-    console.log('일기쓰기 클릭');
+    openDiaryModal();
   };
 
   const handlePageChange = (page: number) => {
@@ -94,7 +96,7 @@ export default function Diaries() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diaries-container">
       {/* Gap 1 - 32px */}
       <div className={styles.gap1}></div>
       
