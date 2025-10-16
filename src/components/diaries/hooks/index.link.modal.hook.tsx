@@ -8,7 +8,7 @@ import DiariesNew from '@/components/diaries-new';
  * 모달 열기/닫기 기능을 제공합니다.
  */
 export const useLinkModal = () => {
-  const { openModal, closeModal, isOpen } = useModal();
+  const { openModal, closeModal, modals } = useModal();
 
   /**
    * 일기 작성 모달을 엽니다.
@@ -31,6 +31,6 @@ export const useLinkModal = () => {
   return {
     openDiaryModal,
     closeDiaryModal,
-    isModalOpen: isOpen,
+    isModalOpen: modals.length > 0,
   };
 };

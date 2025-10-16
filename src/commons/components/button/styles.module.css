@@ -126,14 +126,12 @@
 
 /* Primary Variant - Dark Theme (Figma Design: Node 3:1461) */
 .button--primary.button--dark {
-  background-color: #000000; /* GRAY.BLACK */
-  color: #FFFFFF; /* GRAY.WHITE */
-  border: 1px solid #000000;
+  background-color: #FFFFFF; 
+  color: #000000;
 }
 
 .button--primary.button--dark:hover:not(:disabled) {
-  background-color: #1C1C1C; /* GRAY.GRAY_90 */
-  border-color: #1C1C1C;
+  background-color: #F2F2F2; /* GRAY.GRAY_90 */
 }
 
 .button--primary.button--dark:active:not(:disabled) {
@@ -162,32 +160,31 @@
 
 /* Secondary Variant - Dark Theme (Figma Design: Node 3:484) */
 .button--secondary.button--dark {
-  background-color: #C7C7C7; /* GRAY.GRAY_30 */
-  color: #F2F2F2; /* GRAY.GRAY_05 */
-  border: 1px solid #C7C7C7;
+  background-color: transparent;
+  color: #FFFFFF; /* GRAY.GRAY_05 */
+  border: 1px solid #5F5F5F;
 }
 
 .button--secondary.button--dark:hover:not(:disabled) {
-  background-color: #ABABAB; /* GRAY.GRAY_40 */
+  background-color: #1C1C1C; /* GRAY.GRAY_40 */
   color: #FFFFFF;
-  border-color: #ABABAB;
+  border-color: #5F5F5F;
 }
 
 .button--secondary.button--dark:active:not(:disabled) {
-  background-color: #919191; /* GRAY.GRAY_50 */
-  color: #FFFFFF;
-  border-color: #919191;
+  background-color: transparent;
+  color: #D4D3D3;
+  border-color: #5F5F5F;
 }
 
 /* Tertiary Variant - Light Theme (Text-only style) */
 .button--tertiary.button--light {
-  background-color: transparent;
+  background-color: #F2F2F2;
   color: #1C1C1C; /* GRAY.GRAY_90 */
-  border: 1px solid #D4D3D3;
 }
 
 .button--tertiary.button--light:hover:not(:disabled) {
-  background-color: #F2F2F2; /* GRAY.GRAY_05 */
+  background-color: #E4E4E4; /* GRAY.GRAY_05 */
   color: #000000;
 }
 
@@ -198,9 +195,8 @@
 
 /* Tertiary Variant - Dark Theme (Text-only style) */
 .button--tertiary.button--dark {
-  background-color: transparent;
+  background-color: #333333;
   color: #F2F2F2; /* GRAY.GRAY_05 */
-  border: 1px solid transparent;
 }
 
 .button--tertiary.button--dark:hover:not(:disabled) {
