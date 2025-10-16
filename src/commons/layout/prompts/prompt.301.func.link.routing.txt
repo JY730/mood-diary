@@ -45,3 +45,7 @@
             4) navigation 영역
                 - 일기보관함: url.ts에 정의된 일기목록페이지 => /diaries
                 - 사진보관함: url.ts에 정의된 사진목록페이지 => /pictures
+
+==============================================
+
+핵심요구사항) 구현될 HOOK 파일이름 변경: useLinkRouting.ts를 index.link.routing.hook.ts로 이름 변경

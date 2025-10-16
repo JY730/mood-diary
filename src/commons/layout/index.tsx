@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 import Image from 'next/image';
+import useLinkRouting from './hooks/index.link.routing.hook';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,12 +23,13 @@ interface LayoutProps {
  * ```
  */
 export default function Layout({ children }: LayoutProps) {
-  // 임시로 훅 사용을 제거하여 빌드 성공을 위함
-  const handleLogoClick = () => {};
-  const handleDiariesClick = () => {};
-  const handlePicturesClick = () => {};
-  const isDiariesActive = false;
-  const isPicturesActive = false;
+  const {
+    handleLogoClick,
+    handleDiariesClick,
+    handlePicturesClick,
+    isDiariesActive,
+    isPicturesActive,
+  } = useLinkRouting();
 
   return (
     <div className={styles.container}>
