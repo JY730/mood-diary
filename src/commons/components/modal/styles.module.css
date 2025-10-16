@@ -98,10 +98,12 @@
 /* Theme Styles */
 .modal--light {
   background-color: #ffffff;
+  border: none;
 }
 
 .modal--dark {
   background-color: #1c1c1c;
+  border: 1px solid #333333;
 }
 
 .modal--dark .title {
@@ -109,5 +111,5 @@
 }
 
 .modal--dark .description {
-  color: #cccccc;
+  color: #d4d3d3;
 }
