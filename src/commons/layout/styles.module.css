@@ -20,6 +20,7 @@
   height: 40px;
   align-items: center;
   justify-content: flex-start;
+  cursor: pointer;
 }
 
 .logoText {
@@ -74,6 +75,7 @@
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid var(--gray-black);
+  cursor: pointer;
 }
 
 .tabActiveText {
@@ -91,6 +93,7 @@
   height: 48px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .tabInactiveText {
