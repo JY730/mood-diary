@@ -69,7 +69,7 @@
 
 .diaryRow {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 24px;
 }
 
@@ -81,6 +81,7 @@
   background-color: var(--gray-white);
   border-radius: 16px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 /* Card Image Container */

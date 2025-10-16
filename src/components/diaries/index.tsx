@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
 import styles from './styles.module.css';
 import { Selectbox } from '@/commons/components/selectbox';
 import { Searchbar } from '@/commons/components/searchbar';
@@ -10,6 +9,7 @@ import { Pagination } from '@/commons/components/pagination';
 import { getEmotionData } from '@/commons/constants/enum';
 import { useLinkModal } from './hooks/index.link.modal.hook';
 import { useDiariesBinding } from './hooks/index.binding.hook';
+import { useLinkRouting } from './hooks/index.link.routing.hook';
 
 export default function Diaries() {
   const [filterValue, setFilterValue] = useState('all');
@@ -17,7 +17,7 @@ export default function Diaries() {
   const [currentPage, setCurrentPage] = useState(1);
   const { openDiaryModal } = useLinkModal();
   const { diaries, isLoaded, formatDate } = useDiariesBinding();
-  const router = useRouter();
+  const { handleCardClick, handleDeleteClick } = useLinkRouting();
   
   // 페이지네이션 설정
   const itemsPerPage = 12; // 한 페이지당 12개 아이템 (3행 x 4개)
@@ -35,11 +35,6 @@ export default function Diaries() {
     const startIndex = rowIndex * 4;
     const endIndex = startIndex + 4;
     return getCurrentPageData.slice(startIndex, endIndex);
-  };
-
-  // 일기 카드 클릭 핸들러
-  const handleCardClick = (diaryId: number) => {
-    router.push(`/diaries/${diaryId}`);
   };
 
   // 필터 옵션
@@ -147,11 +142,10 @@ export default function Diaries() {
                     className={styles.diaryCard}
                     data-testid="diary-card"
                     onClick={() => handleCardClick(diary.id)}
-                    style={{ cursor: 'pointer' }}
                   >
                     <div className={styles.cardImageContainer}>
                       <div className={styles.cardImageTop}>
-                        <button className={styles.closeButton}>
+                        <button className={styles.closeButton} onClick={handleDeleteClick}>
                           <img 
                             src="/icons/close_outline_light_m.svg" 
                             alt="닫기" 
@@ -207,11 +201,10 @@ export default function Diaries() {
                     className={styles.diaryCard}
                     data-testid="diary-card"
                     onClick={() => handleCardClick(diary.id)}
-                    style={{ cursor: 'pointer' }}
                   >
                     <div className={styles.cardImageContainer}>
                       <div className={styles.cardImageTop}>
-                        <button className={styles.closeButton}>
+                        <button className={styles.closeButton} onClick={handleDeleteClick}>
                           <img 
                             src="/icons/close_outline_light_m.svg" 
                             alt="닫기" 
@@ -267,11 +260,10 @@ export default function Diaries() {
                     className={styles.diaryCard}
                     data-testid="diary-card"
                     onClick={() => handleCardClick(diary.id)}
-                    style={{ cursor: 'pointer' }}
                   >
                     <div className={styles.cardImageContainer}>
                       <div className={styles.cardImageTop}>
-                        <button className={styles.closeButton}>
+                        <button className={styles.closeButton} onClick={handleDeleteClick}>
                           <img 
                             src="/icons/close_outline_light_m.svg" 
                             alt="닫기" 
