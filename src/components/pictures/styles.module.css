@@ -17,7 +17,12 @@
   display: flex;
   width: 1168px;
   height: 48px;
-  background-color: var(--bg-secondary);
+  align-items: center;
+}
+
+/* Filter SelectBox 스타일 */
+.filterSelect {
+  width: 120px;
 }
 
 /* Gap 2 - 42px */
@@ -29,11 +34,26 @@
 
 /* Main Content - auto */
 .main {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 640px);
+  gap: 40px;
   width: 1168px;
-  height: auto;
-  align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
+}
+
+/* Image Card - 640px * 640px */
+.imageCard {
+  width: 640px;
+  height: 640px;
+  border-radius: 24px;
+  overflow: hidden;
   background-color: var(--bg-secondary);
 }
 
+/* Image */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
