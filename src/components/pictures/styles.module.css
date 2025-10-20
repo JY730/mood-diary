@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  align-items: center;
+}
+
+/* Gap 1 - 32px */
+.gap1 {
+  display: flex;
+  width: 1168px;
+  height: 32px;
+}
+
+/* Filter Section - 48px */
+.filter {
+  display: flex;
+  width: 1168px;
+  height: 48px;
+  background-color: var(--bg-secondary);
+}
+
+/* Gap 2 - 42px */
+.gap2 {
+  display: flex;
+  width: 1168px;
+  height: 42px;
+}
+
+/* Main Content - auto */
+.main {
+  display: flex;
+  width: 1168px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+}
+
