@@ -163,7 +163,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
           {...props}
         />
 
-        {showClearButton && hasValue && !disabled && (
+        {showClearButton && !disabled && (
           <button
             type="button"
             className={styles.clearButton}

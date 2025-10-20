@@ -4,6 +4,7 @@
   align-items: center;
   position: relative;
   width: 100%;
+  min-width: 0; /* flex item이 내용에 따라 축소될 수 있도록 함 */
   border-radius: 100px; /* Figma: 100px corner radius */
   border: 1px solid;
   box-sizing: border-box;
@@ -25,6 +26,7 @@
   font-weight: 500; /* Figma: Medium weight */
   letter-spacing: -0.01em;
   color: inherit;
+  min-width: 0; /* flex item이 내용에 따라 축소될 수 있도록 함 */
   width: 100%;
   padding: 0;
 }
@@ -50,6 +52,15 @@
   cursor: pointer;
   padding: 0;
   color: inherit;
+}
+
+/* ClearButton 공간을 항상 확보하되, 필요할 때만 보이도록 설정 */
+.clearButton {
+  visibility: hidden; /* 공간은 차지하지만 보이지 않음 */
+}
+
+.searchbar--has-value .clearButton {
+  visibility: visible; /* 텍스트가 있을 때만 보임 */
 }
 
 .searchIcon:hover:not(:disabled),
