@@ -54,7 +54,7 @@
 .main {
   display: flex;
   width: 1168px;
-  height: 936px;
+  height: auto;
   align-items: flex-start;
   justify-content: center;
 }
