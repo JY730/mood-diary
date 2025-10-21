@@ -188,7 +188,7 @@ test.describe('로그인 폼 등록 기능', () => {
 
   test('실패 시나리오: 잘못된 정보로 로그인 시 에러 모달이 나타나야 함', async ({ page }) => {
     // API 모킹을 위한 route 설정
-    await page.route('https://main-practice.codebootcamp.co.kr/graphql', (route) => {
+    await page.route('**/api/graphql', (route) => {
       route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -230,7 +230,7 @@ test.describe('로그인 폼 등록 기능', () => {
 
   test('실패 시나리오: 실패 모달의 확인 버튼 클릭 시 모달이 닫혀야 함', async ({ page }) => {
     // API 모킹
-    await page.route('https://main-practice.codebootcamp.co.kr/graphql', (route) => {
+    await page.route('**/api/graphql', (route) => {
       route.fulfill({
         status: 200,
         contentType: 'application/json',
