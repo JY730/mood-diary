@@ -14,7 +14,7 @@ import { ROUTES } from '@/commons/constants/url';
  * 모던한 디자인 스타일로 구현
  */
 const AuthSignup: React.FC = () => {
-  const { register, handleSubmit, isValid, isLoading } = useSignupForm();
+  const { register, handleSubmit, errors, isValid, isLoading } = useSignupForm();
 
   return (
     <div className={styles.container} data-testid="auth-signup-container">
@@ -37,6 +37,8 @@ const AuthSignup: React.FC = () => {
             placeholder="이메일을 입력하세요"
             className={styles.input}
             required
+            error={!!errors.email}
+            errorMessage={errors.email?.message}
             data-testid="auth-signup-email-input"
             {...register('email')}
           />
@@ -51,6 +53,8 @@ const AuthSignup: React.FC = () => {
             placeholder="비밀번호를 입력하세요"
             className={styles.input}
             required
+            error={!!errors.password}
+            errorMessage={errors.password?.message}
             data-testid="auth-signup-password-input"
             {...register('password')}
           />
@@ -65,6 +69,8 @@ const AuthSignup: React.FC = () => {
             placeholder="비밀번호를 다시 입력하세요"
             className={styles.input}
             required
+            error={!!errors.passwordConfirm}
+            errorMessage={errors.passwordConfirm?.message}
             data-testid="auth-signup-password-confirm-input"
             {...register('passwordConfirm')}
           />
@@ -79,6 +85,8 @@ const AuthSignup: React.FC = () => {
             placeholder="이름을 입력하세요"
             className={styles.input}
             required
+            error={!!errors.name}
+            errorMessage={errors.name?.message}
             data-testid="auth-signup-name-input"
             {...register('name')}
           />
