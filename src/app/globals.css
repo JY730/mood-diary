@@ -142,9 +142,9 @@
 /* Typography Variables */
 :root {
   /* Font Families */
-  --font-korean: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+  --font-korean: var(--font-pretendard), Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
     sans-serif;
-  --font-english: 'SUIT Variable', -apple-system, BlinkMacSystemFont, system-ui,
+  --font-english: var(--font-pretendard), Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
     Roboto, sans-serif;
 
   /* Font Weights */
