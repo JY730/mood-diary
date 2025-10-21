@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import { ROUTES } from '@/commons/constants/url';
+import { useLoginForm } from './hooks/index.form.hook';
 
 /**
  * AuthLogin 컴포넌트
@@ -13,6 +14,8 @@ import { ROUTES } from '@/commons/constants/url';
  * 모던한 디자인 스타일로 구현
  */
 const AuthLogin: React.FC = () => {
+  const { register, onSubmit, isButtonEnabled, isLoading } = useLoginForm();
+
   return (
     <div className={styles.container} data-testid="auth-login-container">
       <div className={styles.wrapper}>
@@ -23,7 +26,7 @@ const AuthLogin: React.FC = () => {
         </div>
 
         {/* Form - 입력 폼 섹션 */}
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={onSubmit}>
           {/* Email Input */}
           <Input
             variant="primary"
@@ -35,6 +38,7 @@ const AuthLogin: React.FC = () => {
             className={styles.input}
             required
             data-testid="auth-login-email-input"
+            {...register('email')}
           />
 
           {/* Password Input */}
@@ -48,6 +52,7 @@ const AuthLogin: React.FC = () => {
             className={styles.input}
             required
             data-testid="auth-login-password-input"
+            {...register('password')}
           />
 
           {/* Submit Button */}
@@ -58,8 +63,9 @@ const AuthLogin: React.FC = () => {
             className={styles.submitButton}
             data-testid="auth-login-submit-button"
             type="submit"
+            disabled={!isButtonEnabled || isLoading}
           >
-            로그인
+            {isLoading ? '로그인 중...' : '로그인'}
           </Button>
 
           {/* Footer - 회원가입 링크 */}
