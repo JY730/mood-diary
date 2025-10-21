@@ -8,7 +8,7 @@
   border-radius: 100px; /* Figma: 100px corner radius */
   border: 1px solid;
   box-sizing: border-box;
-  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-korean);
 }
 
 .searchbar:focus-within {

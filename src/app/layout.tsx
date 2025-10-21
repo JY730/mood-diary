@@ -8,7 +8,7 @@ import Layout from "@/commons/layout";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
-  variable: "--font-pretendard",
+  variable: "--font-korean",
   weight: "100 900",
 });
 

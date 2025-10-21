@@ -6,8 +6,8 @@
 
 // Font Family
 export const FONT_FAMILY = {
-  KOREAN: "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif",
-  ENGLISH: "SUIT Variable, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif",
+  KOREAN: "var(--font-korean)",
+  ENGLISH: "var(--font-english)",
 } as const;
 
 // Font Weight
