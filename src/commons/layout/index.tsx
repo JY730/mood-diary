@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import useLinkRouting from './hooks/index.link.routing.hook';
 import useArea from './hooks/index.area.hook';
+import useAuthHandlers from './hooks/index.auth.hook';
 import { useAuth } from '@/commons/providers/auth/auth.provider';
 import { Button } from '@/commons/components/button';
 
@@ -42,6 +43,7 @@ export default function Layout({ children }: LayoutProps) {
     showFooter,
   } = useArea();
 
+  const { handleLoginClick, handleLogoutClick } = useAuthHandlers();
   const { isLoggedIn, user } = useAuth();
 
   return (
@@ -53,17 +55,30 @@ export default function Layout({ children }: LayoutProps) {
               <span className={styles.logoText}>민지의 다이어리</span>
             </div>
           )}
-          {isLoggedIn && (
+          {isLoggedIn ? (
             <div className={styles.authStatus} data-testid="auth-status">
-              <span className={styles.userName}>{user?.name || '사용자'}</span>
+              <span className={styles.userName} data-testid="user-name">{user?.name || '사용자'}</span>
               <Button
                 variant="secondary"
                 size="small"
                 theme="light"
                 className={styles.logoutButton}
+                onClick={handleLogoutClick}
                 data-testid="logout-button"
               >
                 로그아웃
+              </Button>
+            </div>
+          ) : (
+            <div className={styles.authStatus}>
+              <Button
+                variant="primary"
+                size="small"
+                theme="light"
+                onClick={handleLoginClick}
+                data-testid="login-button"
+              >
+                로그인
               </Button>
             </div>
           )}
