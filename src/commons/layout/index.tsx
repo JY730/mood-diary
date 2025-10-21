@@ -5,6 +5,8 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import useLinkRouting from './hooks/index.link.routing.hook';
 import useArea from './hooks/index.area.hook';
+import { useAuth } from '@/commons/providers/auth/auth.provider';
+import { Button } from '@/commons/components/button';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -40,6 +42,8 @@ export default function Layout({ children }: LayoutProps) {
     showFooter,
   } = useArea();
 
+  const { isLoggedIn, user } = useAuth();
+
   return (
     <div className={styles.container}>
       {showHeader && (
@@ -47,6 +51,20 @@ export default function Layout({ children }: LayoutProps) {
           {showLogo && (
             <div className={styles.logo} onClick={handleLogoClick} data-testid="logo">
               <span className={styles.logoText}>민지의 다이어리</span>
+            </div>
+          )}
+          {isLoggedIn && (
+            <div className={styles.authStatus} data-testid="auth-status">
+              <span className={styles.userName}>{user?.name || '사용자'}</span>
+              <Button
+                variant="secondary"
+                size="small"
+                theme="light"
+                className={styles.logoutButton}
+                data-testid="logout-button"
+              >
+                로그아웃
+              </Button>
             </div>
           )}
         </header>
