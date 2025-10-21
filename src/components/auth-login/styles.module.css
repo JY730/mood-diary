@@ -1,0 +1,109 @@
+/* Container - 전체 페이지 중앙 정렬 */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--bg-secondary);
+  padding: 24px;
+}
+
+/* Wrapper - 로그인 폼 래퍼 */
+.wrapper {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--bg-primary);
+  border-radius: 16px;
+  padding: 48px 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Header - 타이틀 섹션 */
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--headline-01-font-family);
+  font-size: var(--headline-01-font-size);
+  font-weight: var(--headline-01-font-weight);
+  line-height: var(--headline-01-line-height);
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  font-family: var(--body-01-regular-font-family);
+  font-size: var(--body-01-regular-font-size);
+  font-weight: var(--body-01-regular-font-weight);
+  line-height: var(--body-01-regular-line-height);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Form - 폼 컨테이너 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input - 입력 필드 width 설정 */
+.input {
+  width: 100%;
+}
+
+/* Submit Button - 로그인 버튼 */
+.submitButton {
+  width: 100%;
+}
+
+/* Footer - 회원가입 링크 섹션 */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.footerText {
+  font-family: var(--body-02-regular-font-family);
+  font-size: var(--body-02-regular-font-size);
+  font-weight: var(--body-02-regular-font-weight);
+  line-height: var(--body-02-regular-line-height);
+  color: var(--text-secondary);
+}
+
+.footerLink {
+  font-family: var(--body-02-medium-font-family);
+  font-size: var(--body-02-medium-font-size);
+  font-weight: var(--body-02-medium-font-weight);
+  line-height: var(--body-02-medium-line-height);
+  color: var(--brand-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footerLink:hover {
+  color: var(--brand-hover);
+  text-decoration: underline;
+}
+
+/* Responsive - 모바일 최적화 */
+@media (max-width: 640px) {
+  .wrapper {
+    padding: 32px 24px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+}
+
