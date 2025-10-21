@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
   min-height: 100vh;
   background-color: var(--bg-secondary);
   padding: 24px;
@@ -25,19 +26,19 @@
 }
 
 .title {
-  font-family: var(--headline-03-font-family);
-  font-size: var(--headline-03-font-size);
-  font-weight: var(--headline-03-font-weight);
-  line-height: var(--headline-03-line-height);
+  font-family: var(--headline-01-font-family);
+  font-size: var(--headline-01-font-size);
+  font-weight: var(--headline-01-font-weight);
+  line-height: var(--headline-01-line-height);
   color: var(--text-primary);
   margin: 0 0 12px 0;
 }
 
 .subtitle {
-  font-family: var(--body-02-regular-font-family);
-  font-size: var(--body-02-regular-font-size);
-  font-weight: var(--body-02-regular-font-weight);
-  line-height: var(--body-02-regular-line-height);
+  font-family: var(--body-01-regular-font-family);
+  font-size: var(--body-01-regular-font-size);
+  font-weight: var(--body-01-regular-font-weight);
+  line-height: var(--body-01-regular-line-height);
   color: var(--text-secondary);
   margin: 0;
 }
@@ -57,7 +58,6 @@
 /* Submit Button - 회원가입 버튼 */
 .submitButton {
   width: 100%;
-  margin-top: 12px;
 }
 
 /* Footer - 로그인 링크 섹션 */
@@ -66,9 +66,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 8px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-secondary);
+  padding-top: 16px;
+  /* border-top: 1px solid var(--border-secondary); */
 }
 
 .footerText {
