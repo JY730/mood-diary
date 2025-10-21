@@ -8,7 +8,7 @@
 
 /* Label Styles */
 .label {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   font-weight: 500; /* Figma: Medium (500) */
 }
 
@@ -367,7 +367,7 @@
 
 /* Helper Text */
 .helperText {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   font-weight: 400;
 }
 
@@ -459,7 +459,7 @@
 /* Option Text */
 .optionText {
   flex: 1;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   font-size: 16px; /* Figma: 16px font size */
   line-height: 24px; /* Figma: 24px line height */
   letter-spacing: -0.01em; /* Figma: -0.16px (-1%) */

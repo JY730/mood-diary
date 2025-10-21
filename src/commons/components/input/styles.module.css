@@ -24,7 +24,7 @@
 
 /* Label Styles */
 .label {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@
 
 /* Base Input Styles */
 .input {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   border-radius: 8px;
   border: 1px solid;
   outline: none;
@@ -305,7 +305,7 @@
 
 /* Helper Text Styles */
 .helperText {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   font-weight: 400;
   margin-top: 4px;
 }
