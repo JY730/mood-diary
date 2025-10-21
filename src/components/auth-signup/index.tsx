@@ -1,9 +1,11 @@
 'use client';
 
 import React from 'react';
+import styles from './styles.module.css';
 import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
-import styles from './styles.module.css';
+import { useSignupForm } from './hooks/index.form.hook';
+import { ROUTES } from '@/commons/constants/url';
 
 /**
  * AuthSignup 컴포넌트
@@ -12,6 +14,8 @@ import styles from './styles.module.css';
  * 모던한 디자인 스타일로 구현
  */
 const AuthSignup: React.FC = () => {
+  const { register, handleSubmit, isValid, isLoading } = useSignupForm();
+
   return (
     <div className={styles.container} data-testid="auth-signup-container">
       <div className={styles.wrapper}>
@@ -22,7 +26,7 @@ const AuthSignup: React.FC = () => {
         </div>
 
         {/* Form - 입력 폼 섹션 */}
-        <div className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           {/* Email Input */}
           <Input
             variant="primary"
@@ -34,6 +38,7 @@ const AuthSignup: React.FC = () => {
             className={styles.input}
             required
             data-testid="auth-signup-email-input"
+            {...register('email')}
           />
 
           {/* Password Input */}
@@ -47,6 +52,7 @@ const AuthSignup: React.FC = () => {
             className={styles.input}
             required
             data-testid="auth-signup-password-input"
+            {...register('password')}
           />
 
           {/* Password Confirmation Input */}
@@ -60,6 +66,7 @@ const AuthSignup: React.FC = () => {
             className={styles.input}
             required
             data-testid="auth-signup-password-confirm-input"
+            {...register('passwordConfirm')}
           />
 
           {/* Name Input */}
@@ -73,6 +80,7 @@ const AuthSignup: React.FC = () => {
             className={styles.input}
             required
             data-testid="auth-signup-name-input"
+            {...register('name')}
           />
 
           {/* Submit Button */}
@@ -82,6 +90,9 @@ const AuthSignup: React.FC = () => {
             theme="light"
             className={styles.submitButton}
             data-testid="auth-signup-submit-button"
+            disabled={!isValid || isLoading}
+            loading={isLoading}
+            type="submit"
           >
             회원가입
           </Button>
@@ -90,14 +101,14 @@ const AuthSignup: React.FC = () => {
           <div className={styles.footer}>
             <span className={styles.footerText}>이미 계정이 있으신가요?</span>
             <a 
-              href="/auth/login" 
+              href={ROUTES.AUTH.LOGIN}
               className={styles.footerLink}
               data-testid="auth-signup-login-link"
             >
               로그인
             </a>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

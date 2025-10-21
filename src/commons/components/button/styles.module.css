@@ -95,7 +95,7 @@
 }
 
 .button--large {
-  height: 48px; /* Figma: consistent 48px height */
+  height: 56px; 
   padding: 0 16px;
   font-size: 18px; /* Figma: 18px font size */
   line-height: 24px; /* Figma: 24px line height */
