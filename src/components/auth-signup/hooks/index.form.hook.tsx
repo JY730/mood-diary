@@ -115,7 +115,7 @@ export const useSignupForm = () => {
     formState: { errors, isValid },
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupFormSchema),
-    mode: 'onChange',
+    mode: 'all', // 모든 이벤트에서 검증 (onChange + onBlur + onSubmit)
     defaultValues: {
       email: '',
       password: '',
