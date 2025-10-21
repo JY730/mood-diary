@@ -267,7 +267,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-korean);
+  font-family: var(--font-pretendard), Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 @layer utilities {

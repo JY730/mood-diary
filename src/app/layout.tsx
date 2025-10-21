@@ -8,7 +8,7 @@ import Layout from "@/commons/layout";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
-  variable: "--font-korean",
+  variable: "--font-pretendard",
   weight: "100 900",
 });
 
@@ -23,10 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body
-        className={`${pretendard.variable} antialiased`}
-      >
+    <html lang="ko" className={pretendard.variable}>
+      <body className="antialiased">
         <ReactQueryProvider>
           <NextThemesProvider>
             <ModalProvider>
