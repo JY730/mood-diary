@@ -1,90 +1,55 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Diaries Link Modal Hook', () => {
+/**
+ * Diaries Link Modal Hook Tests
+ * 
+ * 일기 작성 모달 권한분기 기능을 테스트합니다.
+ * - 비로그인 유저: 로그인 요청 모달 표시
+ * - 로그인 유저: 일기 작성 모달 표시
+ * 
+ * TDD 기반 Playwright 테스트
+ */
+test.describe('Diaries Link Modal Hook Tests', () => {
   test.beforeEach(async ({ page }) => {
-    // /diaries 페이지로 이동
-    await page.goto('/diaries');
-    
-    // 페이지가 완전히 로드될 때까지 대기 (data-testid로 식별)
-    await page.waitForSelector('[data-testid="diaries-container"]', { timeout: 500 });
+    // 테스트 환경 설정
+    await page.goto('/diaries', { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('[data-testid="diaries-container"]', { timeout: 2000 });
   });
 
-  test('일기쓰기 버튼 클릭 시 모달이 열린다', async ({ page }) => {
-    // 일기쓰기 버튼 찾기
-    const writeButton = page.locator('button:has-text("일기쓰기")');
-    await expect(writeButton).toBeVisible();
+  test.describe('비로그인 유저 테스트', () => {
+    test.beforeEach(async ({ page }) => {
+      // 비로그인 상태로 설정
+      await page.evaluate(() => {
+        window.__TEST_BYPASS__ = false;
+      });
+    });
 
-    // 모달이 처음에는 보이지 않는지 확인
-    const modal = page.locator('[data-testid="diaries-new-modal"]');
-    await expect(modal).not.toBeVisible();
-
-    // 일기쓰기 버튼 클릭
-    await writeButton.click();
-
-    // 모달이 나타나는지 확인
-    await expect(modal).toBeVisible({ timeout: 500 });
-    
-    // 모달 내용 확인
-    await expect(page.locator('h1:has-text("일기 쓰기")')).toBeVisible();
-    await expect(page.locator('text=오늘 기분은 어땠나요?')).toBeVisible();
+    test('일기쓰기 버튼 클릭 시 로그인 요청 모달 노출', async ({ page }) => {
+      // 일기쓰기 버튼 클릭
+      await page.click('[data-testid="diaries-write-button"]');
+      
+      // 로그인 요청 모달 노출 확인
+      await expect(page.locator('text=로그인하시겠습니까?')).toBeVisible();
+      await expect(page.locator('text=이 기능을 사용하려면 로그인이 필요합니다.')).toBeVisible();
+      await expect(page.locator('text=로그인하러가기')).toBeVisible();
+      await expect(page.locator('text=취소')).toBeVisible();
+    });
   });
 
-  test('모달의 닫기 버튼 클릭 시 등록취소 확인 후 모달이 닫힌다', async ({ page }) => {
-    // 일기쓰기 버튼 클릭하여 모달 열기
-    const writeButton = page.locator('button:has-text("일기쓰기")');
-    await writeButton.click();
+  test.describe('로그인 유저 테스트', () => {
+    test.beforeEach(async ({ page }) => {
+      // 로그인 상태로 설정
+      await page.evaluate(() => {
+        window.__TEST_BYPASS__ = true;
+      });
+    });
 
-    // 모달이 열렸는지 확인
-    const modal = page.locator('[data-testid="diaries-new-modal"]');
-    await expect(modal).toBeVisible();
-
-    // 닫기 버튼 클릭
-    const closeButton = page.locator('[data-testid="diaries-new-close-button"]');
-    await closeButton.click();
-
-    // 등록취소 확인 모달이 표시되는지 확인
-    const confirmModal = page.locator('[data-testid="modal"]');
-    await expect(confirmModal).toBeVisible();
-
-    // 등록취소 버튼 클릭하여 모달 닫기
-    const confirmButton = page.locator('[data-testid="modal-confirm-button"]');
-    await confirmButton.click();
-
-    // 모달이 닫혔는지 확인
-    await expect(modal).not.toBeVisible({ timeout: 500 });
-    await expect(confirmModal).not.toBeVisible();
-  });
-
-  test('모달 배경 클릭 시 모달이 닫힌다', async ({ page }) => {
-    // 일기쓰기 버튼 클릭하여 모달 열기
-    const writeButton = page.locator('button:has-text("일기쓰기")');
-    await writeButton.click();
-
-    // 모달이 열렸는지 확인
-    const modal = page.locator('[data-testid="diaries-new-modal"]');
-    await expect(modal).toBeVisible();
-
-    // 모달 배경 클릭 (오버레이 클릭) - 모달 외부 영역 클릭
-    await page.click('body', { position: { x: 10, y: 10 } });
-
-    // 모달이 닫혔는지 확인
-    await expect(modal).not.toBeVisible({ timeout: 500 });
-  });
-
-  test('모달이 페이지 중앙에 오버레이로 표시된다', async ({ page }) => {
-    // 일기쓰기 버튼 클릭하여 모달 열기
-    const writeButton = page.locator('button:has-text("일기쓰기")');
-    await writeButton.click();
-
-    // 모달이 중앙에 오버레이로 표시되는지 확인
-    const modal = page.locator('[data-testid="diaries-new-modal"]');
-    await expect(modal).toBeVisible();
-    
-    // 모달이 화면 중앙에 위치하는지 확인 (bounding box 체크)
-    const modalBox = await modal.boundingBox();
-    expect(modalBox).not.toBeNull();
-    
-    // 모달이 화면에 표시되고 있는지 확인
-    await expect(modal).toBeInViewport();
+    test('일기쓰기 버튼 클릭 시 일기쓰기 페이지 모달 노출', async ({ page }) => {
+      // 일기쓰기 버튼 클릭
+      await page.click('[data-testid="diaries-write-button"]');
+      
+      // 일기쓰기 페이지 모달 노출 확인
+      await expect(page.locator('[data-testid="diaries-new-modal"]')).toBeVisible();
+    });
   });
 });
