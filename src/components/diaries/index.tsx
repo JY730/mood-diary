@@ -13,15 +13,24 @@ import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
 import { usePagination } from './hooks/index.pagination.hook';
+// import { useDeleteDiary } from './hooks/index.delete.hook';
+// import { useAuthGuard } from '@/commons/providers/auth/auth.guard.hook';
+// import { Modal } from '@/commons/components/modal';
 
 export default function Diaries() {
   const [searchValue, setSearchValue] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { openDiaryModal } = useLinkModal();
   const { diaries, isLoaded, formatDate } = useDiariesBinding();
-  const { handleCardClick, handleDeleteClick } = useLinkRouting();
+  const { handleCardClick } = useLinkRouting();
   const { searchResult, isSearching, handleSearch, handleRealTimeSearch } = useSearch(diaries);
   const { filterValue, setFilterValue, filteredDiaries, filterOptions } = useFilter(diaries);
+  // const { isAuthorized } = useAuthGuard();
+  // const {
+  //   diaryToDelete,
+  //   closeDeleteModal,
+  //   handleDeleteClick: handleDeleteClickWithAuth
+  // } = useDeleteDiary();
   
   // 검색 결과에 필터 적용
   const getFilteredSearchResult = useMemo(() => {
@@ -88,6 +97,69 @@ export default function Diaries() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     console.log('페이지 변경:', page);
+  };
+
+  // 일기 카드 렌더링 함수
+  const renderDiaryCard = (diary: typeof diaries[0]) => {
+    const emotionData = getEmotionData(diary.emotion);
+    return (
+      <div 
+        key={diary.id} 
+        className={styles.diaryCard}
+        data-testid="diary-card"
+        onClick={() => handleCardClick(diary.id)}
+      >
+        <div className={styles.cardImageContainer}>
+          <div className={styles.cardImageTop}>
+            {/* {isAuthorized() && (
+              <button 
+                className={styles.closeButton} 
+                onClick={(e) => handleDeleteClickWithAuth(e, diary)}
+                data-testid="diary-delete-button"
+              >
+                <img 
+                  src="/icons/close_outline_light_m.svg" 
+                  alt="닫기" 
+                  width="24" 
+                  height="24" 
+                />
+              </button>
+            )} */}
+          </div>
+          <div className={styles.cardImageMain}>
+            <img 
+              src={emotionData.images.medium} 
+              alt={diary.title}
+              className={styles.cardImage}
+              data-testid="diary-card-image"
+            />
+          </div>
+        </div>
+        <div className={styles.cardContent}>
+          <div className={styles.cardHeader}>
+            <span 
+              className={styles.emotionText}
+              style={{ color: emotionData.color }}
+              data-testid="diary-card-emotion"
+            >
+              {emotionData.label}
+            </span>
+            <span 
+              className={styles.dateText}
+              data-testid="diary-card-date"
+            >
+              {formatDate(diary.createdAt)}
+            </span>
+          </div>
+          <div 
+            className={styles.cardTitle}
+            data-testid="diary-card-title"
+          >
+            {diary.title}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -160,179 +232,17 @@ export default function Diaries() {
           <div className={styles.diaryGrid}>
             {/* 첫 번째 행 */}
             <div className={styles.diaryRow}>
-              {getRowData(displayDiaries, 0).map((diary) => {
-                const emotionData = getEmotionData(diary.emotion);
-                return (
-                  <div 
-                    key={diary.id} 
-                    className={styles.diaryCard}
-                    data-testid="diary-card"
-                    onClick={() => handleCardClick(diary.id)}
-                  >
-                    <div className={styles.cardImageContainer}>
-                      <div className={styles.cardImageTop}>
-                        <button className={styles.closeButton} onClick={handleDeleteClick}>
-                          <img 
-                            src="/icons/close_outline_light_m.svg" 
-                            alt="닫기" 
-                            width="24" 
-                            height="24" 
-                          />
-                        </button>
-                      </div>
-                      <div className={styles.cardImageMain}>
-                        <img 
-                          src={emotionData.images.medium} 
-                          alt={diary.title}
-                          className={styles.cardImage}
-                          data-testid="diary-card-image"
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardHeader}>
-                        <span 
-                          className={styles.emotionText}
-                          style={{ color: emotionData.color }}
-                          data-testid="diary-card-emotion"
-                        >
-                          {emotionData.label}
-                        </span>
-                        <span 
-                          className={styles.dateText}
-                          data-testid="diary-card-date"
-                        >
-                          {formatDate(diary.createdAt)}
-                        </span>
-                      </div>
-                      <div 
-                        className={styles.cardTitle}
-                        data-testid="diary-card-title"
-                      >
-                        {diary.title}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              {getRowData(displayDiaries, 0).map(renderDiaryCard)}
             </div>
             
             {/* 두 번째 행 */}
             <div className={styles.diaryRow}>
-              {getRowData(displayDiaries, 1).map((diary) => {
-                const emotionData = getEmotionData(diary.emotion);
-                return (
-                  <div 
-                    key={diary.id} 
-                    className={styles.diaryCard}
-                    data-testid="diary-card"
-                    onClick={() => handleCardClick(diary.id)}
-                  >
-                    <div className={styles.cardImageContainer}>
-                      <div className={styles.cardImageTop}>
-                        <button className={styles.closeButton} onClick={handleDeleteClick}>
-                          <img 
-                            src="/icons/close_outline_light_m.svg" 
-                            alt="닫기" 
-                            width="24" 
-                            height="24" 
-                          />
-                        </button>
-                      </div>
-                      <div className={styles.cardImageMain}>
-                        <img 
-                          src={emotionData.images.medium} 
-                          alt={diary.title}
-                          className={styles.cardImage}
-                          data-testid="diary-card-image"
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardHeader}>
-                        <span 
-                          className={styles.emotionText}
-                          style={{ color: emotionData.color }}
-                          data-testid="diary-card-emotion"
-                        >
-                          {emotionData.label}
-                        </span>
-                        <span 
-                          className={styles.dateText}
-                          data-testid="diary-card-date"
-                        >
-                          {formatDate(diary.createdAt)}
-                        </span>
-                      </div>
-                      <div 
-                        className={styles.cardTitle}
-                        data-testid="diary-card-title"
-                      >
-                        {diary.title}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              {getRowData(displayDiaries, 1).map(renderDiaryCard)}
             </div>
             
             {/* 세 번째 행 */}
             <div className={styles.diaryRow}>
-              {getRowData(displayDiaries, 2).map((diary) => {
-                const emotionData = getEmotionData(diary.emotion);
-                return (
-                  <div 
-                    key={diary.id} 
-                    className={styles.diaryCard}
-                    data-testid="diary-card"
-                    onClick={() => handleCardClick(diary.id)}
-                  >
-                    <div className={styles.cardImageContainer}>
-                      <div className={styles.cardImageTop}>
-                        <button className={styles.closeButton} onClick={handleDeleteClick}>
-                          <img 
-                            src="/icons/close_outline_light_m.svg" 
-                            alt="닫기" 
-                            width="24" 
-                            height="24" 
-                          />
-                        </button>
-                      </div>
-                      <div className={styles.cardImageMain}>
-                        <img 
-                          src={emotionData.images.medium} 
-                          alt={diary.title}
-                          className={styles.cardImage}
-                          data-testid="diary-card-image"
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardHeader}>
-                        <span 
-                          className={styles.emotionText}
-                          style={{ color: emotionData.color }}
-                          data-testid="diary-card-emotion"
-                        >
-                          {emotionData.label}
-                        </span>
-                        <span 
-                          className={styles.dateText}
-                          data-testid="diary-card-date"
-                        >
-                          {formatDate(diary.createdAt)}
-                        </span>
-                      </div>
-                      <div 
-                        className={styles.cardTitle}
-                        data-testid="diary-card-title"
-                      >
-                        {diary.title}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              {getRowData(displayDiaries, 2).map(renderDiaryCard)}
             </div>
           </div>
         )}
@@ -359,6 +269,7 @@ export default function Diaries() {
       
       {/* Gap 4 - 40px */}
       <div className={styles.gap4}></div>
+      
     </div>
   );
 }

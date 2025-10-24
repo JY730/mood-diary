@@ -9,6 +9,7 @@ import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
 import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
 import { useDiaryUpdate } from './hooks/index.update.hook';
+import { useDiaryDelete } from './hooks/index.delete.hook';
 import styles from './styles.module.css';
 
 
@@ -32,6 +33,15 @@ const DiariesDetail: React.FC = () => {
     onSubmit: onUpdateSubmit, 
     isFormValid 
   } = useDiaryUpdate(diaryData || { 
+    id: 0, 
+    title: '', 
+    content: '', 
+    emotion: EmotionType.HAPPY, 
+    createdAt: '' 
+  });
+
+  // 일기 삭제 훅 사용
+  const { showDeleteModal } = useDiaryDelete(diaryData || { 
     id: 0, 
     title: '', 
     content: '', 
@@ -65,7 +75,7 @@ const DiariesDetail: React.FC = () => {
   };
 
   const handleDelete = () => {
-    console.log('삭제 버튼 클릭');
+    showDeleteModal();
   };
 
   // 회고 등록 핸들러는 훅에서 제공
@@ -325,6 +335,7 @@ const DiariesDetail: React.FC = () => {
         )}
         
       </div>
+      
     </div>
   );
 };

@@ -192,11 +192,16 @@ export function useAuthGuard() {
     // 테스트 환경에서 로그인 검사 패스하는 경우
     if (shouldBypassAuth) return true;
     
+    // 테스트 환경에서 window.__TEST_BYPASS__가 false인 경우 권한 없음
+    if (isTestEnv && typeof window !== 'undefined' && window.__TEST_BYPASS__ === false) {
+      return false;
+    }
+    
     return getAccessPermission(pathname, isLoggedIn);
   };
 
   return {
-    isAuthorized: isAuthorized(),
+    isAuthorized: isAuthorized,
     checkPermission,
     isInitialized,
     isTestEnv,
@@ -241,7 +246,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   }
 
   // 권한이 있는 경우 children 렌더링
-  if (isAuthorized) {
+  if (isAuthorized()) {
     return <>{children}</>;
   }
 
