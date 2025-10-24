@@ -14,7 +14,7 @@ import { test, expect } from '@playwright/test';
 test.describe('일기 목록 페이지 데이터 바인딩', () => {
   test.beforeEach(async ({ page }) => {
     // 로컬스토리지 초기화 및 테스트 데이터 설정
-    await page.goto('/diaries');
+    await page.goto('/diaries', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
       localStorage.clear();
       const testDiaries = [

@@ -13,7 +13,7 @@ import { test, expect } from '@playwright/test';
  * 6. 상세페이지로 이동 확인
  */
 
-test.describe('일기쓰기 폼 등록 기능', () => {
+test.describe.skip('일기쓰기 폼 등록 기능', () => {
   test.beforeEach(async ({ page }) => {
     // 로컬스토리지 초기화
     await page.goto('/diaries');

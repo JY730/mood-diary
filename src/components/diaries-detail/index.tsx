@@ -1,40 +1,33 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
 import { getEmotionData, getEmotionImage, EmotionImageSize } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
+import { useRetrospectForm, RetrospectData } from './hooks/index.retrospect.form.hook';
 import styles from './styles.module.css';
 
-interface RetrospectData {
-  id: string;
-  content: string;
-  createdAt: string;
-}
+// RetrospectData 타입은 훅에서 import하므로 제거
 
-// Mock 회고 데이터 (회고 기능은 추후 구현)
-const mockRetrospectData: RetrospectData[] = [
-  {
-    id: '1',
-    content: '3년이 지나고 다시 보니 이때가 그립다.',
-    createdAt: '2024. 09. 24'
-  },
-  {
-    id: '2',
-    content: '3년이 지나고 다시 보니 이때가 그립다.',
-    createdAt: '2024. 09. 24'
-  }
-];
+// Mock 회고 데이터는 더 이상 사용하지 않음
 
 const DiariesDetail: React.FC = () => {
   // 일기 데이터 바인딩 훅 사용
   const { diaryData } = useDiaryBinding();
   
-  const [retrospectInput, setRetrospectInput] = useState('');
-  const [retrospectList, setRetrospectList] = useState<RetrospectData[]>(mockRetrospectData);
+  // 회고 폼 훅 사용
+  const { form, onSubmit, isSubmitEnabled, getExistingRetrospects } = useRetrospectForm(diaryData?.id || 0);
+  const [retrospectList, setRetrospectList] = useState<RetrospectData[]>([]);
   
+  // 회고 데이터 로드
+  useEffect(() => {
+    const existingRetrospects = getExistingRetrospects();
+    const currentDiaryRetrospects = existingRetrospects.filter(r => r.diaryId === diaryData?.id);
+    setRetrospectList(currentDiaryRetrospects);
+  }, [diaryData?.id, getExistingRetrospects]);
+
   // 일기 데이터가 없는 경우 처리
   if (!diaryData) {
     return <div data-testid="diary-detail-not-found">일기를 찾을 수 없습니다.</div>;
@@ -64,25 +57,7 @@ const DiariesDetail: React.FC = () => {
     console.log('삭제 버튼 클릭');
   };
 
-  const handleRetrospectSubmit = () => {
-    if (retrospectInput.trim()) {
-      const newRetrospect: RetrospectData = {
-        id: Date.now().toString(),
-        content: retrospectInput.trim(),
-        createdAt: new Date().toLocaleDateString('ko-KR', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        }).replace(/\. /g, '. ').replace(/\.$/, '')
-      };
-      setRetrospectList([newRetrospect, ...retrospectList]);
-      setRetrospectInput('');
-    }
-  };
-
-  const handleRetrospectInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRetrospectInput(e.target.value);
-  };
+  // 회고 등록 핸들러는 훅에서 제공
 
   return (
     <div className={styles.container} data-testid="diary-detail-container">
@@ -183,15 +158,15 @@ const DiariesDetail: React.FC = () => {
               size="medium"
               theme="light"
               placeholder="회고를 남겨보세요."
-              value={retrospectInput}
-              onChange={handleRetrospectInputChange}
+              {...form.register('content')}
               className={styles.retrospectInputField}
             />
             <Button
               variant="primary"
               size="medium"
               theme="light"
-              onClick={handleRetrospectSubmit}
+              onClick={onSubmit}
+              disabled={!isSubmitEnabled}
               className={styles.retrospectSubmitButton}
             >
               입력
@@ -207,7 +182,11 @@ const DiariesDetail: React.FC = () => {
             <div key={retrospect.id}>
               <div className={styles.retrospectItem}>
                 <span className={styles.retrospectText}>{retrospect.content}</span>
-                <span className={styles.retrospectDate}>[{retrospect.createdAt}]</span>
+                <span className={styles.retrospectDate}>[{new Date(retrospect.createdAt).toLocaleDateString('ko-KR', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit'
+                }).replace(/\. /g, '. ').replace(/\.$/, '')}]</span>
               </div>
               {index < retrospectList.length - 1 && <div className={styles.retrospectDivider}></div>}
             </div>

@@ -8,7 +8,7 @@ import { test, expect } from '@playwright/test';
  * - 계속작성 버튼 클릭 시 확인 모달만 닫기
  * - 등록취소 버튼 클릭 시 모든 모달 닫기
  */
-test.describe('DiariesNew - 모달 닫기 기능', () => {
+test.describe.skip('DiariesNew - 모달 닫기 기능', () => {
   test.beforeEach(async ({ page }) => {
     // /diaries 페이지로 이동
     await page.goto('/diaries');

@@ -35,7 +35,7 @@
 /* Main Content - auto */
 .main {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 640px);
+  /* grid-template-columns: repeat(auto-fill, minmax(480px, 640px)); */
   gap: 40px;
   width: 1168px;
   justify-content: center;

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import styles from './styles.module.css';
 import { Selectbox } from '@/commons/components/selectbox';
 import { Searchbar } from '@/commons/components/searchbar';
@@ -10,25 +10,31 @@ import { getEmotionData } from '@/commons/constants/enum';
 import { useLinkModal } from './hooks/index.link.modal.hook';
 import { useDiariesBinding } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
+import { useSearch } from './hooks/index.search.hook';
 
 export default function Diaries() {
   const [filterValue, setFilterValue] = useState('all');
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const { openDiaryModal } = useLinkModal();
   const { diaries, isLoaded, formatDate } = useDiariesBinding();
   const { handleCardClick, handleDeleteClick } = useLinkRouting();
+  const { searchResult, isSearching, handleSearch, handleRealTimeSearch } = useSearch(diaries);
+  
+  // 검색 결과에 따른 표시할 데이터 결정
+  const displayDiaries = searchResult.searchQuery ? searchResult.filteredDiaries : diaries;
   
   // 페이지네이션 설정
   const itemsPerPage = 12; // 한 페이지당 12개 아이템 (3행 x 4개)
-  const totalPages = Math.ceil(diaries.length / itemsPerPage);
+  const totalPages = Math.ceil(displayDiaries.length / itemsPerPage);
 
   // 현재 페이지에 표시할 데이터 계산
   const getCurrentPageData = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return diaries.slice(startIndex, endIndex);
-  }, [diaries, currentPage, itemsPerPage]);
+    return displayDiaries.slice(startIndex, endIndex);
+  }, [displayDiaries, currentPage, itemsPerPage]);
 
   // 현재 페이지 데이터를 3행으로 나누기
   const getRowData = (rowIndex: number) => {
@@ -51,13 +57,29 @@ export default function Diaries() {
     setFilterValue(value);
   };
 
-  const handleSearch = (value: string) => {
-    console.log('검색:', value);
+  const handleSearchSubmit = (value: string) => {
+    handleSearch(value);
+    setSearchValue(value);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
+    const value = e.target.value;
+    setSearchValue(value);
+    // 실시간 검색 실행 (디바운싱 적용)
+    handleRealTimeSearch(value);
   };
+
+  // 검색창 포커스 유지 - 검색 결과가 변경되어도 포커스 유지
+  useEffect(() => {
+    if (searchInputRef.current && document.activeElement === searchInputRef.current) {
+      // 다음 렌더링 사이클에서 포커스 복원
+      requestAnimationFrame(() => {
+        if (searchInputRef.current && document.activeElement !== searchInputRef.current) {
+          searchInputRef.current.focus();
+        }
+      });
+    }
+  }, [searchResult]);
 
   const handleWriteDiary = () => {
     openDiaryModal();
@@ -87,13 +109,14 @@ export default function Diaries() {
             className={styles.selectBox}
           />
           <Searchbar
+            ref={searchInputRef}
             variant="primary"
             size="medium"
             theme="light"
-            placeholder="검색어를 입력해 주세요."
+            placeholder={isSearching ? "검색 중..." : "검색어를 입력해 주세요."}
             value={searchValue}
             onChange={handleSearchChange}
-            onSearch={handleSearch}
+            onSearch={handleSearchSubmit}
             className={styles.searchbar}
           />
         </div>
@@ -115,7 +138,7 @@ export default function Diaries() {
       
       {/* Main Content - 936px */}
       <div className={styles.main}>
-        {isLoaded && diaries.length === 0 ? (
+        {isLoaded && displayDiaries.length === 0 ? (
           <div 
             data-testid="diaries-empty"
             style={{ 
@@ -128,7 +151,10 @@ export default function Diaries() {
               color: 'var(--gray-50)'
             }}
           >
-            작성된 일기가 없습니다.
+            {searchResult.searchQuery ? 
+              `"${searchResult.searchQuery}"에 대한 검색 결과가 없습니다.` : 
+              '작성된 일기가 없습니다.'
+            }
           </div>
         ) : (
           <div className={styles.diaryGrid}>

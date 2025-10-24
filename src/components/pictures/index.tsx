@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import { Selectbox } from '@/commons/components/selectbox';
 import { useInfiniteDogPictures } from './hooks/index.binding.hook';
+import { usePictureFilter } from './hooks/index.filter.hook';
 
 /**
  * Pictures 컴포넌트
@@ -14,20 +15,21 @@ import { useInfiniteDogPictures } from './hooks/index.binding.hook';
  * - 초기 로딩 시 6개의 강아지 사진 표시
  * - 스크롤 시 자동으로 추가 사진 로드 (무한스크롤)
  * - 로딩 중 스플래시 스크린 애니메이션
- * - 필터 옵션 (기본, 최신순, 인기순)
+ * - 필터 옵션 (기본: 640x640, 가로형: 640x480, 세로형: 480x640)
  * 
  * @returns {JSX.Element} Pictures 페이지 컴포넌트
  */
 export default function Pictures() {
-  const [selectedFilter, setSelectedFilter] = useState('all');
   const { images, isLoading, isError, setLastImageRef } = useInfiniteDogPictures();
+  const { 
+    selectedFilter, 
+    filterOptions, 
+    handleFilterChange, 
+    getCurrentImageSize 
+  } = usePictureFilter();
 
-  // 필터 옵션
-  const filterOptions = [
-    { value: 'all', label: '기본' },
-    { value: 'recent', label: '최신순' },
-    { value: 'popular', label: '인기순' },
-  ];
+  // 현재 필터에 따른 이미지 크기
+  const currentImageSize = getCurrentImageSize();
 
   /**
    * 컨텐츠 렌더링 함수
@@ -53,12 +55,20 @@ export default function Pictures() {
         key={`${imageUrl}-${index}`} 
         className={styles.imageCard}
         ref={(el) => setLastImageRef(el, index)}
+        style={{
+          width: `${currentImageSize.width}px`,
+          height: `${currentImageSize.height}px`,
+        }}
       >
         <img
           src={imageUrl}
           alt={`강아지 사진 ${index + 1}`}
           className={styles.image}
           data-testid="dog-image"
+          style={{
+            width: `${currentImageSize.width}px`,
+            height: `${currentImageSize.height}px`,
+          }}
         />
       </div>
     ));
@@ -77,8 +87,9 @@ export default function Pictures() {
           theme="light"
           options={filterOptions}
           value={selectedFilter}
-          onValueChange={setSelectedFilter}
+          onValueChange={handleFilterChange}
           containerClassName={styles.filterSelect}
+          data-testid="filter-select"
         />
       </div>
       

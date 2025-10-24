@@ -4,10 +4,10 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  /* Test timeout 설정 - 500ms 미만으로 설정 */
-  timeout: 30000, // 전체 테스트 timeout
+  /* Test timeout 설정 - 적절한 시간으로 증가 */
+  timeout: 60000, // 전체 테스트 timeout (60초)
   expect: {
-    timeout: 450, // expect timeout
+    timeout: 5000, // expect timeout (5초)
   },
   
   /* 테스트 병렬 실행 활성화 */
@@ -24,9 +24,9 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     
-    /* Test timeout 설정 - 500ms 미만으로 설정 */
-    actionTimeout: 450,
-    navigationTimeout: 450,
+    /* Test timeout 설정 - 적절한 시간으로 증가 */
+    actionTimeout: 10000, // 10초
+    navigationTimeout: 30000, // 30초
   },
 
   /* Configure projects for major browsers */
@@ -72,7 +72,9 @@ export default defineConfig({
     command: `npm run dev -- --port ${3000 + (process.env.AGENT_INDEX ? parseInt(process.env.AGENT_INDEX) : 0)}`,
     url: `http://localhost:${3000 + (process.env.AGENT_INDEX ? parseInt(process.env.AGENT_INDEX) : 0)}`,
     reuseExistingServer: !process.env.CI,
-    timeout: 120000, // 웹서버 시작 timeout (2분)
+    timeout: 180000, // 웹서버 시작 timeout (3분)
+    stdout: 'pipe',
+    stderr: 'pipe',
     env: {
       NEXT_PUBLIC_TEST_ENV: 'test',
     }

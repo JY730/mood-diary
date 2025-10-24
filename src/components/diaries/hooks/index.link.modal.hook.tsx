@@ -61,7 +61,7 @@ export const useLinkModal = () => {
           actions="dual"
           title="로그인하시겠습니까?"
           description="이 기능을 사용하려면 로그인이 필요합니다."
-          confirmText="로그인하러가기"
+          confirmText="로그인하기"
           cancelText="취소"
           onConfirm={() => {
             closeModal();

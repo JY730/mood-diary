@@ -10,7 +10,10 @@ import { test, expect } from '@playwright/test';
  */
 test.describe('Layout Area Hook - UI Components Visibility', () => {
   test('diaries 페이지에서 모든 영역이 노출되어야 함', async ({ page }) => {
-    await page.goto('/diaries');
+    await page.goto('/diaries', { waitUntil: 'domcontentloaded' });
+    
+    // 페이지 로딩 대기
+    await page.waitForSelector('[data-testid="diaries-container"]', { timeout: 10000 });
     
     // header 영역 확인 (timeout 없이 직접 확인)
     const header = page.locator('[data-testid="header"]');
@@ -34,7 +37,7 @@ test.describe('Layout Area Hook - UI Components Visibility', () => {
   });
 
   test('diaries/[id] 페이지에서 header, footer만 노출되어야 함', async ({ page }) => {
-    await page.goto('/diaries/1');
+    await page.goto('/diaries/1', { waitUntil: 'domcontentloaded' });
     
     // header 영역 확인 (timeout 없이 직접 확인)
     const header = page.locator('[data-testid="header"]');
@@ -82,7 +85,7 @@ test.describe('Layout Area Hook - UI Components Visibility', () => {
   });
 
   test('홈 페이지(/)에서 모든 영역이 노출되어야 함', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     
     // header 영역 확인 (timeout 없이 직접 확인)
     const header = page.locator('[data-testid="header"]');
