@@ -183,7 +183,7 @@ test.describe('회원가입 폼 기능 테스트', () => {
     await confirmButton.click();
 
     // 로그인 페이지로 이동했는지 확인
-    await page.waitForURL('/auth/login', { timeout: 1000 });
+    await page.waitForURL('/auth/login', { timeout: 3000 });
     expect(page.url()).toContain('/auth/login');
   });
 

@@ -19,7 +19,7 @@ export interface RetrospectData {
  * URL의 [id] 파라미터를 추출하여 로컬스토리지에서 해당 일기의 회고 데이터를 조회합니다.
  * useMemo를 활용하여 최소한의 리렌더링으로 데이터를 바인딩합니다.
  * 
- * @returns {object} 회고 데이터 배열
+ * @returns {object} { retrospectData: RetrospectData[] } 회고 데이터 배열
  */
 export const useRetrospectBinding = () => {
   const params = useParams();
@@ -57,7 +57,7 @@ export const useRetrospectBinding = () => {
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
     } catch (error) {
-      console.error('회고 데이터 파싱 오류:', error);
+      console.error('회고 데이터 파싱 중 오류 발생:', error);
       return [];
     }
   }, [params]);

@@ -21,7 +21,7 @@ export interface DiaryDetailData {
  * URL의 [id] 파라미터를 추출하여 로컬스토리지에서 해당 일기 데이터를 조회합니다.
  * useMemo를 활용하여 최소한의 리렌더링으로 데이터를 바인딩합니다.
  * 
- * @returns {object} 일기 상세 데이터
+ * @returns {object} { diaryData: DiaryDetailData | null } 일기 상세 데이터
  */
 export const useDiaryBinding = () => {
   const params = useParams();
@@ -54,7 +54,7 @@ export const useDiaryBinding = () => {
       
       return foundDiary || null;
     } catch (error) {
-      console.error('일기 데이터 파싱 오류:', error);
+      console.error('일기 데이터 파싱 중 오류 발생:', error);
       return null;
     }
   }, [params]);

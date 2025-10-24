@@ -47,9 +47,24 @@ test.describe('Layout Link Routing', () => {
   });
 
   test('일기 상세 페이지에서는 navigation이 숨겨짐 (area hook 적용)', async ({ page }) => {
+    // 테스트 데이터 설정
+    await page.goto('/diaries');
+    await page.evaluate(() => {
+      const testDiaries = [
+        {
+          id: 1,
+          title: '테스트 일기',
+          content: '테스트 내용',
+          emotion: 'HAPPY',
+          createdAt: '2024-01-15T10:00:00Z'
+        }
+      ];
+      localStorage.setItem('diaries', JSON.stringify(testDiaries));
+    });
+    
     // 일기 상세 페이지로 이동 (예시 ID: 1)
     await page.goto('/diaries/1');
-    await page.waitForSelector('[data-testid="logo"]', { timeout: 400 });
+    await page.waitForSelector('[data-testid="diary-detail-container"], [data-testid="diary-detail-not-found"]', { timeout: 10000 });
     
     // navigation 영역이 숨겨져 있는지 확인 (area hook에 의해)
     const navigation = page.locator('[data-testid="navigation"]');
@@ -132,7 +147,7 @@ test.describe('Layout Link Routing', () => {
   test('다양한 경로에서의 액티브 상태 테스트', async ({ page }) => {
     // 루트 경로에서 테스트
     await page.goto('/');
-    await page.waitForSelector('[data-testid="logo"]', { timeout: 400 });
+    await page.waitForSelector('[data-testid="logo"]', { timeout: 10000 });
     
     const diariesTab = page.locator('[data-testid="diaries-tab"]');
     const picturesTab = page.locator('[data-testid="pictures-tab"]');

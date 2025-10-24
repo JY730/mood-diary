@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import { RetrospectData } from './index.retrospect.binding.hook';
 
 // Zod 스키마 정의
 const retrospectFormSchema = z.object({
@@ -12,14 +13,15 @@ const retrospectFormSchema = z.object({
 
 export type RetrospectFormData = z.infer<typeof retrospectFormSchema>;
 
-// 로컬스토리지 데이터 타입
-export interface RetrospectData {
-  id: number;
-  content: string;
-  diaryId: number;
-  createdAt: string;
-}
-
+/**
+ * 회고 폼 훅
+ * 
+ * 회고 등록 폼의 상태를 관리하고 로컬스토리지에 데이터를 저장합니다.
+ * Zod 스키마를 사용하여 폼 유효성 검사를 수행합니다.
+ * 
+ * @param {number} diaryId - 일기 ID
+ * @returns {object} { form, onSubmit, isSubmitEnabled } 폼 관련 상태와 함수들
+ */
 export const useRetrospectForm = (diaryId: number) => {
   const router = useRouter();
   
@@ -38,7 +40,7 @@ export const useRetrospectForm = (diaryId: number) => {
       const stored = localStorage.getItem('retrospects');
       return stored ? JSON.parse(stored) : [];
     } catch (error) {
-      console.error('로컬스토리지에서 회고 데이터를 가져오는 중 오류:', error);
+      console.error('회고 데이터 조회 중 오류 발생:', error);
       return [];
     }
   };
@@ -50,7 +52,7 @@ export const useRetrospectForm = (diaryId: number) => {
     try {
       localStorage.setItem('retrospects', JSON.stringify(retrospects));
     } catch (error) {
-      console.error('로컬스토리지에 회고 데이터를 저장하는 중 오류:', error);
+      console.error('회고 데이터 저장 중 오류 발생:', error);
     }
   };
 

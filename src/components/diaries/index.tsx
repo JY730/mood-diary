@@ -59,11 +59,13 @@ export default function Diaries() {
 
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
+    setCurrentPage(1); // 필터 변경 시 첫 페이지로 이동
   };
 
   const handleSearchSubmit = (value: string) => {
     handleSearch(value);
     setSearchValue(value);
+    setCurrentPage(1); // 검색 시 첫 페이지로 이동
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +73,7 @@ export default function Diaries() {
     setSearchValue(value);
     // 실시간 검색 실행 (디바운싱 적용)
     handleRealTimeSearch(value);
+    setCurrentPage(1); // 실시간 검색 시에도 첫 페이지로 이동
   };
 
   // 검색창 포커스 유지 - 검색 결과가 변경되어도 포커스 유지

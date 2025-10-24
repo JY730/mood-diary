@@ -171,7 +171,7 @@ const DiariesDetail: React.FC = () => {
         {retrospectData.length > 0 && (
           <div className={styles.retrospectList} data-testid="retrospect-list">
             {retrospectData.map((retrospect, index) => (
-              <div key={retrospect.id}>
+              <div className={styles.retrospectItemContainer} key={retrospect.id}>
                 <div className={styles.retrospectItem}>
                   <span className={styles.retrospectText} data-testid={`retrospect-content-${index}`}>
                     {retrospect.content}

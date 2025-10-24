@@ -37,9 +37,27 @@ test.describe('Layout Area Hook - UI Components Visibility', () => {
   });
 
   test('diaries/[id] 페이지에서 header, footer만 노출되어야 함', async ({ page }) => {
+    // 테스트 데이터 설정
+    await page.goto('/diaries');
+    await page.evaluate(() => {
+      const testDiaries = [
+        {
+          id: 1,
+          title: '테스트 일기',
+          content: '테스트 내용',
+          emotion: 'HAPPY',
+          createdAt: '2024-01-15T10:00:00Z'
+        }
+      ];
+      localStorage.setItem('diaries', JSON.stringify(testDiaries));
+    });
+    
     await page.goto('/diaries/1', { waitUntil: 'domcontentloaded' });
     
-    // header 영역 확인 (timeout 없이 직접 확인)
+    // 페이지 로딩 대기 - diary-detail-container 또는 not-found 메시지가 로드될 때까지 대기
+    await page.waitForSelector('[data-testid="diary-detail-container"], [data-testid="diary-detail-not-found"]', { timeout: 10000 });
+    
+    // header 영역 확인
     const header = page.locator('[data-testid="header"]');
     await expect(header).toBeVisible();
     

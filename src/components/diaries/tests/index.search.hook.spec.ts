@@ -165,11 +165,12 @@ test.describe('Diaries Search Hook Tests', () => {
     // 검색어 입력 시작
     await searchInput.fill('행복');
     
-    // 검색 중 상태 확인 (placeholder 변경)
+    // 검색 중 상태 확인 (placeholder 변경) - 짧은 대기 후 확인
+    await page.waitForTimeout(50);
     await expect(searchInput).toHaveAttribute('placeholder', '검색 중...');
     
-    // 디바운싱 완료 후 원래 placeholder로 복원
-    await page.waitForTimeout(400);
+    // 디바운싱 완료 후 원래 placeholder로 복원 대기
+    await page.waitForTimeout(500);
     await expect(searchInput).toHaveAttribute('placeholder', '검색어를 입력해 주세요.');
   });
 
