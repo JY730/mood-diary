@@ -13,9 +13,8 @@ import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
 import { usePagination } from './hooks/index.pagination.hook';
-// import { useDeleteDiary } from './hooks/index.delete.hook';
-// import { useAuthGuard } from '@/commons/providers/auth/auth.guard.hook';
-// import { Modal } from '@/commons/components/modal';
+import { useDeleteDiary } from './hooks/index.delete.hook';
+import { useAuthGuard } from '@/commons/providers/auth/auth.guard.hook';
 
 export default function Diaries() {
   const [searchValue, setSearchValue] = useState('');
@@ -25,12 +24,10 @@ export default function Diaries() {
   const { handleCardClick } = useLinkRouting();
   const { searchResult, isSearching, handleSearch, handleRealTimeSearch } = useSearch(diaries);
   const { filterValue, setFilterValue, filteredDiaries, filterOptions } = useFilter(diaries);
-  // const { isAuthorized } = useAuthGuard();
-  // const {
-  //   diaryToDelete,
-  //   closeDeleteModal,
-  //   handleDeleteClick: handleDeleteClickWithAuth
-  // } = useDeleteDiary();
+  const { isAuthorized } = useAuthGuard();
+  const {
+    handleDeleteClick: handleDeleteClickWithAuth
+  } = useDeleteDiary();
   
   // 검색 결과에 필터 적용
   const getFilteredSearchResult = useMemo(() => {
@@ -111,7 +108,7 @@ export default function Diaries() {
       >
         <div className={styles.cardImageContainer}>
           <div className={styles.cardImageTop}>
-            {/* {isAuthorized() && (
+            {isAuthorized() && (
               <button 
                 className={styles.closeButton} 
                 onClick={(e) => handleDeleteClickWithAuth(e, diary)}
@@ -124,7 +121,7 @@ export default function Diaries() {
                   height="24" 
                 />
               </button>
-            )} */}
+            )}
           </div>
           <div className={styles.cardImageMain}>
             <img 

@@ -72,7 +72,7 @@ export function useAuthGuard() {
   // 테스트 환경에서 로그인 검사 패스 여부 확인
   // 테스트 환경에서는 기본적으로 로그인 검사 패스 (로그인 유저 기본값)
   // 비회원 가드테스트가 필요한 경우에만 검사 수행
-  const shouldBypassAuth = isTestEnv && (typeof window !== 'undefined' ? window.__TEST_BYPASS__ !== false : true);
+  const shouldBypassAuth = isTestEnv && (typeof window !== 'undefined' ? window.__TEST_BYPASS__ === true : true);
 
   /**
    * AuthProvider 초기화 완료 후 권한 검증 수행
@@ -197,7 +197,13 @@ export function useAuthGuard() {
       return false;
     }
     
-    return getAccessPermission(pathname, isLoggedIn);
+    // 디버깅을 위한 로그 추가
+    console.log('isAuthorized - isLoggedIn:', isLoggedIn, 'isInitialized:', isInitialized);
+    
+    // 삭제 버튼은 로그인 상태에서만 표시
+    // AuthProvider 초기화가 늦을 수 있으므로 localStorage 직접 확인
+    const hasToken = typeof window !== 'undefined' && localStorage.getItem('accessToken');
+    return isLoggedIn || !!hasToken;
   };
 
   return {

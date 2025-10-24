@@ -29,7 +29,7 @@ export const useDiaryDelete = (diaryData: DiaryData): UseDiaryDeleteReturn => {
         variant: "info",
         actions: "dual",
         title: "일기 삭제",
-        description: `"${diaryData.title}" 일기를 삭제하시겠습니까?`,
+        description:  "일기를 삭제하시겠습니까?",
         confirmText: "삭제",
         cancelText: "취소",
         onConfirm: confirmDelete,
