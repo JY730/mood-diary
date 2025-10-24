@@ -38,6 +38,7 @@ const useDebounce = (value: string, delay: number) => {
 // 검색 훅
 export const useSearch = (diaries: DiaryData[]) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
   
   // 디바운싱 적용 (300ms 지연)
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
@@ -82,13 +83,19 @@ export const useSearch = (diaries: DiaryData[]) => {
     setSearchQuery('');
   }, []);
 
+  // 검색 중 상태 관리 - 디바운싱이 완료되면 검색 중 상태 해제
+  useEffect(() => {
+    if (searchQuery && searchQuery !== debouncedSearchQuery) {
+      setIsSearching(true);
+    } else {
+      setIsSearching(false);
+    }
+  }, [searchQuery, debouncedSearchQuery]);
+
   // 실시간 검색 (디바운싱 적용)
   const handleRealTimeSearch = useCallback((query: string) => {
     setSearchQuery(query);
   }, []);
-
-  // 검색 중 상태 계산 (디바운싱 중인지 확인)
-  const isSearching = searchQuery !== debouncedSearchQuery;
 
   return {
     searchResult,

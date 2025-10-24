@@ -5,8 +5,8 @@
   margin-bottom: 40px;
 }
 
-.gap64 {
-  height: 64px;
+.gap40 {
+  height: 40px;
 }
 
 .gap24 {
@@ -30,14 +30,14 @@
   width: 100%;
   height: auto;
   align-items: flex-start;
-  border-bottom: 2px solid var(--gray-black);
+  border-bottom: 2px solid #000000;
 }
 
 .title {
   font-family: var(--font-korean);
-  font-size: 22px;
+  font-size: var(--headline-02-font-size);
   font-weight: var(--font-weight-bold);
-  line-height: 24px;
+  line-height: var(--headline-02-line-height);
   color: var(--text-primary);
   margin-bottom: 12px;
   letter-spacing: -0.22px;
@@ -66,7 +66,7 @@
 .emotionText {
   text-align: center;
   font-family: var(--font-korean);
-  font-size: 20px;
+  font-size: var(--headline-03-font-size);
   font-weight: var(--font-weight-semibold);
   line-height: 32px;
   letter-spacing: -0.2px;
@@ -81,10 +81,10 @@
 .dateText,
 .createdText {
   font-family: var(--font-korean);
-  font-size: 14px;
+  font-size: var(--body-02-regular-font-size);
   font-weight: var(--font-weight-regular);
-  line-height: 20px;
-  color: var(--gray-50);
+  line-height: var(--body-02-regular-line-height);
+  color: var(--text-tertiary);
   letter-spacing: -0.14px;
 }
 
@@ -105,7 +105,7 @@
 
 .contentLabel {
   font-family: var(--font-korean);
-  font-size: 16px;
+  font-size: var(--body-01-medium-font-size);
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
   color: var(--text-primary);
@@ -115,8 +115,8 @@
 
 .contentText {
   font-family: var(--font-korean);
-  font-size: 16px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--body-01-medium-font-size);
+  font-weight: var(--body-01-medium-font-weight);
   line-height: 20px;
   color: var(--gray-80);
   margin: 0;
@@ -147,7 +147,7 @@
 
 .copyButtonText {
   font-family: var(--font-korean);
-  font-size: 16px;
+  font-size: var(--body-01-regular-font-size);
   font-weight: var(--font-weight-regular);
   line-height: 24px;
   color: var(--gray-90);
@@ -161,7 +161,7 @@
   height: 56px;
   align-items: flex-start;
   justify-content: flex-end;
-  border-bottom: 1px solid var(--gray-black);
+  border-bottom: 1px solid #000000;
 }
 
 .buttonGroup {
@@ -198,11 +198,28 @@
   gap: 13px;
 }
 
+/* 수정 중일 때 회고 섹션 비활성화 스타일 (피그마 노드 3:1247) */
+.retrospectInputDisabled {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.retrospectInputDisabled .retrospectInputField {
+  background-color: var(--gray-05);
+  color: var(--gray-40);
+  border: none;
+}
+
+.retrospectInputDisabled .retrospectSubmitButton {
+  background-color: var(--gray-30);
+  color: var(--gray-05);
+}
+
 .retrospectLabel {
   font-family: var(--font-korean);
-  font-size: 18px;
+  font-size: var(--title-01-font-size);
   font-weight: var(--font-weight-semibold);
-  line-height: 24px;
+  line-height: var(--title-01-line-height);
   color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.18px;
@@ -250,7 +267,7 @@
 
 .retrospectText {
   font-family: var(--font-korean);
-  font-size: 16px;
+  font-size: var(--body-01-medium-font-size);
   font-weight: var(--font-weight-medium);
   line-height: 24px;
   color: var(--text-primary);
@@ -259,7 +276,7 @@
 
 .retrospectDate {
   font-family: var(--font-korean);
-  font-size: 16px;
+  font-size: var(--body-01-regular-font-size);
   font-weight: var(--font-weight-regular);
   line-height: 24px;
   color: var(--gray-60);
@@ -272,3 +289,199 @@
   background-color: var(--gray-10);
   margin: 12px 0;
 }
+
+/* 수정 모드 스타일 (피그마 노드 3:1224) */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+  border-bottom: 1px solid var(--gray-black);
+  padding-bottom: 16px;
+}
+
+.editTitleSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.editTitleLabel {
+  font-family: var(--body-02-medium-font-family);
+  font-size: var(--body-02-medium-font-size);
+  font-weight: var(--body-02-medium-font-weight);
+  line-height: var(--body-02-medium-line-height);
+  color: var(--gray-80);
+}
+
+.editTitleInput {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border: 1px solid var(--gray-20);
+  border-radius: 8px;
+  font-family: var(--font-korean);
+  font-size: var(--body-01-medium-font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  transition: all 0.2s ease-in-out;
+}
+
+.editTitleInput:hover {
+  border-color: var(--gray-30);
+}
+
+.editTitleInput:focus {
+  border-color: var(--blue-50);
+  outline: none;
+}
+
+.editEmotionSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.editEmotionLabel {
+  font-family: var(--headline-03-font-family);
+  font-size: var(--headline-03-font-size);
+  font-weight: var(--headline-03-font-weight);
+  line-height: var(--headline-03-line-height);
+  color: var(--gray-black);
+  margin-bottom: 16px;
+}
+
+.emotionRadioGroup {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.emotionRadioItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.emotionRadioInput {
+  appearance: none; /* 기본 브라우저 스타일 제거 */
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer; 
+  border: 2px solid var(--gray-30); /* ✅ 2px 테두리 */
+  background-color: var(--gray-05);
+  border-radius: 50%; /* 동그라미 모양 */
+  display: grid;
+  place-content: center;
+}
+
+/* ✅ 선택된 버튼 테두리 색상 변경 */
+.emotionRadioInput:checked {
+  border-color: #000000; /* 선택되면 검정색 테두리 */
+  background-color: var(--white);
+}
+
+/* 선택되었을 때 안쪽 점 표시 */
+.emotionRadioInput::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #000; /* ✅ 안쪽 점 색상 */
+  transform: scale(0);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* 체크되었을 때 점 보이기 */
+.emotionRadioInput:checked::before {
+  transform: scale(1);
+}
+
+.emotionRadioText {
+  font-family: var(--font-korean);
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-800);
+  cursor: pointer;
+}
+
+.editEmotionSelect {
+  width: 200px;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-20);
+  border-radius: 8px;
+  font-family: var(--font-korean);
+  font-size: var(--body-01-medium-font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  background-color: var(--gray-white);
+  transition: all 0.2s ease-in-out;
+}
+
+.editEmotionSelect:hover {
+  border-color: var(--gray-30);
+}
+
+.editEmotionSelect:focus {
+  border-color: var(--blue-50);
+  outline: none;
+}
+
+.editContentSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.editContentLabel {
+  font-family: var(--body-02-medium-font-family);
+  font-size: var(--body-02-medium-font-size);
+  font-weight: var(--body-02-medium-font-weight);
+  line-height: var(--body-02-medium-line-height);
+  color: var(--gray-80);
+}
+
+.editContentTextarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 12px 16px;
+  border: 1px solid var(--gray-20);
+  border-radius: 8px;
+  font-family: var(--font-korean);
+  font-size: var(--body-01-medium-font-size);
+  font-weight: var(--body-01-medium-font-weight);
+  color: var(--gray-80);
+  resize: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.editContentTextarea:hover {
+  border-color: var(--gray-30);
+}
+
+.editContentTextarea:focus {
+  border-color: var(--gray-black);
+  outline: none;
+}
+
+.editButtonSection {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.editSubmitButton {
+  min-width: 100px;
+}
+
+.editCancelButton {
+  min-width: 80px;
+}
+

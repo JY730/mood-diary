@@ -12,10 +12,10 @@ import { useDiariesBinding } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
+import { usePagination } from './hooks/index.pagination.hook';
 
 export default function Diaries() {
   const [searchValue, setSearchValue] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { openDiaryModal } = useLinkModal();
   const { diaries, isLoaded, formatDate } = useDiariesBinding();
@@ -39,23 +39,16 @@ export default function Diaries() {
   // 검색 결과에 따른 표시할 데이터 결정
   const displayDiaries = searchResult.searchQuery ? getFilteredSearchResult : filteredDiaries;
   
-  // 페이지네이션 설정
-  const itemsPerPage = 12; // 한 페이지당 12개 아이템 (3행 x 4개)
-  const totalPages = Math.ceil(displayDiaries.length / itemsPerPage);
-
-  // 현재 페이지에 표시할 데이터 계산
-  const getCurrentPageData = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return displayDiaries.slice(startIndex, endIndex);
-  }, [displayDiaries, currentPage, itemsPerPage]);
-
-  // 현재 페이지 데이터를 3행으로 나누기
-  const getRowData = (rowIndex: number) => {
-    const startIndex = rowIndex * 4;
-    const endIndex = startIndex + 4;
-    return getCurrentPageData.slice(startIndex, endIndex);
-  };
+  // 페이지네이션 hook 사용
+  const {
+    currentPage,
+    totalPages,
+    setCurrentPage,
+    getRowData
+  } = usePagination(displayDiaries, {
+    itemsPerPage: 12, // 한 페이지당 12개 아이템 (3행 x 4개)
+    initialPage: 1
+  });
 
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
@@ -167,7 +160,7 @@ export default function Diaries() {
           <div className={styles.diaryGrid}>
             {/* 첫 번째 행 */}
             <div className={styles.diaryRow}>
-              {getRowData(0).map((diary) => {
+              {getRowData(displayDiaries, 0).map((diary) => {
                 const emotionData = getEmotionData(diary.emotion);
                 return (
                   <div 
@@ -226,7 +219,7 @@ export default function Diaries() {
             
             {/* 두 번째 행 */}
             <div className={styles.diaryRow}>
-              {getRowData(1).map((diary) => {
+              {getRowData(displayDiaries, 1).map((diary) => {
                 const emotionData = getEmotionData(diary.emotion);
                 return (
                   <div 
@@ -285,7 +278,7 @@ export default function Diaries() {
             
             {/* 세 번째 행 */}
             <div className={styles.diaryRow}>
-              {getRowData(2).map((diary) => {
+              {getRowData(displayDiaries, 2).map((diary) => {
                 const emotionData = getEmotionData(diary.emotion);
                 return (
                   <div 
@@ -349,18 +342,20 @@ export default function Diaries() {
       <div className={styles.gap3}></div>
       
       {/* Pagination - 32px */}
-      <div className={styles.pagination}>
-        <Pagination
-          variant="primary"
-          size="medium"
-          theme="light"
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          visiblePages={5}
-          className={styles.paginationComponent}
-        />
-      </div>
+      {totalPages > 1 && (
+        <div className={styles.pagination}>
+          <Pagination
+            variant="primary"
+            size="medium"
+            theme="light"
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            visiblePages={5}
+            className={styles.paginationComponent}
+          />
+        </div>
+      )}
       
       {/* Gap 4 - 40px */}
       <div className={styles.gap4}></div>

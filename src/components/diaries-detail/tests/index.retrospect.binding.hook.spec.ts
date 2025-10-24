@@ -89,9 +89,9 @@ test.describe('회고 데이터 바인딩 테스트', () => {
     await expect(page.getByTestId('retrospect-content-0')).toHaveText('두 번째 회고 (최신 것)');
     await expect(page.getByTestId('retrospect-content-1')).toHaveText('첫 번째 회고 (오래된 것)');
     
-    // 회고 날짜들이 올바르게 표시되는지 확인
-    await expect(page.getByTestId('retrospect-date-0')).toHaveText('2024. 01. 01');
-    await expect(page.getByTestId('retrospect-date-1')).toHaveText('2024. 01. 01');
+    // 회고 날짜들이 올바르게 표시되는지 확인 (UI에서 [날짜] 형식으로 표시됨)
+    await expect(page.getByTestId('retrospect-date-0')).toHaveText('[2024. 01. 01]');
+    await expect(page.getByTestId('retrospect-date-1')).toHaveText('[2024. 01. 01]');
   });
 
   test('존재하지 않는 일기 ID로 접근 시 적절한 처리가 되는지 확인', async ({ page }) => {

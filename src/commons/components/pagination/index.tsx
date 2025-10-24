@@ -160,7 +160,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   const visiblePageNumbers = getVisiblePageNumbers();
 
   return (
-    <nav className={paginationClasses} role="navigation" aria-label="페이지네이션">
+    <nav className={paginationClasses} role="navigation" aria-label="페이지네이션" data-testid="pagination">
       {/* 이전 페이지 버튼 */}
       <button
         className={[
@@ -174,6 +174,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         disabled={isPrevDisabled}
         aria-label={prevLabel || '이전 페이지'}
         type="button"
+        data-testid="pagination-prev"
       >
         <svg
           className={styles.navIcon}
@@ -234,6 +235,7 @@ export const Pagination: React.FC<PaginationProps> = ({
               aria-label={`${page}페이지로 이동`}
               aria-current={page === currentPage ? 'page' : undefined}
               type="button"
+              data-testid="pagination-page"
             >
               {page}
             </button>
@@ -279,6 +281,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         disabled={isNextDisabled}
         aria-label={nextLabel || '다음 페이지'}
         type="button"
+        data-testid="pagination-next"
       >
         <svg
           className={styles.navIcon}

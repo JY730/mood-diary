@@ -160,6 +160,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
           value={inputValue}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
+          data-testid="search-input"
           {...props}
         />
 

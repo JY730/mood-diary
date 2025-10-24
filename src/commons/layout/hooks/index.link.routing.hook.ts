@@ -40,8 +40,8 @@ function useLinkRouting() {
     router.push(ROUTES.PICTURES.LIST);
   }, [router]);
 
-  // 현재 경로가 일기 관련 페이지인지 확인 (메인 페이지 포함)
-  const isDiariesActive = pathname === '/' || pathname === ROUTES.DIARIES.LIST || pathname.startsWith('/diaries/');
+  // 현재 경로가 일기 관련 페이지인지 확인 (루트 제외)
+  const isDiariesActive = pathname === ROUTES.DIARIES.LIST || pathname.startsWith('/diaries/');
   
   // 현재 경로가 사진 관련 페이지인지 확인
   const isPicturesActive = pathname === ROUTES.PICTURES.LIST;

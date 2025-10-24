@@ -259,6 +259,7 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
             aria-haspopup="listbox"
             aria-disabled={disabled}
             aria-controls={isOpen ? 'selectbox-dropdown' : undefined}
+            data-testid="filter-select"
           >
             <span className={styles.displayText}>{displayText}</span>
             <span className={styles.arrow}>
@@ -285,6 +286,7 @@ export const Selectbox = forwardRef<HTMLSelectElement, SelectboxProps>(
                   role="option"
                   aria-selected={option.value === selectValue}
                   aria-disabled={option.disabled}
+                  data-testid={`filter-option-${option.value}`}
                 >
                   <span className={styles.optionText}>{option.label}</span>
                   {option.value === selectValue && (
