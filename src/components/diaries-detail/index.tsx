@@ -7,12 +7,16 @@ import { Input } from '@/commons/components/input';
 import { getEmotionData, getEmotionImage, EmotionImageSize } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
+import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
 import styles from './styles.module.css';
 
 
 const DiariesDetail: React.FC = () => {
   // 일기 데이터 바인딩 훅 사용
   const { diaryData } = useDiaryBinding();
+  
+  // 회고 데이터 바인딩 훅 사용
+  const { retrospectData } = useRetrospectBinding();
   
   // 회고 폼 훅 사용
   const { form, onSubmit, isSubmitEnabled } = useRetrospectForm(diaryData?.id || 0);
@@ -162,6 +166,27 @@ const DiariesDetail: React.FC = () => {
             </Button>
           </div>
         </div>
+        
+        {/* retrospect-list 영역 */}
+        {retrospectData.length > 0 && (
+          <div className={styles.retrospectList} data-testid="retrospect-list">
+            {retrospectData.map((retrospect, index) => (
+              <div key={retrospect.id}>
+                <div className={styles.retrospectItem}>
+                  <span className={styles.retrospectText} data-testid={`retrospect-content-${index}`}>
+                    {retrospect.content}
+                  </span>
+                  <span className={styles.retrospectDate} data-testid={`retrospect-date-${index}`}>
+                    {formatDate(retrospect.createdAt)}
+                  </span>
+                </div>
+                {index < retrospectData.length - 1 && (
+                  <div className={styles.retrospectDivider}></div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
         
       </div>
     </div>

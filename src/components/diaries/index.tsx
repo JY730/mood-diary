@@ -11,9 +11,9 @@ import { useLinkModal } from './hooks/index.link.modal.hook';
 import { useDiariesBinding } from './hooks/index.binding.hook';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
+import { useFilter } from './hooks/index.filter.hook';
 
 export default function Diaries() {
-  const [filterValue, setFilterValue] = useState('all');
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -21,9 +21,23 @@ export default function Diaries() {
   const { diaries, isLoaded, formatDate } = useDiariesBinding();
   const { handleCardClick, handleDeleteClick } = useLinkRouting();
   const { searchResult, isSearching, handleSearch, handleRealTimeSearch } = useSearch(diaries);
+  const { filterValue, setFilterValue, filteredDiaries, filterOptions } = useFilter(diaries);
   
+  // 검색 결과에 필터 적용
+  const getFilteredSearchResult = useMemo(() => {
+    if (!searchResult.searchQuery) {
+      return [];
+    }
+    
+    if (filterValue === 'all') {
+      return searchResult.filteredDiaries;
+    }
+    
+    return searchResult.filteredDiaries.filter(diary => diary.emotion === filterValue);
+  }, [searchResult, filterValue]);
+
   // 검색 결과에 따른 표시할 데이터 결정
-  const displayDiaries = searchResult.searchQuery ? searchResult.filteredDiaries : diaries;
+  const displayDiaries = searchResult.searchQuery ? getFilteredSearchResult : filteredDiaries;
   
   // 페이지네이션 설정
   const itemsPerPage = 12; // 한 페이지당 12개 아이템 (3행 x 4개)
@@ -42,16 +56,6 @@ export default function Diaries() {
     const endIndex = startIndex + 4;
     return getCurrentPageData.slice(startIndex, endIndex);
   };
-
-  // 필터 옵션
-  const filterOptions = [
-    { value: 'all', label: '전체' },
-    { value: 'happy', label: '기쁨' },
-    { value: 'sad', label: '슬픔' },
-    { value: 'angry', label: '화남' },
-    { value: 'surprise', label: '놀람' },
-    { value: 'etc', label: '기타' },
-  ];
 
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
