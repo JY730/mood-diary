@@ -91,6 +91,5 @@ export const useRetrospectForm = (diaryId: number) => {
     form,
     onSubmit: form.handleSubmit(onSubmit),
     isSubmitEnabled,
-    getExistingRetrospects,
   };
 };

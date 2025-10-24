@@ -1,32 +1,21 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
 import { getEmotionData, getEmotionImage, EmotionImageSize } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
-import { useRetrospectForm, RetrospectData } from './hooks/index.retrospect.form.hook';
+import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
 import styles from './styles.module.css';
 
-// RetrospectData 타입은 훅에서 import하므로 제거
-
-// Mock 회고 데이터는 더 이상 사용하지 않음
 
 const DiariesDetail: React.FC = () => {
   // 일기 데이터 바인딩 훅 사용
   const { diaryData } = useDiaryBinding();
   
   // 회고 폼 훅 사용
-  const { form, onSubmit, isSubmitEnabled, getExistingRetrospects } = useRetrospectForm(diaryData?.id || 0);
-  const [retrospectList, setRetrospectList] = useState<RetrospectData[]>([]);
-  
-  // 회고 데이터 로드
-  useEffect(() => {
-    const existingRetrospects = getExistingRetrospects();
-    const currentDiaryRetrospects = existingRetrospects.filter(r => r.diaryId === diaryData?.id);
-    setRetrospectList(currentDiaryRetrospects);
-  }, [diaryData?.id, getExistingRetrospects]);
+  const { form, onSubmit, isSubmitEnabled } = useRetrospectForm(diaryData?.id || 0);
 
   // 일기 데이터가 없는 경우 처리
   if (!diaryData) {
@@ -174,24 +163,6 @@ const DiariesDetail: React.FC = () => {
           </div>
         </div>
         
-        <div className={styles.gap16}></div>
-        
-        {/* retrospect-list 영역 */}
-        <div className={styles.retrospectList}>
-          {retrospectList.map((retrospect, index) => (
-            <div key={retrospect.id}>
-              <div className={styles.retrospectItem}>
-                <span className={styles.retrospectText}>{retrospect.content}</span>
-                <span className={styles.retrospectDate}>[{new Date(retrospect.createdAt).toLocaleDateString('ko-KR', {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit'
-                }).replace(/\. /g, '. ').replace(/\.$/, '')}]</span>
-              </div>
-              {index < retrospectList.length - 1 && <div className={styles.retrospectDivider}></div>}
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
