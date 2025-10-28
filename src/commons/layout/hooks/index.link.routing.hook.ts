@@ -40,7 +40,8 @@ function useLinkRouting() {
     router.push(ROUTES.PICTURES.LIST);
   }, [router]);
 
-  // 현재 경로가 일기 관련 페이지인지 확인 (루트 제외)
+  // 현재 경로가 일기 관련 페이지인지 확인
+  // 루트 경로(/)는 메인페이지에서 자동으로 /diaries로 리다이렉트되므로 별도 처리 불필요
   const isDiariesActive = pathname === ROUTES.DIARIES.LIST || pathname.startsWith('/diaries/');
   
   // 현재 경로가 사진 관련 페이지인지 확인

@@ -76,10 +76,8 @@ export default function Pictures() {
 
   return (
     <div className={styles.container} data-testid="pictures-container">
-      {/* Gap 1 - 32px */}
       <div className={styles.gap1}></div>
-      
-      {/* Filter Section - 48px */}
+      {/* Filter Section - navigation과 같은 레벨 */}
       <div className={styles.filter}>
         <Selectbox
           variant="primary"
@@ -92,6 +90,9 @@ export default function Pictures() {
           data-testid="filter-select"
         />
       </div>
+      
+      {/* Gap 1 - 32px */}
+      <div className={styles.gap1}></div>
       
       {/* Gap 2 - 42px */}
       <div className={styles.gap2}></div>

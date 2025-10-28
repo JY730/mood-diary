@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 1168px;
+  width: 100%;
   margin-bottom: 40px;
 }
 
@@ -169,9 +169,10 @@
   gap: 16px;
 }
 
-/* actionButton 스타일 - width만 허용 */
+/* actionButton 스타일 - 비율 기반 반응형 */
 .actionButton {
-  width: 51px;
+  flex-shrink: 0;
+  min-width: 51px;
 }
 
 .retrospectContainer{
@@ -233,11 +234,13 @@
 }
 
 .retrospectInputField {
-  width: 1101px;
+  flex: 1;
+  min-width: 0;
 }
 
 .retrospectSubmitButton {
-  width: 51px;
+  flex-shrink: 0;
+  min-width: 51px;
 }
 
 /* retrospect-list 영역 */
@@ -478,10 +481,12 @@
 }
 
 .editSubmitButton {
+  flex-shrink: 0;
   min-width: 100px;
 }
 
 .editCancelButton {
+  flex-shrink: 0;
   min-width: 80px;
 }
 

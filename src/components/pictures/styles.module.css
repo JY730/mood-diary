@@ -1,23 +1,25 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Filter Section - 48px */
+.filter {
+  display: flex;
+  width: 100%;
+  height: 48px;
   align-items: center;
 }
 
 /* Gap 1 - 32px */
 .gap1 {
   display: flex;
-  width: 1168px;
+  width: 100%;
   height: 32px;
-}
-
-/* Filter Section - 48px */
-.filter {
-  display: flex;
-  width: 1168px;
-  height: 48px;
-  align-items: center;
 }
 
 /* Filter SelectBox 스타일 */
@@ -28,7 +30,7 @@
 /* Gap 2 - 42px */
 .gap2 {
   display: flex;
-  width: 1168px;
+  width: 100%;
   height: 42px;
 }
 
@@ -37,7 +39,7 @@
   display: grid;
   /* grid-template-columns: repeat(auto-fill, minmax(480px, 640px)); */
   gap: 40px;
-  width: 1168px;
+  width: 100%;
   justify-content: center;
   margin-bottom: 40px;
 }
@@ -95,3 +97,4 @@
     left: 150%;
   }
 }
+

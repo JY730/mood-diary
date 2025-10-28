@@ -43,18 +43,21 @@ export default function Diaries() {
   }, [searchResult, filterValue]);
 
   // 검색 결과에 따른 표시할 데이터 결정
-  const displayDiaries = searchResult.searchQuery ? getFilteredSearchResult : filteredDiaries;
+  const allDiaries = searchResult.searchQuery ? getFilteredSearchResult : filteredDiaries;
   
   // 페이지네이션 hook 사용
   const {
     currentPage,
     totalPages,
     setCurrentPage,
-    getRowData
-  } = usePagination(displayDiaries, {
-    itemsPerPage: 12, // 한 페이지당 12개 아이템 (3행 x 4개)
+    getCurrentPageData
+  } = usePagination(allDiaries, {
+    itemsPerPage: 12, // 한 페이지당 12개 아이템
     initialPage: 1
   });
+
+  // 현재 페이지의 데이터 가져오기 (12개 모두)
+  const displayDiaries = getCurrentPageData(allDiaries);
 
   const handleFilterChange = (value: string) => {
     setFilterValue(value);
@@ -207,7 +210,7 @@ export default function Diaries() {
       
       {/* Main Content - 936px */}
       <div className={styles.main}>
-        {isLoaded && displayDiaries.length === 0 ? (
+        {isLoaded && allDiaries.length === 0 ? (
           <div 
             data-testid="diaries-empty"
             style={{ 
@@ -226,21 +229,8 @@ export default function Diaries() {
             }
           </div>
         ) : (
-          <div className={styles.diaryGrid}>
-            {/* 첫 번째 행 */}
-            <div className={styles.diaryRow}>
-              {getRowData(displayDiaries, 0).map(renderDiaryCard)}
-            </div>
-            
-            {/* 두 번째 행 */}
-            <div className={styles.diaryRow}>
-              {getRowData(displayDiaries, 1).map(renderDiaryCard)}
-            </div>
-            
-            {/* 세 번째 행 */}
-            <div className={styles.diaryRow}>
-              {getRowData(displayDiaries, 2).map(renderDiaryCard)}
-            </div>
+          <div className={`${styles.diaryGrid} ${displayDiaries.length >= 4 ? styles.centerAlign : ''}`}>
+            {displayDiaries.map(renderDiaryCard)}
           </div>
         )}
       </div>
