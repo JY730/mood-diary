@@ -33,14 +33,43 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
 
-    // 응답 반환
-    return NextResponse.json(data, { status: response.status });
+    // 응답 반환 (CORS 헤더 추가)
+    return NextResponse.json(data, { 
+      status: response.status,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      }
+    });
   } catch (error) {
     console.error('GraphQL API 프록시 오류:', error);
     return NextResponse.json(
       { errors: [{ message: 'API 요청 중 오류가 발생했습니다.' }] },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
+      }
     );
   }
+}
+
+/**
+ * OPTIONS 메서드 핸들러
+ * 브라우저의 preflight 요청을 처리합니다.
+ */
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  });
 }
 
