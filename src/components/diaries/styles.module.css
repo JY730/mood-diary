@@ -41,10 +41,16 @@
 /* Searchbar 래퍼: 중앙에 검색바를 두고 내부 검색바는 max-width로 제한 */
 .searchbarContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;            /* 남는 공간 차지하되 내부 .searchbar가 max-width로 제한됨 */
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;       /* 남는 공간 차지하되 내부 .searchbar가 max-width로 제한됨 */
   min-width: 0;       /* flex item에서 overflow 방지 */
+}
+
+.searchbarWrapper {
+  width: 100%;
+  max-width: 480px;
+  min-width: 200px;   
 }
 
 /* Searchbar 스타일 */
@@ -52,10 +58,8 @@
   display: flex;
   justify-content: center;
   align-items: center; 
-  width: 100%;
   max-width: 320px;
-  min-width: 200px;
-  flex: 0;            /* 내부에서 더 이상 늘어나지 않음 */
+  min-width: 200px;   
 }
 
 /* Write Button 스타일 */

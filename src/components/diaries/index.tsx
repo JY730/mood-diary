@@ -182,17 +182,19 @@ export default function Diaries() {
             className={styles.selectBox}
           />
           <div className={styles.searchbarContainer}>
-            <Searchbar
-              ref={searchInputRef}
-              variant="primary"
-              size="medium"
-              theme="light"
-              placeholder={isSearching ? "검색 중..." : "검색어를 입력해 주세요."}
-              value={searchValue}
-              onChange={handleSearchChange}
-              onSearch={handleSearchSubmit}
-              className={styles.searchbar}
-            />
+            <div className={styles.searchbarWrapper}>
+              <Searchbar
+                ref={searchInputRef}
+                variant="primary"
+                size="medium"
+                theme="light"
+                placeholder={isSearching ? "검색 중..." : "검색어를 입력해 주세요."}
+                value={searchValue}
+                onChange={handleSearchChange}
+                onSearch={handleSearchSubmit}
+                className={styles.searchbar}
+              />
+            </div>
           </div>
 
           <Button

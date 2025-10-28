@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import useLinkRouting from './hooks/index.link.routing.hook';
 import useArea from './hooks/index.area.hook';
 import useAuthHandlers from './hooks/index.auth.hook';
@@ -27,6 +28,12 @@ interface LayoutProps {
  * ```
  */
 export default function Layout({ children }: LayoutProps) {
+  const pathname = usePathname();
+  
+  // auth 페이지들에서는 Layout을 사용하지 않음
+  const isAuthPage = pathname?.startsWith('/auth/');
+  
+  // 모든 hooks를 조건부 호출 전에 선언
   const {
     handleLogoClick,
     handleDiariesClick,
@@ -45,6 +52,10 @@ export default function Layout({ children }: LayoutProps) {
 
   const { handleLoginClick, handleLogoutClick } = useAuthHandlers();
   const { isLoggedIn, user } = useAuth();
+  
+  if (isAuthPage) {
+    return <>{children}</>;
+  }
 
   return (
     <div className={styles.layout}>

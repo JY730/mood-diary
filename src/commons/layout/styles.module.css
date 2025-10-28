@@ -204,6 +204,9 @@
   .container {
     padding: 0 40px;
   }
+  .footer {
+    padding: 24px 40px;
+  }
 }
 
 @media (max-width: 768px) {

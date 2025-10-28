@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   position: relative;
-  width: 100%;
   min-width: 0; /* flex item이 내용에 따라 축소될 수 있도록 함 */
   border-radius: 100px; /* Figma: 100px corner radius */
   border: 1px solid;
@@ -27,7 +26,7 @@
   letter-spacing: -0.01em;
   color: inherit;
   min-width: 0; /* flex item이 내용에 따라 축소될 수 있도록 함 */
-  width: 100%;
+  width: inherit;
   padding: 0;
 }
 

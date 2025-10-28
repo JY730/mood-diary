@@ -17,7 +17,7 @@ const AuthSignup: React.FC = () => {
   const { register, handleSubmit, errors, isValid, isLoading } = useSignupForm();
 
   return (
-    <div className={styles.container} data-testid="auth-signup-container">
+    <div className={styles.authContainer} data-testid="auth-signup-container">
       <div className={styles.wrapper}>
         {/* Header - 타이틀 섹션 */}
         <div className={styles.header}>
