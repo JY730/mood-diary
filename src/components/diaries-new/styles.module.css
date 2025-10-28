@@ -196,3 +196,72 @@
   gap: 16px;
 }
 
+.footer button {
+  width: 104px;
+}
+
+/* ============================================== */
+/* 반응형 디자인 - 767px 브레이크포인트 */
+/* ============================================== */
+
+@media (max-width: 767px) {
+  .wrapper {
+    width: 100%;
+    height: auto;
+  }
+  
+  .headerTitle {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+  }
+  
+  .emotionBox {
+    height: 204px;
+    gap: 16px;
+  }
+  
+  .emotionTitle {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.16px;
+  }
+  
+  .emotionRadioGroup {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .emotionRadioItem {
+    height: 24px;
+  }
+  
+  .emotionRadioLabel {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.16px;
+    color: var(--gray-80);
+  }
+  
+  .inputLabel {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.12px;
+  }
+  
+  .contentTextarea::placeholder {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: -0.14px;
+  }
+  
+  .gap4 {
+    height: 24px;
+  }
+  
+  .footer button {
+    width: 80px;
+  }
+}
+

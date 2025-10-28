@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import { Selectbox } from '@/commons/components/selectbox';
 import { useInfiniteDogPictures } from './hooks/index.binding.hook';
@@ -25,11 +25,33 @@ export default function Pictures() {
     selectedFilter, 
     filterOptions, 
     handleFilterChange, 
-    getCurrentImageSize 
+    getCurrentImageSize,
+    getCurrentFilterClass
   } = usePictureFilter();
 
-  // 현재 필터에 따른 이미지 크기
-  const currentImageSize = getCurrentImageSize();
+  // 브레이크포인트 감지 상태
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 브레이크포인트 감지 효과
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+
+    // 초기 체크
+    checkMobile();
+
+    // 리사이즈 이벤트 리스너
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // 현재 필터와 브레이크포인트에 따른 이미지 크기
+  const currentImageSize = getCurrentImageSize(isMobile);
+  
+  // 현재 필터에 따른 CSS 클래스명
+  const filterClass = getCurrentFilterClass();
 
   /**
    * 컨텐츠 렌더링 함수
@@ -40,7 +62,7 @@ export default function Pictures() {
       return Array.from({ length: 6 }).map((_, index) => (
         <div 
           key={`splash-${index}`} 
-          className={styles.splashScreen}
+          className={`${styles.splashScreen} ${styles[filterClass]}`}
           data-testid="splash-screen"
         />
       ));
@@ -53,7 +75,7 @@ export default function Pictures() {
     return images.map((imageUrl, index) => (
       <div 
         key={`${imageUrl}-${index}`} 
-        className={styles.imageCard}
+        className={`${styles.imageCard} ${styles[filterClass]}`}
         ref={(el) => setLastImageRef(el, index)}
         style={{
           width: `${currentImageSize.width}px`,
@@ -91,8 +113,6 @@ export default function Pictures() {
         />
       </div>
       
-      {/* Gap 1 - 32px */}
-      <div className={styles.gap1}></div>
       
       {/* Gap 2 - 42px */}
       <div className={styles.gap2}></div>

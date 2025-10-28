@@ -10,7 +10,8 @@
 .modal {
   display: flex;
   flex-direction: column;
-  width: 480px;
+  width: 100%;
+  min-width: 480px;
   height: 200px;
   background-color: #ffffff;
   border-radius: 24px;
@@ -22,6 +23,7 @@
 /* Content Area Styles */
 .content {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -112,4 +114,11 @@
 
 .modal--dark .description {
   color: #d4d3d3;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 100%;
+    min-width: unset;    
+  }
 }

@@ -93,7 +93,6 @@ const DiariesNew: React.FC = () => {
           size="medium"
           theme="light"
           onClick={handleClose}
-          style={{ width: '104px' }}
           data-testid="diaries-new-close-button"
         >
           닫기
@@ -103,7 +102,6 @@ const DiariesNew: React.FC = () => {
           size="medium"
           theme="light"
           onClick={handleSubmit}
-          style={{ width: '104px' }}
           data-testid="diaries-new-submit-button"
           disabled={!isValid}
         >

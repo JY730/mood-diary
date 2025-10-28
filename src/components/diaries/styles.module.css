@@ -24,12 +24,13 @@
   gap: 16px;
 }
 
-.searchLeft {
+/* ---------- 데스크톱 전용 컨테이너 (원본 UI 유지) ---------- */
+.desktopSearch {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 16px;
-  flex: 1;
-  min-width: 0;
 }
 
 /* SelectBox 스타일 */
@@ -37,15 +38,45 @@
   width: 120px;
 }
 
+/* Searchbar 래퍼: 중앙에 검색바를 두고 내부 검색바는 max-width로 제한 */
+.searchbarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;            /* 남는 공간 차지하되 내부 .searchbar가 max-width로 제한됨 */
+  min-width: 0;       /* flex item에서 overflow 방지 */
+}
+
 /* Searchbar 스타일 */
-.searchbar {
+.searchbar {  
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  max-width: 320px;
   min-width: 200px;
-  flex: 1;
+  flex: 0;            /* 내부에서 더 이상 늘어나지 않음 */
 }
 
 /* Write Button 스타일 */
 .writeButton {
   width: 110px;
+}
+
+/* ---------- 모바일 전용 레이아웃 (처음에는 숨김) ---------- */
+.mobileSearch {
+  display: none;
+  width: 100%;
+}
+
+.mobileTop {
+  width: 100%;
+}
+
+.mobileBottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 /* Gap 2 - 42px */
@@ -66,11 +97,11 @@
 
 /* Diary Grid */
 .diaryGrid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   width: 100%; /* 부모 컨테이너의 100% 사용 */
   gap: 24px;
-  justify-content: flex-start; /* 기본값: 왼쪽 정렬 */
+  grid-template-columns: repeat(auto-fit, 274px);
+  justify-content: center;
 }
 
 /* 카드가 4개 이상일 때 중앙 정렬 */
@@ -82,6 +113,7 @@
 .diaryCard {
   display: flex;
   flex-direction: column;
+  gap: 16px;
   width: 274px; 
   background-color: var(--gray-white);
   border-radius: 16px;
@@ -94,7 +126,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 208px;
+  height: auto;
 }
 
 .cardImageTop {
@@ -146,7 +178,7 @@
 .cardContent {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 0px 8px;
   gap: 8px;
 }
 
@@ -219,32 +251,87 @@
 }
 
 /* ============================================== */
-/* 반응형 미디어 쿼리 - 카드 크기 고정, 자연스러운 줄바꿈 */
+/* 반응형 미디어 쿼리 */
 /* ============================================== */
 
-/* 화면이 작아지면 자동으로 카드가 아래로 떨어짐 */
-/* 카드 크기 274px + gap 24px = 298px */
-/* 4개: 1168px, 3개: 894px, 2개: 620px, 1개: 346px */
+/* 767px 이하 - 모바일 */
+@media (max-width: 767px) {
+  .container {
+    max-width: 100%;
+  }
+  
+  /* search 컨테이너 높이 자동으로 */
+  .search {
+    height: auto;
+    align-items: stretch;
+  }
+  
+  /* 데스크톱 레이아웃 숨기기 */
+  .desktopSearch {
+    display: none;
+  }
 
-/* 3개씩 보이는 브레이크포인트 */
-@media (max-width: 1200px) {
-  .diaryGrid {
-    justify-content: flex-start; /* 작은 화면에서는 왼쪽 정렬 */
+  /* 모바일 전용 레이아웃 노출 */
+  .mobileSearch {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .mobileTop {
+    width: 100%;
+  }
+
+  .mobileBottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  /* 모바일에서 검색바 전체 너비로 */
+  .searchbar {
+    width: 100%;
+    max-width: none;
+    min-width: unset;
+    flex: unset;
+  }
+  
+  /* 모바일에서 필터와 버튼 사이즈 조정 */
+  .selectBox {
+    width: 102px;
+  }
+  
+  .writeButton {
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  .diaryCard {
+    width: 100%;
+    min-width: 152px;
+  }
+  
+  .main .diaryGrid {
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
   }
 }
 
-/* 2개씩 보이는 브레이크포인트 */
-@media (max-width: 900px) {
+/* 768px 이상 - 데스크톱 */
+@media (min-width: 768px) {
+  .diaryCard {
+    width: 274px;
+  }
+  
   .diaryGrid {
-    justify-content: flex-start; /* 작은 화면에서는 왼쪽 정렬 */
+    width: 100%;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, 274px);
+  }
+  
+  .searchbar {
+    max-width: 320px; /* 데스크톱에서만 최대 너비 320px */
   }
 }
-
-/* 1개씩 보이는 브레이크포인트 */
-@media (max-width: 600px) {
-  .diaryGrid {
-    justify-content: flex-start; /* 작은 화면에서는 왼쪽 정렬 */
-  }
-}
-
-

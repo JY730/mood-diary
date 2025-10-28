@@ -169,7 +169,8 @@ export default function Diaries() {
       
       {/* Search Section - 48px */}
       <div className={styles.search}>
-        <div className={styles.searchLeft}>
+        {/* --- 데스크톱 레이아웃: 기존 1줄 구조 유지 --- */}
+        <div className={styles.desktopSearch}>
           <Selectbox
             variant="primary"
             size="medium"
@@ -180,29 +181,73 @@ export default function Diaries() {
             placeholder="전체"
             className={styles.selectBox}
           />
-          <Searchbar
-            ref={searchInputRef}
+          <div className={styles.searchbarContainer}>
+            <Searchbar
+              ref={searchInputRef}
+              variant="primary"
+              size="medium"
+              theme="light"
+              placeholder={isSearching ? "검색 중..." : "검색어를 입력해 주세요."}
+              value={searchValue}
+              onChange={handleSearchChange}
+              onSearch={handleSearchSubmit}
+              className={styles.searchbar}
+            />
+          </div>
+
+          <Button
             variant="primary"
             size="medium"
             theme="light"
-            placeholder={isSearching ? "검색 중..." : "검색어를 입력해 주세요."}
-            value={searchValue}
-            onChange={handleSearchChange}
-            onSearch={handleSearchSubmit}
-            className={styles.searchbar}
-          />
+            onClick={handleWriteDiary}
+            icon={<img src="/icons/plus_outline_light_m.svg" alt="" width="24" height="24" />}
+            className={styles.writeButton}
+            data-testid="diaries-write-button"
+          >
+            일기쓰기
+          </Button>
         </div>
-        <Button
-          variant="primary"
-          size="medium"
-          theme="light"
-          onClick={handleWriteDiary}
-          icon={<img src="/icons/plus_outline_light_m.svg" alt="" width="24" height="24" />}
-          className={styles.writeButton}
-          data-testid="diaries-write-button"
-        >
-          일기쓰기
-        </Button>
+
+        {/* --- 모바일 전용 레이아웃: 검색바(1줄) + (필터 + 버튼)(1줄) --- */}
+        <div className={styles.mobileSearch}>
+          <div className={styles.mobileTop}>
+            <Searchbar
+              ref={searchInputRef}
+              variant="primary"
+              size="medium"
+              theme="light"
+              placeholder={isSearching ? "검색 중..." : "검색어를 입력해 주세요."}
+              value={searchValue}
+              onChange={handleSearchChange}
+              onSearch={handleSearchSubmit}
+              className={styles.searchbar}
+            />
+          </div>
+
+          <div className={styles.mobileBottom}>
+            <Selectbox
+              variant="primary"
+              size="medium"
+              theme="light"
+              options={filterOptions}
+              value={filterValue}
+              onValueChange={handleFilterChange}
+              placeholder="전체"
+              className={styles.selectBox}
+            />
+
+            <Button
+              variant="primary"
+              size="medium"
+              theme="light"
+              onClick={handleWriteDiary}
+              icon={<img src="/icons/plus_outline_light_m.svg" alt="" width="24" height="24" />}
+              className={styles.writeButton}
+            >
+              일기쓰기
+            </Button>
+          </div>
+        </div>
       </div>
       
       {/* Gap 2 - 42px */}

@@ -1,3 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -134,8 +143,8 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  max-width: 1168px;
   gap: 16px;
-  padding: 24px 0;
 }
 
 .footerTitle {
@@ -194,5 +203,14 @@
 @media (max-width: 1208px) {
   .container {
     padding: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .footer {
+    padding: 24px 20px;
   }
 }

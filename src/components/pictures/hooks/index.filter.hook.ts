@@ -33,12 +33,21 @@ const filterOptions: FilterOption[] = [
 ];
 
 /**
- * 필터별 이미지 크기 매핑
+ * 데스크톱 필터별 이미지 크기 매핑 (767px 초과)
  */
-const filterSizeMap: Record<FilterType, ImageSize> = {
+const desktopFilterSizeMap: Record<FilterType, ImageSize> = {
   default: { width: 640, height: 640 },
   horizontal: { width: 640, height: 480 },
   vertical: { width: 480, height: 640 },
+};
+
+/**
+ * 모바일 필터별 이미지 크기 매핑 (767px 이하)
+ */
+const mobileFilterSizeMap: Record<FilterType, ImageSize> = {
+  default: { width: 280, height: 280 },
+  horizontal: { width: 280, height: 210 },
+  vertical: { width: 280, height: 372 },
 };
 
 /**
@@ -68,11 +77,13 @@ export const usePictureFilter = () => {
 
   /**
    * 현재 선택된 필터에 해당하는 이미지 크기 반환
+   * 브레이크포인트에 따라 데스크톱/모바일 크기를 반환합니다.
    * 
+   * @param isMobile - 모바일 여부 (기본값: false)
    * @returns {ImageSize} 현재 필터의 이미지 크기
    */
-  const getCurrentImageSize = useCallback((): ImageSize => {
-    return filterSizeMap[selectedFilter];
+  const getCurrentImageSize = useCallback((isMobile: boolean = false): ImageSize => {
+    return isMobile ? mobileFilterSizeMap[selectedFilter] : desktopFilterSizeMap[selectedFilter];
   }, [selectedFilter]);
 
   /**
