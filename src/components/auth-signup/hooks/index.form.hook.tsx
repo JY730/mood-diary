@@ -75,7 +75,7 @@ const createUser = async (data: SignupFormData): Promise<CreateUserResponse> => 
     },
   };
 
-  const response = await fetch('/api/graphql', {
+  const response = await fetch('https://main-practice.codebootcamp.co.kr/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

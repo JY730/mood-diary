@@ -12,9 +12,9 @@ import { ROUTES } from '@/commons/constants/url';
 
 /**
  * GraphQL API URL 상수
- * Next.js API Route를 통해 프록시하여 CORS 문제 해결
+ * 백엔드 서버에서 CORS 설정이 수정되어 직접 호출 가능
  */
-const GRAPHQL_API_URL = '/api/graphql';
+const GRAPHQL_API_URL = 'https://main-practice.codebootcamp.co.kr/graphql';
 
 /**
  * 로그인 폼 검증 스키마
